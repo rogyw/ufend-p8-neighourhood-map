@@ -1,0 +1,17 @@
+{
+  "name": "ufend-p8-neighbourhood-map",
+  "description": "Neighbourhood Map Project for Udacity Front End Web Developer Nanodegree",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "http://rogyw.github.io/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "knockout": "~3.4.0"
+  }
+}
