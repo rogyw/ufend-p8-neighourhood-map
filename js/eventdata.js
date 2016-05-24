@@ -1,233 +1,252 @@
 "use strict";
 
-var eventType = [{
-	"name": "SummerNav Evening",
+var events = [{
+	"date": "2016-10-27",
+	"series": "Auckland SummerNav",
+	"name": "Cornwall Park - Archery Carpark",
 	"startFirst": "17:30",
 	"startLast": "18:45",
 	"courseClose": "19:30",
-	"notes": "Compass not usually required."
-}, {
-	"name": "SummerNav Night",
-	"startFirst": "20:30",
-	"startLast": "20:30",
-	"courseClose": "21:15",
-	"notes": "Bring a good torch or headlamp; Kids can start at dusk; Compass recommended."
-}, {
-	"name": "AOA Forest",
-	"startFirst": "10:00",
-	"startLast": "12:30",
-	"courseClose": "14:30",
-	"notes": "Recommend bringing whistle and compass. Bring a good torch or headlamp; Kids can start at dusk; "
-}, {
-	"name": "Winter Sprint Afternoon",
-	"startFirst": "16:00",
-	"startLast": "16:30",
-	"courseClose": "17:00",
-	"notes": "Sprint, Jog, or Walk. Expected fastest time of 12 minutes for each course."
-}, {
-	"name": "WinterNav Afternoon",
-	"startFirst": "13:00",
-	"startLast": "14:15",
-	"courseClose": "16:00",
-	"notes": "Compass not usually required."
-}];
-
-var events = [{
-	"date": "2016-10-27",
-	"venue": "Cornwall Park",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"registrationCoord": {
 		lat: -36.903482,
 		lng: 174.784422
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
-	"date": "2016-11-02 Nov",
-	"venue": "Hamlins Hill",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"date": "2016-11-02",
+	"series": "Auckland SummerNav",
+	"name": "Hamlins Hill - Carpark",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.923982,
 		lng: 174.831291
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
-	"date": "2016-11-10 Nov",
-	"venue": "Auckland Domain",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"date": "2016-11-10",
+	"series": "Auckland SummerNav",
+	"name": "Auckland Domain - Cricket Grandstand",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.863269,
 		lng: 174.771962
 	},
-	"notes": "Grandstand"
+	"notes": "Compass not usually required."
 }, {
 	"date": "2016-11-16 Nov",
-	"venue": "Highbrook",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"series": "Auckland SummerNav",
+	"name": "Highbrook - Pukekiwiriki Entrance",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.944184,
 		lng: 174.871469
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2016-11-22 Nov",
-	"venue": "Western Springs",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"series": "Auckland SummerNav",
+	"name": "Western Springs - Zoo Carpark",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.865097,
 		lng: 174.720507
 	},
-	"notes": "Zoo Carpark, Mertons Road"
+	"notes": "Compass not usually required."
 }, {
 	"date": "2016-11-30 Nov",
-	"venue": "Craigavon",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"series": "Auckland SummerNav",
+	"name": "Craigavon",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.928414,
 		lng: 174.690347
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2016-12-08 Dec",
-	"venue": "Ambury Park",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "Ambury Park",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.945714,
 		lng: 174.761737
 	},
-	"notes": "No Dogs Permitted."
+	"notes": "No Dogs Permitted. Compass not usually required."
 }, {
 	"date": "2016-12-14 Dec",
-	"venue": "Epsom Campus",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "Epsom Campus - St Andrews Rd Entrance",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.885772,
 		lng: 174.767751
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2017-01-25 Jan",
-	"venue": "Pt England",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "Pt England",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.883369,
 		lng: 174.871948
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2017-01-31 Jan",
-	"venue": "Alexandra Park & Schools",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "Alexandra Park Raceway - Campbell Crescent Entrance",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.889485,
 		lng: 174.776607
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2017-02-08 Feb",
-	"venue": "Lloyd Elsmore",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "Lloyd Elsmore - Rugby Carpark",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.907876,
 		lng: 174.901683
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2017-02-14 Feb",
-	"venue": "Cornwall Park",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "Cornwall Park",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.898066,
 		lng: 174.788799
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2017-02-18 Feb",
-	"venue": "(Night Event) Ambury Park",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "(Night Event) Ambury Park",
+	"startFirst": "20:30",
+	"startLast": "20:30",
+	"courseClose": "21:15",
+	"registrationCoord": {
 		lat: -36.945714,
 		lng: 174.761737
 	},
-	"notes": "No Dogs Permitted."
+	"notes": "Bring a good torch or headlamp; Kids can start at dusk; Compass recommended. No Dogs Permitted."
+
 }, {
 	"date": "2017-02-23 Feb",
-	"venue": "Panmure Basin",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "Panmure Basin",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.908449,
 		lng: 174.848238
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2017-03-01 Mar",
-	"venue": "Selfs Farm",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "Selfs Farm",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.982238,
 		lng: 174.826492
 	},
-	"notes": ""
+	"notes": "Working Private Farm. Compass not usually required."
 }, {
 	"date": "2017-03-07 Mar",
-	"venue": "Auckland Domain",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "Auckland Domain - Maunsell Rd Carpark",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.862014,
 		lng: 174.778579
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2017-03-16 Mar",
-	"venue": "Ellerslie Racecourse",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "Ellerslie Racecourse",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.888302,
 		lng: 174.803875
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2017-03-22 Mar",
-	"venue": "Western Springs",
-	"eventType": "SummerNav Evening",
-	"registrationLocation": {
+	"name": "Western Springs Stadium",
+	"startFirst": "17:30",
+	"startLast": "18:45",
+	"courseClose": "19:30",
+	"registrationCoord": {
 		lat: -36.865933,
 		lng: 174.727192
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2017-05-20 May",
-	"venue": "Cornwall Park",
-	"eventType": "WinterNav Afternoon",
-	"registrationLocation": {
+	"name": "Cornwall Park",
+	"startFirst": "13:00",
+	"startLast": "14:15",
+	"courseClose": "16:00",
+	"registrationCoord": {
 		lat: -36.898066,
 		lng: 174.788799
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2017-06-17 Jun",
-	"venue": "Craigavon",
-	"eventType": "WinterNav Afternoon",
-	"registrationLocation": {
+	"name": "Craigavon",
+	"startFirst": "13:00",
+	"startLast": "14:15",
+	"courseClose": "16:00",
+	"registrationCoord": {
 		lat: -36.928414,
 		lng: 174.690347
 	},
-	"notes": ""
+	"notes": "Compass not usually required."
 }, {
 	"date": "2017-08-19 Aug",
-	"venue": "Auckland Domain",
-	"eventType": "Winter Sprint Afternoon",
-	"registrationLocation": {
+	"name": "Auckland Domain - Cricket Grandstand",
+	"startFirst": "16:00",
+	"startLast": "16:30",
+	"courseClose": "17:00",
+	"registrationCoord": {
 		lat: -36.863269,
 		lng: 174.771962
 	},
-	"notes": ""
+	"notes": "Sprint, Jog, or Walk. Expected fastest time of 12 minutes for each course."
 }, {
 	"date": "2017-09-16 Sep",
-	"venue": "Western Springs",
-	"eventType": "Winter Sprint Afternoon",
-	"registrationLocation": {
+	"name": "Western Springs - Zoo Carpark",
+	"startFirst": "16:00",
+	"startLast": "16:30",
+	"courseClose": "17:00",
+	"registrationCoord": {
 		lat: -36.865097,
 		lng: 174.720507
 	},
-	"notes": ""
+	"notes": "Sprint, Jog, or Walk. Expected fastest time of 12 minutes for each course."
 }];
