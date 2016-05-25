@@ -12,7 +12,19 @@
 </head>
 
 <body>
+	<!-- Left aligned menu below button -->
+	<button id="main-menu" class="mdl-button mdl-js-button mdl-button--icon">
+		<i class="material-icons">more_vert</i>
+	</button>
+	<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="main-menu">
+		<li class="mdl-menu__item">Some Action</li>
+		<li class="mdl-menu__item mdl-menu__item--full-bleed-divider">Another Action</li>
+		<li disabled class="mdl-menu__item">Disabled Action</li>
+		<li class="mdl-menu__item">Yet Another Action</li>
+	</ul>
 	<div id="map"></div>
+
+
 	<script src="bower_components/knockout/dist/knockout.js"></script>
 	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 	<script src="js/eventdata.js"></script>
