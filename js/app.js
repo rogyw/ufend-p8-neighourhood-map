@@ -16,9 +16,10 @@ function getEventMarkerContent(data){
 
 	//Build the markers pop up window content
 	infoContent = '<div class="map-info">';
-	infoContent += "<h3>" + markerContent.title + "</h3>";
+	infoContent += "<h1>" + data.name + "</h1>";
+	infoContent += "<h2>" + data.series + "</h2>";
 	infoContent += "<ul>";
-	infoContent += "<li>Date: " + data.date + "</li>";
+	infoContent += "<li><strong>Date: " + data.date + "</strong></li>";
 	infoContent += "<li>Start between: " + data.startFirst + " - " + data.startLast + "</li>";
 	infoContent += "<li>Course closure Time (Check notice board): " + data.courseClose + "</li>";
 	if (data.notes !== "") {
