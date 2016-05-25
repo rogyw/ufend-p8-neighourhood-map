@@ -86,11 +86,15 @@ function createEventMarker(element, index, array) {
 	return false;
 }
 
+
+/**
+ * Repositions and resizes map view based on map bounds.
+ */
 function resizeMap() {
-	console.log("resizeMap: called.")
 	//Make sure the map bounds get updated on page resize
 	map.fitBounds(window.mapBounds);
 }
+
 
 /**
  * Initialises the Map and places all Event Markers on Map
