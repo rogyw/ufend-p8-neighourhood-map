@@ -1,6 +1,6 @@
 "use strict";
 
-var events = [{
+var eventsJSON = [{
 	"date": "2016-10-27",
 	"series": "Auckland SummerNav",
 	"name": "Cornwall Park - Archery Carpark",
