@@ -5,16 +5,30 @@
 // set jshint to ignore external globals
 /* global ko, google: false */
 
+
+
+/* ======================================================= */
+/* Map
+/* ======================================================= */
+
 var map;
 var markers = [];
 
+
+/**
+ * creates an object containing Title and Content for a marker based on provided data object
+ * @param  {object} data JSON data object containing event information
+ * @return {object} Object containing Title and HTML for Marker Content
+ */
 function getEventMarkerContent(data){
+
 	var markerContent = {};
 	var infoContent;
 
+	// Build the Event Title
 	markerContent.title = data.series + " - " + data.name;
 
-	//Build the markers pop up window content
+	//Build the marker pop up window content
 	infoContent = '<div class="map-info">';
 	infoContent += "<h1>" + data.name + "</h1>";
 	infoContent += "<h2>" + data.series + "</h2>";
@@ -26,17 +40,22 @@ function getEventMarkerContent(data){
 		infoContent += "<li>Note: " + data.notes + "</li>";
 	}
 	infoContent += "</ul></div>";
-
 	markerContent.infoContent = infoContent;
+
 	return markerContent;
 }
 
-
+/**
+ * Function to run within a ForEach on Event Marker List. Create an event marker based on each element within the array.
+ * @param  {object} element JSON object containing event data
+ * @param  {integer} index   current index of array (optional)
+ * @param  {[type]} array   event Array (optional)
+ * @return {boolean}  Returns false on success, true if failure
+ */
 function createEventMarker(element, index, array) {
 
 	var bounds = window.mapBounds; // current boundaries of the map window
 	var markerContent = getEventMarkerContent(element);
-
 	var newMarker = new google.maps.Marker({
 		position: element.registrationCoord,
 		map: map,
@@ -44,7 +63,6 @@ function createEventMarker(element, index, array) {
 	});
 	markers.push(newMarker);
 	newMarker.setMap(map);
-
 
 	// infoWindows are the little helper windows that open when you click
 	// or hover over a pin on a map. They usually contain more information
@@ -58,14 +76,19 @@ function createEventMarker(element, index, array) {
 		infoWindow.open(map, newMarker);
 	});
 
-	bounds.extend(new google.maps.LatLng(element.registrationCoord.lat, element.registrationCoord.lng));
 	// fit the map to the new marker
+	bounds.extend(new google.maps.LatLng(element.registrationCoord.lat, element.registrationCoord.lng));
 	map.fitBounds(bounds);
 	// center the map
 	map.setCenter(bounds.getCenter());
+
+	return false;
 }
 
-
+/**
+ * Initialises the Map and places all Event Markers on Map
+ * @return {boolean} Returns false on success, true if failure
+ */
 function initMap() {
 
 	var mapOptions = {
@@ -76,4 +99,5 @@ function initMap() {
 	window.mapBounds = new google.maps.LatLngBounds();
 
 	eventsJSON.forEach(createEventMarker);
+	return false;
 }
