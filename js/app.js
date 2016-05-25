@@ -20,7 +20,7 @@ var markers = [];
  * @param  {object} data JSON data object containing event information
  * @return {object} Object containing Title and HTML for Marker Content
  */
-function getEventMarkerContent(data){
+function getEventMarkerContent(data) {
 
 	var markerContent = {};
 	var infoContent;
@@ -44,6 +44,7 @@ function getEventMarkerContent(data){
 
 	return markerContent;
 }
+
 
 /**
  * Function to run within a ForEach on Event Marker List. Create an event marker based on each element within the array.
@@ -84,6 +85,7 @@ function createEventMarker(element, index, array) {
 
 	return false;
 }
+
 
 /**
  * Initialises the Map and places all Event Markers on Map
