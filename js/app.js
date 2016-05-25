@@ -86,6 +86,11 @@ function createEventMarker(element, index, array) {
 	return false;
 }
 
+function resizeMap() {
+	console.log("resizeMap: called.")
+	//Make sure the map bounds get updated on page resize
+	map.fitBounds(window.mapBounds);
+}
 
 /**
  * Initialises the Map and places all Event Markers on Map
@@ -101,5 +106,10 @@ function initMap() {
 	window.mapBounds = new google.maps.LatLngBounds();
 
 	eventsJSON.forEach(createEventMarker);
+
+	// Vanilla JS way to listen for resizing of the window
+	// and adjust map bounds
+	window.addEventListener('resize', resizeMap);
+
 	return false;
 }
