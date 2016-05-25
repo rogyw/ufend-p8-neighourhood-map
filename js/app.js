@@ -8,36 +8,48 @@
 var map;
 var markers = [];
 
+function getEventMarkerContent(data){
+	var markerContent = {};
+	var infoContent;
+
+	markerContent.title = data.series + " - " + data.name;
+
+	//Build the markers pop up window content
+	infoContent = '<div class="map-info">';
+	infoContent += "<h3>" + markerContent.title + "</h3>";
+	infoContent += "<ul>";
+	infoContent += "<li>Date: " + data.date + "</li>";
+	infoContent += "<li>Start between: " + data.startFirst + " - " + data.startLast + "</li>";
+	infoContent += "<li>Course closure Time (Check notice board): " + data.courseClose + "</li>";
+	if (data.notes !== "") {
+		infoContent += "<li>Note: " + data.notes + "</li>";
+	}
+	infoContent += "</ul></div>";
+
+	markerContent.infoContent = infoContent;
+	return markerContent;
+}
+
 
 function createEventMarker(element, index, array) {
 
 	var bounds = window.mapBounds; // current boundaries of the map window
-	var title = element.series + " - " + element.name;
+	var markerContent = getEventMarkerContent(element);
+
 	var newMarker = new google.maps.Marker({
 		position: element.registrationCoord,
 		map: map,
-		title: title,
+		title: markerContent.title,
 	});
 	markers.push(newMarker);
 	newMarker.setMap(map);
 
-	//change the look of the content in the map infoWindow.
-	var infoContent = '<div class="map-info">';
-	infoContent += "<h3>" + title + "</h3>";
-	infoContent += "<ul>";
-	infoContent += "<li>Date: " + element.date + "</li>";
-	infoContent += "<li>Start between: " + element.startFirst + " - " + element.startLast + "</li>";
-	infoContent += "<li>Course closure Time (Check notice board): " + element.courseClose + "</li>";
-	if (element.notes !== "") {
-		infoContent += "<li>Note: " + element.notes + "</li>";
-	}
-	infoContent += "</ul></div>";
 
 	// infoWindows are the little helper windows that open when you click
 	// or hover over a pin on a map. They usually contain more information
 	// about a location.
 	var infoWindow = new google.maps.InfoWindow({
-		content: infoContent
+		content: markerContent.infoContent
 	});
 
 	// open Information Window when Marker clicked
@@ -55,16 +67,12 @@ function createEventMarker(element, index, array) {
 
 function initMap() {
 
-	var myLatlng = new google.maps.LatLng(-36.903482, 174.784422);
-
 	var mapOptions = {
 		disableDefaultUI: true,
 	};
 
 	map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
 	window.mapBounds = new google.maps.LatLngBounds();
 
 	eventsJSON.forEach(createEventMarker);
-
 }
