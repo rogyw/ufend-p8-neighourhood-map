@@ -33,11 +33,8 @@
 		</header>
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Title</span>
-			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
+			<nav class="mdl-navigation" data-bind="foreach: eventList">
+				<a class="mdl-navigation__link" href="" data-bind="text: name"></a>
 			</nav>
 		</div>
 		<main id="map" class="mdl-layout__content">

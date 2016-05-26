@@ -117,3 +117,34 @@ function initMap() {
 
 	return false;
 }
+
+
+/* ======================================================= */
+/* List */
+/* ======================================================= */
+
+var oEvent = function(data) {
+	this.date = ko.observable(data.date);
+	this.series = ko.observable(data.series);
+	this.name = ko.observable(data.name);
+	this.startFirst = ko.observable(data.startFirst);
+	this.startLast = ko.observable(data.startLast);
+	this.courseClose = ko.observable(data.courseClose);
+	this.registrationCoord = ko.observable(data.registrationCoord);
+	this.notes = ko.observable(data.notes);
+};
+
+var ViewModel = function() {
+
+	//self represents the ViewModel this
+	var self = this;
+
+	self.eventList = ko.observableArray([]);
+
+	eventsJSON.forEach(function(eventItem) {
+		self.eventList.push(new oEvent(eventItem));
+	});
+
+};
+
+ko.applyBindings(new ViewModel());
