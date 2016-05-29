@@ -54,7 +54,6 @@ function getEventMarkerContent(data) {
  */
 function createEventMarker(element) {
 
-	var bounds = window.mapBounds; // current boundaries of the map window
 	var markerContent = getEventMarkerContent(element);
 	var newMarker = new google.maps.Marker({
 		position: element.registrationCoord,
@@ -76,21 +75,28 @@ function createEventMarker(element) {
 		infoWindow.open(map, newMarker);
 	});
 
-	// fit the map to the new marker
-	bounds.extend(new google.maps.LatLng(element.registrationCoord.lat, element.registrationCoord.lng));
-	map.fitBounds(bounds);
-	// center the map
-	map.setCenter(bounds.getCenter());
-
 	return false;
 }
 
 /**
- * Repositions and resizes map view based on map bounds.
+ * Repositions and resizes map view based on markers.
  */
 function resizeMap() {
-	//Make sure the map bounds get updated on page resize
-	map.fitBounds(window.mapBounds);
+
+	//Start off with null LatLngBounds (i.e. reset)
+	var bounds = new google.maps.LatLngBounds();
+
+	//Add each of the currently visible markers to the bounds
+	markers.forEach(function(element) {
+		console.log(element);
+		bounds.extend(element.position);
+	});
+
+	// center the map on the center of bounds
+	map.setCenter(bounds.getCenter());
+
+	// Zoom map to fit the new bounds
+	map.fitBounds(bounds);
 }
 
 
@@ -101,13 +107,15 @@ function resizeMap() {
 function initMap() {
 
 	var mapOptions = {
-		disableDefaultUI: true,
 	};
 
 	map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
 	window.mapBounds = new google.maps.LatLngBounds();
 
 	eventsJSON.forEach(createEventMarker);
+
+	resizeMap();
 
 	// Vanilla JS way to listen for resizing of the window
 	// and adjust map bounds
