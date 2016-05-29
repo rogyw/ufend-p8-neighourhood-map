@@ -88,7 +88,6 @@ function resizeMap() {
 
 	//Add each of the currently visible markers to the bounds
 	markers.forEach(function(element) {
-		console.log(element);
 		bounds.extend(element.position);
 	});
 
