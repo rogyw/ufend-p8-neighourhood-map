@@ -56,7 +56,7 @@ var viewModel = function() {
 			this.eventsList().forEach(enableMapMarker);
 			return this.eventsList();
 		} else {
-			return ko.utils.arrayFilter(this.eventsList(), function(event) {
+			var filteredList = ko.utils.arrayFilter(this.eventsList(), function(event) {
 				if (event.name().toLowerCase().search(filter) !== -1) {
 					enableMapMarker(event);
 					return true;
@@ -65,6 +65,7 @@ var viewModel = function() {
 					return false;
 				}
 			});
+			return filteredList;
 		}
 	}, self);
 };
