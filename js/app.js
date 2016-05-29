@@ -33,24 +33,6 @@ var oEvent = function(data) {
 
 
 /**
- * Enables the Event Objects Map Marker to display on map
- * @param  {object} element Event Object
- */
-function enableMapMarker(element) {
-	element.mapMarker.setMap(map);
-}
-
-
-/**
- * Disables the visibility of Event Objects Map Marker. Note marker is not deleted.
- * @param  {object} element Event Object
- */
-function disableMapMarker(element) {
-	element.mapMarker.setMap(null);
-}
-
-
-/**
  * viewModel
  */
 var viewModel = function() {
@@ -157,6 +139,24 @@ function createEventMarker(element) {
 	});
 
 	return newMarker;
+}
+
+
+/**
+ * Enables the Event Objects Map Marker to display on map
+ * @param  {object} element Event Object
+ */
+function enableMapMarker(element) {
+	element.mapMarker.setMap(map);
+}
+
+
+/**
+ * Disables the visibility of Event Objects Map Marker. Note marker is not deleted.
+ * @param  {object} element Event Object
+ */
+function disableMapMarker(element) {
+	element.mapMarker.setMap(null);
 }
 
 
