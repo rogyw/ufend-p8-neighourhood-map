@@ -52,6 +52,7 @@ var viewModel = function() {
 	self.eventsList = ko.observableArray();
 	self.filter = ko.observable("");
 
+	//Import the JSON events data into eventsList
 	eventsJSON.forEach(function(eventItem) {
 		self.eventsList.push(new oEvent(eventItem));
 	});
@@ -59,12 +60,16 @@ var viewModel = function() {
 	//filter the items using the filter text
 	// Reference http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
 	self.filteredEvents = ko.computed(function() {
+
+		// get the filter search text and ignore case
 		var filter = this.filter().toLowerCase();
+
 		if (!filter) {
-			//enable and return all the items
+			//no search term so reset all as viewable and return all the items
 			this.eventsList().forEach(enableMapMarker);
 			return this.eventsList();
 		} else {
+			//filter all events based on search term and update visibilty before returning matching subset
 			var filteredList = ko.utils.arrayFilter(this.eventsList(), function(event) {
 				if (event.name().toLowerCase().search(filter) !== -1) {
 					enableMapMarker(event);
