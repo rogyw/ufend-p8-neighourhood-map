@@ -1,4 +1,11 @@
 "use strict";
+/* ======================================================= */
+/* Constants */
+/* ======================================================= */
+// Note: currently using var instead of const for compatibilty
+var DEFAULT_MAP_CENTRE = { lat: -36.9001229, lng: 174.7826388 };
+var DEFAULT_MAP_ZOOM = 10;
+
 
 // set jshint to ignore console, alert, etc
 /* jshint devel: true */
@@ -67,7 +74,13 @@ var viewModel = function() {
 			});
 			return filteredList;
 		}
-	}, self);
+	}, self).extend({ redrawMap: "" });
+
+	//trigger an Resize of Map when the filteredEvents changes
+	self.filteredEvents.subscribe(function(newValue) {
+		resizeMap(newValue);
+	});
+
 };
 
 
@@ -162,16 +175,17 @@ function disableMapMarker(element) {
 
 
 /**
- * Repositions and resizes map view based on markers.
+ * Repositions and resizes map view based on eventList markers.
  */
-function resizeMap() {
+function resizeMap(eventList) {
 
 	//Start off with null LatLngBounds (i.e. reset)
-	var bounds = new google.maps.LatLngBounds();
+	var bounds = new google.maps.LatLngBounds(DEFAULT_MAP_CENTRE);
+	var count = eventList.length;
 
 	//Add each of the currently visible mapMarkers to the bounds
-	for (var i = 0, l = viewModel.filteredEvents().length; i < l; i++) {
-		var position = viewModel.filteredEvents()[i].mapMarker.position;
+	for (var i = 0; i < count; i++) {
+		var position = eventList[i].mapMarker.position;
 		bounds.extend(position);
 	}
 
@@ -179,7 +193,12 @@ function resizeMap() {
 	map.setCenter(bounds.getCenter());
 
 	// Zoom map to fit the new bounds
-	map.fitBounds(bounds);
+	if (count > 1) {
+		map.fitBounds(bounds);
+	} else {
+		//No locations so Zoom out on map
+		map.setZoom(DEFAULT_MAP_ZOOM);
+	}
 }
 
 
@@ -190,8 +209,8 @@ function resizeMap() {
 function initMap() {
 
 	var mapOptions = {
-		center: { lat: -36.9001229, lng: 174.7826388 },
-		zoom: 12
+		center: DEFAULT_MAP_CENTRE,
+		zoom: DEFAULT_MAP_ZOOM
 	};
 
 	map = new google.maps.Map(document.getElementById('map'), mapOptions);
