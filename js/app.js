@@ -10,7 +10,8 @@
 /* ======================================================= */
 // Note: currently using var instead of const for compatibilty
 var DEFAULT_MAP_CENTRE = { lat: -36.9001229, lng: 174.7826388 };
-var DEFAULT_MAP_ZOOM = 10;
+var DEFAULT_MAP_ZOOM = 11;
+var DEFAULT_ZOOM_MAX = 16;
 
 
 /* ======================================================= */
@@ -75,7 +76,7 @@ var viewModel = function() {
 			});
 			return filteredList;
 		}
-	}, self).extend({ redrawMap: "" });
+	}, self);
 
 	//trigger an Resize of Map when the filteredEvents changes
 	self.filteredEvents.subscribe(function(newValue) {
@@ -179,25 +180,26 @@ function disableMapMarker(element) {
  */
 function resizeMap(eventList) {
 
-	//Start off with null LatLngBounds (i.e. reset)
-	var bounds = new google.maps.LatLngBounds(DEFAULT_MAP_CENTRE);
 	var count = eventList.length;
 
-	//Add each of the currently visible mapMarkers to the bounds
-	for (var i = 0; i < count; i++) {
-		var position = eventList[i].mapMarker.position;
-		bounds.extend(position);
-	}
-
-	// center the map on the center of bounds
-	map.setCenter(bounds.getCenter());
-
 	// Zoom map to fit the new bounds
-	if (count > 1) {
-		map.fitBounds(bounds);
-	} else {
-		//No locations so Zoom out on map
+	if (count < 1) {
+		//No locations or error so Zoom out on map
 		map.setZoom(DEFAULT_MAP_ZOOM);
+		map.setCenter(DEFAULT_MAP_CENTRE);
+	} else {
+		//Start off with null LatLngBounds (i.e. reset)
+		var bounds = new google.maps.LatLngBounds();
+
+		//Add each of the currently visible mapMarkers to the bounds
+		for (var i = 0; i < count; i++) {
+			var position = eventList[i].mapMarker.position;
+			bounds.extend(position);
+		}
+
+		// center the map on the center of bounds
+		map.setCenter(bounds.getCenter());
+		map.fitBounds(bounds);
 	}
 }
 
@@ -210,7 +212,8 @@ function initMap() {
 
 	var mapOptions = {
 		center: DEFAULT_MAP_CENTRE,
-		zoom: DEFAULT_MAP_ZOOM
+		zoom: DEFAULT_MAP_ZOOM,
+		maxZoom: DEFAULT_ZOOM_MAX
 	};
 
 	map = new google.maps.Map(document.getElementById('map'), mapOptions);
