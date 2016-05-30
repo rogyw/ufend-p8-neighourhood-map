@@ -1,4 +1,10 @@
 "use strict";
+
+// set jshint to ignore console, alert, etc
+/* jshint devel: true */
+// set jshint to ignore external globals
+/* global ko, google, eventsJSON: false */
+
 /* ======================================================= */
 /* Constants */
 /* ======================================================= */
@@ -6,11 +12,6 @@
 var DEFAULT_MAP_CENTRE = { lat: -36.9001229, lng: 174.7826388 };
 var DEFAULT_MAP_ZOOM = 10;
 
-
-// set jshint to ignore console, alert, etc
-/* jshint devel: true */
-// set jshint to ignore external globals
-/* global ko, google, eventsJSON: false */
 
 /* ======================================================= */
 /* List */
@@ -80,7 +81,6 @@ var viewModel = function() {
 	self.filteredEvents.subscribe(function(newValue) {
 		resizeMap(newValue);
 	});
-
 };
 
 
