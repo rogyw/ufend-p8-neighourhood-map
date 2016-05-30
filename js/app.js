@@ -13,6 +13,11 @@ var DEFAULT_MAP_CENTRE = { lat: -36.9001229, lng: 174.7826388 };
 var DEFAULT_MAP_ZOOM = 11;
 var DEFAULT_ZOOM_MAX = 16;
 
+/* ======================================================= */
+/* Global */
+/* ======================================================= */
+
+var map;
 
 /* ======================================================= */
 /* List */
@@ -93,6 +98,12 @@ var viewModel = function() {
 		resizeMap(self.filteredEvents());
 	};
 	window.addEventListener('resize', self.redrawMap);
+
+	//Add eventList Click open marker info window
+	self.eventListClick = function(currentEvent) {
+		google.maps.event.trigger(currentEvent.mapMarker, 'click');
+	};
+
 };
 
 
@@ -100,7 +111,7 @@ var viewModel = function() {
 /* Map
 /* ======================================================= */
 
-var map;
+
 
 
 /**

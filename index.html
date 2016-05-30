@@ -34,11 +34,10 @@
 				</div>
 			</div>
 			<nav class="mdl-navigation" data-bind="foreach: filteredEvents">
-				<a class="mdl-navigation__link" href="" data-bind="text: name"></a>
+				<span class="mdl-navigation__link" data-bind="click: $parent.eventListClick, text: name"></span>
 			</nav>
 		</div>
-		<main id="map" class="mdl-layout__content
-">
+		<main id="map" class="mdl-layout__content">
 		</main>
 	</div>
 	<script src="bower_components/knockout/dist/knockout.js"></script>
