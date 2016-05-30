@@ -18,6 +18,7 @@ var DEFAULT_ZOOM_MAX = 16;
 /* ======================================================= */
 
 var map;
+var infoWindow;
 
 /* ======================================================= */
 /* List */
@@ -40,8 +41,27 @@ var oEvent = function(data) {
 		self.registrationCoord = ko.observable(data.registrationCoord);
 		self.notes = ko.observable(data.notes);
 
+		self.title = ko.computed(function() {
+			return self.series + " - " + self.name;
+		});
+
+		self.infoWindowContent = ko.computed(function() {
+			var infoContent = '<div class="map-info">';
+			infoContent += "<h3>" + self.name + "</h3>";
+			infoContent += "<h4>" + self.series + "</h4>";
+			infoContent += "<ul>";
+			infoContent += "<li><strong>Date: " + self.date + "</strong></li>";
+			infoContent += "<li>Start between: " + self.startFirst + " - " + self.startLast + "</li>";
+			infoContent += "<li>Course closure Time (Check notice board): " + self.courseClose + "</li>";
+			if (self.notes !== "") {
+				infoContent += "<li>Note: " + self.notes + "</li>";
+			}
+			infoContent += "</ul></div>";
+			return infoContent;
+		});
+
 		self.data = data; //store imported raw data in oEvent for reference
-		self.mapMarker = createEventMarker(data);
+		self.mapMarker = createEventMarker(self.registrationCoord(), data.series + " - " + data.name);
 	}
 };
 
@@ -111,67 +131,35 @@ var viewModel = function() {
 /* Map
 /* ======================================================= */
 
-
-
-
 /**
- * creates an object containing Title and Content for a marker based on provided data object
- * @param  {object} data JSON data object containing event information
- * @return {object} Object containing Title and HTML for Marker Content
+ * Creates a google map marker.
+ * @param  {object} coordinates JSON object containing location
+ * @param  {string} title The Title to be applied on the marker
+ * @return {object}  Returns created Google Map Marker Object
  */
-function getEventMarkerContent(data) {
+function createEventMarker(coordinates, title) {
 
-	var markerContent = {};
-	var infoContent;
-
-	// Build the Event Title
-	markerContent.title = data.series + " - " + data.name;
-
-	//Build the marker pop up window content
-	infoContent = '<div class="map-info">';
-	infoContent += "<h3>" + data.name + "</h3>";
-	infoContent += "<h4>" + data.series + "</h4>";
-	infoContent += "<ul>";
-	infoContent += "<li><strong>Date: " + data.date + "</strong></li>";
-	infoContent += "<li>Start between: " + data.startFirst + " - " + data.startLast + "</li>";
-	infoContent += "<li>Course closure Time (Check notice board): " + data.courseClose + "</li>";
-	if (data.notes !== "") {
-		infoContent += "<li>Note: " + data.notes + "</li>";
-	}
-	infoContent += "</ul></div>";
-	markerContent.infoContent = infoContent;
-
-	return markerContent;
-}
-
-
-/**
- * Function to run within a ForEach on Event Marker List. Create an event marker based on each element within the array.
- * @param  {object} element JSON object containing event data
- * @param  {integer} index   current index of array (optional)
- * @param  {[type]} array   event Array (optional)
- * @return {boolean}  Returns false on success, true if failure
- */
-function createEventMarker(element) {
-
-	var markerContent = getEventMarkerContent(element);
 	var newMarker = new google.maps.Marker({
-		position: element.registrationCoord,
+		position: coordinates,
 		map: map,
-		title: markerContent.title,
+		title: title,
 	});
 
+	//Make the Marker visible on the map
 	newMarker.setMap(map);
 
-	// infoWindows are the little helper windows that open when you click
-	// or hover over a pin on a map. They usually contain more information
-	// about a location.
-	var infoWindow = new google.maps.InfoWindow({
-		content: markerContent.infoContent
-	});
-
-	// open Information Window when Marker clicked
+	//add Listener to ensure Information Window is opened when Marker clicked
+	// Note: uses global infoWindow to enable closing of any previous open info Window
+	// reference: http://stackoverflow.com/a/4540249
 	google.maps.event.addListener(newMarker, 'click', function() {
+
+		newMarker.setAnimation(google.maps.Animation.BOUNCE);
+		var timeoutID = window.setTimeout(function() { newMarker.setAnimation(null) }, 2100);
+
+		if (infoWindow) {
+			infoWindow.close();
+		}
+		infoWindow = new google.maps.InfoWindow({ content: title });
 		infoWindow.open(map, newMarker);
 	});
 
