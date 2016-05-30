@@ -46,7 +46,7 @@ var oEvent = function(data) {
  */
 var viewModel = function() {
 
-	//self represents the ViewModel this
+	//self represents the viewModel this
 	var self = this;
 
 	self.eventsList = ko.observableArray();
@@ -58,7 +58,7 @@ var viewModel = function() {
 
 	//filter the items using the filter text
 	// Reference http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
-	self.filteredEvents = ko.dependentObservable(function() {
+	self.filteredEvents = ko.computed(function() {
 		var filter = this.filter().toLowerCase();
 		if (!filter) {
 			//enable and return all the items
@@ -78,10 +78,16 @@ var viewModel = function() {
 		}
 	}, self);
 
-	//trigger an Resize of Map when the filteredEvents changes
+	// Trigger resize of map when the filteredEvents changes
 	self.filteredEvents.subscribe(function(newValue) {
 		resizeMap(newValue);
 	});
+
+	// Trigger resize of map when window size changes
+	self.redrawMap = function() {
+		resizeMap(self.filteredEvents());
+	};
+	window.addEventListener('resize', self.redrawMap);
 };
 
 
@@ -217,10 +223,6 @@ function initMap() {
 	};
 
 	map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-	// Vanilla JS way to listen for resizing of the window
-	// and adjust map bounds
-	window.addEventListener('resize', resizeMap);
 
 	ko.applyBindings(new viewModel());
 }
