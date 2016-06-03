@@ -15,6 +15,7 @@ var DEFAULT_ZOOM_MAX = 16;
 var MAP_MARKER_ICON = "https://raw.githubusercontent.com/rogyw/ufend-p8-neighourhood-map/master/img/marker-o-flag.png";
 var API_ATAPI_STOP_DISTANCE = 1000;
 var API_ATAPI_SECRET_KEY = "66ea2049-30bf-4ce3-bd6b-701e458de648";
+var MAX_BUSSTOPS = 5;
 /* ======================================================= */
 /* Global */
 /* ======================================================= */
@@ -186,16 +187,8 @@ function createEventMarker(coordinates, title, eventInfo) {
 			"content": tabContent
 		});
 
-		tabContent = document.createElement('DIV');
-		tabContent.innerHTML = "eventInfo";
-
-		tabs.push({
-			"tabName": "Bus Stops",
-			"content": tabContent
-		});
-
 		infoBubble.addTab(tabs[0].tabName, tabs[0].content);
-		infoBubble.addTab(tabs[1].tabName, tabs[1].content);
+
 	});
 
 	return newMarker;
@@ -281,6 +274,24 @@ function requestRoutes(coordinates) {
 			console.log("AT API success.");
 			dataATAPI = data;
 			console.log(dataATAPI);
+			var resultsCount = dataATAPI.response.length;
+			var tabContent = "<div>";
+			tabContent += "<h3>Bus Stops nearby</h3>";
+			if (resultsCount < 1) {
+				tabContent += "<p>No bus stop found within " + API_ATAPI_STOP_DISTANCE + " metres of registration location. Please refer to <a href=\"https://at.govt.nz/\" target=\"_blank\">at.govt.nz</a>.</p>";
+			} else {
+				tabContent += "<ul>";
+				for (var i = 1;
+					((i < dataATAPI.response.length) && (i < MAX_BUSSTOPS + 1)); i++) {
+					tabContent += "<li>";
+					tabContent += dataATAPI.response[i].stop_code + " - " + dataATAPI.response[i].stop_name + " (" + parseInt(dataATAPI.response[i].st_distance_sphere, 10) + "m)";
+					tabContent += "</li>";
+				}
+				tabContent += "</ul>";
+			}
+			tabContent += "</div>";
+
+			infoBubble.addTab("Bus Stops", tabContent);
 		})
 		.fail(function(data) {
 			console.log("AT API failure.");
