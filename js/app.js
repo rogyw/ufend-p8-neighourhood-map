@@ -3,7 +3,7 @@
 // set jshint to ignore console, alert, etc
 /* jshint devel: true */
 // set jshint to ignore external globals
-/* global ko, google, eventsJSON: false */
+/* global $, ko, google, eventsJSON: false */
 
 /* ======================================================= */
 /* Constants */
@@ -12,7 +12,7 @@
 var DEFAULT_MAP_CENTRE = { lat: -36.9001229, lng: 174.7826388 };
 var DEFAULT_MAP_ZOOM = 11;
 var DEFAULT_ZOOM_MAX = 16;
-
+var MAP_MARKER_ICON = "https://raw.githubusercontent.com/rogyw/ufend-p8-neighourhood-map/master/img/marker-o-flag.png";
 /* ======================================================= */
 /* Global */
 /* ======================================================= */
@@ -143,6 +143,7 @@ function createEventMarker(coordinates, title) {
 		position: coordinates,
 		map: map,
 		title: title,
+		icon: MAP_MARKER_ICON
 	});
 
 	//Make the Marker visible on the map
@@ -154,7 +155,7 @@ function createEventMarker(coordinates, title) {
 	google.maps.event.addListener(newMarker, 'click', function() {
 
 		newMarker.setAnimation(google.maps.Animation.BOUNCE);
-		var timeoutID = window.setTimeout(function() { newMarker.setAnimation(null) }, 2100);
+		var timeoutID = window.setTimeout(function() { newMarker.setAnimation(null); }, 2100);
 
 		if (infoWindow) {
 			infoWindow.close();
