@@ -53,26 +53,26 @@ var oEvent = function(data) {
 		self.notes = ko.observable(data.notes);
 
 		self.title = ko.computed(function() {
-			return self.series + " - " + self.name;
+			return self.series() + " - " + self.name();
 		});
 
 		self.infoBubbleContent = ko.computed(function() {
 			var infoContent = '<div class="map-info">';
-			infoContent += "<h3>" + self.name + "</h3>";
-			infoContent += "<h4>" + self.series + "</h4>";
+			infoContent += "<h3>" + self.name() + "</h3>";
+			infoContent += "<h4>" + self.series() + "</h4>";
 			infoContent += "<ul>";
-			infoContent += "<li><strong>Date: " + self.date + "</strong></li>";
-			infoContent += "<li>Start between: " + self.startFirst + " - " + self.startLast + "</li>";
-			infoContent += "<li>Course closure Time (Check notice board): " + self.courseClose + "</li>";
-			if (self.notes !== "") {
-				infoContent += "<li>Note: " + self.notes + "</li>";
+			infoContent += "<li><strong>Date: " + self.date() + "</strong></li>";
+			infoContent += "<li>Start between: " + self.startFirst() + " - " + self.startLast() + "</li>";
+			infoContent += "<li>Course closure Time (Check notice board): " + self.courseClose() + "</li>";
+			if (self.notes() !== "") {
+				infoContent += "<li>Note: " + self.notes() + "</li>";
 			}
 			infoContent += "</ul></div>";
 			return infoContent;
 		});
 
 		self.data = data; //store imported raw data in oEvent for reference
-		self.mapMarker = createEventMarker(self.registrationCoord(), data.series + " - " + data.name);
+		self.mapMarker = createEventMarker(self.registrationCoord(), self.title(), self.infoBubbleContent());
 	}
 };
 
@@ -147,7 +147,7 @@ var viewModel = function() {
  * @param  {string} title The Title to be applied on the marker
  * @return {object}  Returns created Google Map Marker Object
  */
-function createEventMarker(coordinates, title) {
+function createEventMarker(coordinates, title, eventInfo) {
 
 	var newMarker = new google.maps.Marker({
 		position: coordinates,
@@ -176,6 +176,26 @@ function createEventMarker(coordinates, title) {
 		infoBubble.open(map, newMarker);
 		requestRoutes(coordinates);
 
+		var tabs = [];
+
+		var tabContent = document.createElement('DIV');
+		tabContent.innerHTML = eventInfo;
+
+		tabs.push({
+			"tabName": "Event Details",
+			"content": tabContent
+		});
+
+		tabContent = document.createElement('DIV');
+		tabContent.innerHTML = "eventInfo";
+
+		tabs.push({
+			"tabName": "Bus Stops",
+			"content": tabContent
+		});
+
+		infoBubble.addTab(tabs[0].tabName, tabs[0].content);
+		infoBubble.addTab(tabs[1].tabName, tabs[1].content);
 	});
 
 	return newMarker;
