@@ -24,6 +24,14 @@ var infoWindow;
 var dataATAPI;
 
 /* ======================================================= */
+/* TODO */
+/* ======================================================= */
+// @TODO: Use Material Bottom Sheets for event information display when functionality added to Material Design Lite
+//
+
+
+
+/* ======================================================= */
 /* List */
 /* ======================================================= */
 
@@ -126,7 +134,6 @@ var viewModel = function() {
 	self.eventListClick = function(currentEvent) {
 		google.maps.event.trigger(currentEvent.mapMarker, 'click');
 	};
-
 };
 
 
@@ -166,6 +173,7 @@ function createEventMarker(coordinates, title) {
 		infoWindow = new google.maps.InfoWindow({ content: title });
 		infoWindow.open(map, newMarker);
 		requestRoutes(coordinates);
+
 	});
 
 	return newMarker;
