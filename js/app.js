@@ -3,7 +3,7 @@
 // set jshint to ignore console, alert, etc
 /* jshint devel: true */
 // set jshint to ignore external globals
-/* global $, ko, google, eventsJSON: false */
+/* global $, ko, google, InfoBubble, eventsJSON: false */
 
 /* ======================================================= */
 /* Constants */
@@ -20,7 +20,7 @@ var API_ATAPI_SECRET_KEY = "66ea2049-30bf-4ce3-bd6b-701e458de648";
 /* ======================================================= */
 
 var map;
-var infoWindow;
+var infoBubble;
 var dataATAPI;
 
 /* ======================================================= */
@@ -56,7 +56,7 @@ var oEvent = function(data) {
 			return self.series + " - " + self.name;
 		});
 
-		self.infoWindowContent = ko.computed(function() {
+		self.infoBubbleContent = ko.computed(function() {
 			var infoContent = '<div class="map-info">';
 			infoContent += "<h3>" + self.name + "</h3>";
 			infoContent += "<h4>" + self.series + "</h4>";
@@ -160,18 +160,20 @@ function createEventMarker(coordinates, title) {
 	newMarker.setMap(map);
 
 	//add Listener to ensure Information Window is opened when Marker clicked
-	// Note: uses global infoWindow to enable closing of any previous open info Window
+	// Note: uses global infoBubble to enable closing of any previous open info Window
 	// reference: http://stackoverflow.com/a/4540249
 	google.maps.event.addListener(newMarker, 'click', function() {
 
 		newMarker.setAnimation(google.maps.Animation.BOUNCE);
 		var timeoutID = window.setTimeout(function() { newMarker.setAnimation(null); }, 2100);
 
-		if (infoWindow) {
-			infoWindow.close();
+		if (infoBubble) {
+			infoBubble.close();
 		}
-		infoWindow = new google.maps.InfoWindow({ content: title });
-		infoWindow.open(map, newMarker);
+		infoBubble = new InfoBubble({
+			maxWidth: 250
+		});
+		infoBubble.open(map, newMarker);
 		requestRoutes(coordinates);
 
 	});
