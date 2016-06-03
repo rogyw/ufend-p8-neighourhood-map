@@ -13,12 +13,15 @@ var DEFAULT_MAP_CENTRE = { lat: -36.9001229, lng: 174.7826388 };
 var DEFAULT_MAP_ZOOM = 11;
 var DEFAULT_ZOOM_MAX = 16;
 var MAP_MARKER_ICON = "https://raw.githubusercontent.com/rogyw/ufend-p8-neighourhood-map/master/img/marker-o-flag.png";
+var API_ATAPI_STOP_DISTANCE = 1000;
+var API_ATAPI_SECRET_KEY = "66ea2049-30bf-4ce3-bd6b-701e458de648";
 /* ======================================================= */
 /* Global */
 /* ======================================================= */
 
 var map;
 var infoWindow;
+var dataATAPI;
 
 /* ======================================================= */
 /* List */
@@ -162,6 +165,7 @@ function createEventMarker(coordinates, title) {
 		}
 		infoWindow = new google.maps.InfoWindow({ content: title });
 		infoWindow.open(map, newMarker);
+		requestRoutes(coordinates);
 	});
 
 	return newMarker;
@@ -230,4 +234,28 @@ function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
 	ko.applyBindings(new viewModel());
+}
+
+
+/* ======================================================= */
+/* Third Party API
+/* ======================================================= */
+
+function requestRoutes(coordinates) {
+	$.ajax({
+			url: "http://api.at.govt.nz/v1/gtfs/stops/geosearch?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&distance=" + API_ATAPI_STOP_DISTANCE + "&api_key=" + API_ATAPI_SECRET_KEY,
+			type: "GET",
+			dataType: "jsonp",
+		})
+		.done(function(data) {
+			console.log("AT API success.");
+			dataATAPI = data;
+			console.log(dataATAPI);
+		})
+		.fail(function(data) {
+			console.log("AT API failure.");
+			alert("Error: Auckland Transport API failure.");
+			dataATAPI = data;
+			console.log(dataATAPI);
+		});
 }
