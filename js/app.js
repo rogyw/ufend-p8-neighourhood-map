@@ -85,6 +85,7 @@ var oEvent = function(data) {
 /**
  * viewModel
  */
+
 var viewModel = function() {
 
 	//self represents the viewModel this
@@ -92,6 +93,13 @@ var viewModel = function() {
 
 	self.eventsList = ko.observableArray();
 	self.filter = ko.observable("");
+
+	//Sort the JSON events data to place markers on map in reverse chronological order.
+	//Reference: Based on http://stackoverflow.com/a/8900824
+	eventsJSON.sort(function(a, b) {
+		//reverse chronological order
+		return ((a.dateUTC > b.dateUTC) ? -1 : (a.dateUTC < b.dateUTC) ? 1 : 0);
+	});
 
 	//Import the JSON events data into eventsList
 	eventsJSON.forEach(function(eventItem) {
