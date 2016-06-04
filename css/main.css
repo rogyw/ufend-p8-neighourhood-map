@@ -8,3 +8,23 @@ body {
 #map {
 	height: 100%;
 }
+
+.map-info h3 {
+	font-size: 1.4em;
+	font-weight: bold;
+	line-height: 1.4em;
+	margin: 0;
+}
+
+.map-info h4 {
+	font-size: 1.2em;
+	line-height: 1.2em;
+	margin: 0;
+}
+
+
+/* hide the mdl main layout obfuscator shown when menu is open */
+
+.mdl-layout__obfuscator.is-visible {
+	opacity: 0;
+}

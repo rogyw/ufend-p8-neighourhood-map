@@ -44,7 +44,7 @@ var dataATAPI;
 var oEvent = function(data) {
 	var self = this;
 	if (data !== null) {
-		self.date = ko.observable(data.date);
+		self.dateUTC = ko.observable(getUTCDate(data.dateUTC));
 		self.series = ko.observable(data.series);
 		self.name = ko.observable(data.name);
 		self.startFirst = ko.observable(data.startFirst);
@@ -57,18 +57,22 @@ var oEvent = function(data) {
 			return self.series() + " - " + self.name();
 		});
 
+
 		self.infoBubbleContent = ko.computed(function() {
-			var infoContent = '<div class="map-info">';
-			infoContent += "<h3>" + self.name() + "</h3>";
+
+			var dateString = $.datepicker.formatDate("DD d MM yy", self.dateUTC());
+
+			var infoContent = "<h3>" + self.name() + "</h3>";
 			infoContent += "<h4>" + self.series() + "</h4>";
 			infoContent += "<ul>";
-			infoContent += "<li><strong>Date: " + self.date() + "</strong></li>";
+			infoContent += "<li><strong>Date: " + dateString + "</strong></li>";
 			infoContent += "<li>Start between: " + self.startFirst() + " - " + self.startLast() + "</li>";
-			infoContent += "<li>Course closure Time (Check notice board): " + self.courseClose() + "</li>";
+			infoContent += "<li>Course closure Time: " + self.courseClose() + "</li>";
 			if (self.notes() !== "") {
 				infoContent += "<li>Note: " + self.notes() + "</li>";
 			}
-			infoContent += "</ul></div>";
+			infoContent += "<li>(Please check onsite notice board for updates).</li>";
+			infoContent += "</ul>";
 			return infoContent;
 		});
 
@@ -179,8 +183,9 @@ function createEventMarker(coordinates, title, eventInfo) {
 
 		var tabs = [];
 
-		var tabContent = document.createElement('DIV');
-		tabContent.innerHTML = eventInfo;
+		var tabContent = "<div class=\"map-info\">";
+		tabContent += eventInfo;
+		tabContent += "</div>";
 
 		tabs.push({
 			"tabName": "Event Details",
@@ -219,6 +224,11 @@ function disableMapMarker(element) {
 function resizeMap(eventList) {
 
 	var count = eventList.length;
+
+	//Close infoBubble on all Map resize events
+	if (infoBubble) {
+		infoBubble.close();
+	}
 
 	// Zoom map to fit the new bounds
 	if (count < 1) {
@@ -259,6 +269,26 @@ function initMap() {
 	ko.applyBindings(new viewModel());
 }
 
+/**
+ * Converts a date in YY-MM-DD HH:MM to a date object
+ * Reference: Based on http://stackoverflow.com/a/22835394
+ * @param  {[type]} ymdString [description]
+ * @return {[type]}           [description]
+ */
+function getUTCDate(ymdString) {
+
+	//Split "YYYY-MM-DD" UTC string
+	var dateTime = ymdString.split(' ');
+	var dateParts = dateTime[0].split('-');
+	var timeParts = dateTime[1].split(':');
+
+	//adjust month representation for javascript (0=Jan - 11=Dec)
+	dateParts[1] = dateParts[1] - 1;
+
+	var dateValue = new Date(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1]);
+
+	return dateValue;
+}
 
 /* ======================================================= */
 /* Third Party API
@@ -275,7 +305,7 @@ function requestRoutes(coordinates) {
 			dataATAPI = data;
 			console.log(dataATAPI);
 			var resultsCount = dataATAPI.response.length;
-			var tabContent = "<div>";
+			var tabContent = "<div class=\"map-info\">";
 			tabContent += "<h3>Bus Stops nearby</h3>";
 			if (resultsCount < 1) {
 				tabContent += "<p>No bus stop found within " + API_ATAPI_STOP_DISTANCE + " metres of registration location. Please refer to <a href=\"https://at.govt.nz/\" target=\"_blank\">at.govt.nz</a>.</p>";

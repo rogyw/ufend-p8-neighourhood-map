@@ -1,7 +1,7 @@
 "use strict";
 
 var eventsJSON = [{
-	"date": "2016-10-27",
+	"dateUTC": "2016-10-27 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Cornwall Park - Archery Carpark",
 	"startFirst": "17:30",
@@ -13,7 +13,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2016-11-02",
+	"dateUTC": "2016-11-02 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Hamlins Hill - Carpark",
 	"startFirst": "17:30",
@@ -25,7 +25,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2016-11-10",
+	"dateUTC": "2016-11-10 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Auckland Domain - Cricket Grandstand",
 	"startFirst": "17:30",
@@ -37,7 +37,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2016-11-16",
+	"dateUTC": "2016-11-16 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Highbrook - Pukekiwiriki Entrance",
 	"startFirst": "17:30",
@@ -49,7 +49,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2016-11-22",
+	"dateUTC": "2016-11-22 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Western Springs - Zoo Carpark",
 	"startFirst": "17:30",
@@ -61,7 +61,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2016-11-30",
+	"dateUTC": "2016-11-30 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Craigavon",
 	"startFirst": "17:30",
@@ -73,7 +73,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2016-12-08",
+	"dateUTC": "2016-12-08 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Ambury Park",
 	"startFirst": "17:30",
@@ -85,7 +85,7 @@ var eventsJSON = [{
 	},
 	"notes": "No Dogs Permitted. Compass not usually required."
 }, {
-	"date": "2016-12-14",
+	"dateUTC": "2016-12-14 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Epsom Campus - St Andrews Rd Entrance",
 	"startFirst": "17:30",
@@ -97,7 +97,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2017-01-25",
+	"dateUTC": "2017-01-25 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Pt England",
 	"startFirst": "17:30",
@@ -109,7 +109,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2017-01-31",
+	"dateUTC": "2017-01-31 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Alexandra Park Raceway - Campbell Crescent Entrance",
 	"startFirst": "17:30",
@@ -121,7 +121,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2017-02-08",
+	"dateUTC": "2017-02-08 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Lloyd Elsmore - Rugby Carpark",
 	"startFirst": "17:30",
@@ -133,7 +133,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2017-02-14",
+	"dateUTC": "2017-02-14 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Cornwall Park",
 	"startFirst": "17:30",
@@ -145,7 +145,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2017-02-18",
+	"dateUTC": "2017-02-18 05:30",
 	"series": "Auckland SummerNav",
 	"name": "(Night Event) Ambury Park",
 	"startFirst": "20:30",
@@ -158,7 +158,7 @@ var eventsJSON = [{
 	"notes": "Bring a good torch or headlamp; Kids can start at dusk; Compass recommended. No Dogs Permitted."
 
 }, {
-	"date": "2017-02-23",
+	"dateUTC": "2017-02-23 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Panmure Basin",
 	"startFirst": "17:30",
@@ -170,7 +170,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2017-03-01",
+	"dateUTC": "2017-03-01 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Selfs Farm",
 	"startFirst": "17:30",
@@ -182,7 +182,7 @@ var eventsJSON = [{
 	},
 	"notes": "Working Private Farm. Compass not usually required."
 }, {
-	"date": "2017-03-07",
+	"dateUTC": "2017-03-07 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Auckland Domain - Maunsell Rd Carpark",
 	"startFirst": "17:30",
@@ -194,7 +194,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2017-03-16",
+	"dateUTC": "2017-03-16 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Ellerslie Racecourse",
 	"startFirst": "17:30",
@@ -206,7 +206,7 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2017-03-22",
+	"dateUTC": "2017-03-22 05:30",
 	"series": "Auckland SummerNav",
 	"name": "Western Springs Stadium",
 	"startFirst": "17:30",
@@ -218,8 +218,8 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2017-05-20",
-	"series": "Auckland SummerNav",
+	"dateUTC": "2017-05-20 01:00",
+	"series": "Auckland WinterNav",
 	"name": "Cornwall Park",
 	"startFirst": "13:00",
 	"startLast": "14:15",
@@ -230,8 +230,8 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2017-06-17",
-	"series": "Auckland SummerNav",
+	"dateUTC": "2017-06-17 01:00",
+	"series": "Auckland WinterNav",
 	"name": "Craigavon",
 	"startFirst": "13:00",
 	"startLast": "14:15",
@@ -242,27 +242,27 @@ var eventsJSON = [{
 	},
 	"notes": "Compass not usually required."
 }, {
-	"date": "2017-08-19",
-	"series": "Auckland SummerNav",
+	"dateUTC": "2017-08-19 01:00",
+	"series": "Auckland WinterNav",
 	"name": "Auckland Domain - Cricket Grandstand",
-	"startFirst": "16:00",
-	"startLast": "16:30",
-	"courseClose": "17:00",
+	"startFirst": "13:00",
+	"startLast": "14:15",
+	"courseClose": "16:00",
 	"registrationCoord": {
 		lat: -36.863269,
 		lng: 174.771962
 	},
-	"notes": "Sprint, Jog, or Walk. Expected fastest time of 12 minutes for each course."
+	"notes": "Compass not usually required."
 }, {
-	"date": "2017-09-16",
-	"series": "Auckland SummerNav",
+	"dateUTC": "2017-09-16 01:00",
+	"series": "Auckland WinterNav",
 	"name": "Western Springs - Zoo Carpark",
-	"startFirst": "16:00",
-	"startLast": "16:30",
-	"courseClose": "17:00",
+	"startFirst": "13:00",
+	"startLast": "14:15",
+	"courseClose": "16:00",
 	"registrationCoord": {
 		lat: -36.865097,
 		lng: 174.720507
 	},
-	"notes": "Sprint, Jog, or Walk. Expected fastest time of 12 minutes for each course."
+	"notes": "Compass not usually required."
 }];
