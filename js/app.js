@@ -17,7 +17,7 @@ var API_ATAPI_STOP_DISTANCE = 1000;
 var API_ATAPI_SECRET_KEY = "66ea2049-30bf-4ce3-bd6b-701e458de648";
 var API_ATAPI_LOGO = "http://at-api.aucklandtransport.govt.nz/imageresizer/website/logo.png?width=55";
 var API_ATAPI_WEBSITE = "https://at.govt.nz";
-var MAX_BUSSTOPS = 5;
+var MAX_BUSSTOPS = 10;
 var IMAGE_LOGO_AK_SUMMERNAV = "http://www.orienteeringauckland.org.nz/assets/Uploads/Resource/Logos/logo-summernav-sml.png";
 var DEBUG = true;
 /* ======================================================= */
