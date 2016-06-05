@@ -26,6 +26,7 @@ var IMAGE_LOGO_AK_SUMMERNAV = "http://www.orienteeringauckland.org.nz/assets/Upl
 var map;
 var infoBubble;
 var dataATAPI;
+var gCalendarEvent;
 
 /* ======================================================= */
 /* TODO */
@@ -50,9 +51,9 @@ var oEvent = function(data) {
 		self.dateUTC = ko.observable(getUTCDate(data.dateUTC));
 		self.series = ko.observable(data.series);
 		self.name = ko.observable(data.name);
-		self.startFirst = ko.observable(data.startFirst);
-		self.startLast = ko.observable(data.startLast);
-		self.courseClose = ko.observable(data.courseClose);
+		self.startFirstUTC = ko.observable(getUTCDate(data.startFirstUTC));
+		self.startLastUTC = ko.observable(getUTCDate(data.startLastUTC));
+		self.courseCloseUTC = ko.observable(getUTCDate(data.courseCloseUTC));
 		self.registrationCoord = ko.observable(data.registrationCoord);
 		self.notes = ko.observable(data.notes);
 
@@ -61,9 +62,13 @@ var oEvent = function(data) {
 		});
 
 
+
 		self.infoBubbleContent = ko.computed(function() {
 
 			var dateString = $.datepicker.formatDate("DD d MM yy", self.dateUTC());
+			var startFirstString = getTimeString(self.startFirstUTC());
+			var startLastString = getTimeString(self.startLastUTC());
+			var courseCloseText = getTimeString(self.courseCloseUTC());
 
 			var infoContent = "";
 			if (self.series() == "Auckland SummerNav") {
@@ -73,18 +78,46 @@ var oEvent = function(data) {
 			infoContent += "<h4>" + dateString + "</h4>";
 			infoContent += "<ul>";
 			infoContent += "<li><h5>Event Series:</h5> <span class=\"detail\"><strong>" + self.series() + "</strong></span></li>";
-			infoContent += "<li><h5>Start Anytime Between:</h5> <span class=\"detail\">" + self.startFirst() + " - " + self.startLast() + "</span></li>";
-			infoContent += "<li><h5>Course Closure:</h5> <span class=\"detail\">" + self.courseClose() + "</span></li>";
+			infoContent += "<li><h5>Start Anytime Between:</h5> <span class=\"detail\">" + startFirstString + " - " + startLastString + "</span></li>";
+			infoContent += "<li><h5>Course Closure:</h5> <span class=\"detail\">" + courseCloseText + "</span></li>";
 			if (self.notes() !== "") {
 				infoContent += "<li><h5>Note:</h5> <span class=\"detail\">" + self.notes() + "</span></li>";
 			}
 			infoContent += "<li class=\"notice\">Please check onsite noticeboard for updates</li>";
+			infoContent += "<li class=\"button\"><button name=\"button-g-calendar-add\" onclick = \"addToGCalendar()\">Add Event to Google Calendar</button></li>";
 			infoContent += "</ul>";
 			return infoContent;
 		});
 
 		self.data = data; //store imported raw data in oEvent for reference
 		self.mapMarker = createEventMarker(self.registrationCoord(), self.title(), self.infoBubbleContent());
+		self.gCalendarEvent = ko.computed(function() {
+			var description = "";
+			var myEvent = {
+				'summary': self.title(),
+				'location': self.registrationCoord().lat + ", " + self.registrationCoord().lng,
+				'description': description,
+				'start': {
+					'dateTime': '2016-06-28T09:00:00-07:00',
+					'timeZone': 'Pacific/Auckland'
+				},
+				'end': {
+					'dateTime': '2016-06-28T17:00:00-07:00',
+					'timeZone': 'Pacific/Auckland'
+				},
+				'reminders': {
+					'useDefault': false,
+					'overrides': [{
+						'method': 'email',
+						'minutes': 24 * 60
+					}, {
+						'method': 'popup',
+						'minutes': 10
+					}]
+				}
+			};
+
+		});
 	}
 };
 
@@ -300,13 +333,36 @@ function getUTCDate(ymdString) {
 	//adjust month representation for javascript (0=Jan - 11=Dec)
 	dateParts[1] = dateParts[1] - 1;
 
-	var dateValue = new Date(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1]);
+	//Apply Fix to set time to UTC reference: http://stackoverflow.com/a/439871
+	var dateValue = new Date(Date.UTC(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1]));
 
 	return dateValue;
 }
 
+function getTimeString(value) {
+	var hours = value.getHours();
+	var minutes = value.getMinutes();
+	var pm = false;
+	var result = "";
+
+	if (hours > 12) {
+		pm = true;
+		hours = hours - 12;
+	}
+	result += hours + ":";
+
+	if (minutes < 10) {
+		result += "0";
+	}
+	result += minutes;
+	result += (pm === true) ? "pm" : "am";
+	console.log(result);
+	return result;
+}
+
+
 /* ======================================================= */
-/* Third Party API
+/* Third Party API - Auckland Transport
 /* ======================================================= */
 
 function requestRoutes(coordinates) {
@@ -351,4 +407,17 @@ function requestRoutes(coordinates) {
 			dataATAPI = data;
 			console.log(dataATAPI);
 		});
+}
+
+
+/* ======================================================= */
+/* Third Party API - Google Calendar
+/* ======================================================= */
+
+
+function addToGCalendar() {
+	console.log('addToGCalendar!');
+	var date = new Date();
+	console.log(date.toISOString());
+
 }
