@@ -61,8 +61,6 @@ var oEvent = function(data) {
 			return self.series() + " - " + self.name();
 		});
 
-
-
 		self.infoBubbleContent = ko.computed(function() {
 
 			var dateString = $.datepicker.formatDate("DD d MM yy", self.dateUTC());
@@ -74,14 +72,14 @@ var oEvent = function(data) {
 			if (self.series() == "Auckland SummerNav") {
 				infoContent += "<img class=\"img-summernav\" src=\"" + IMAGE_LOGO_AK_SUMMERNAV + "\" alt=\"Auckland SummerNav\">";
 			}
-			infoContent += "<h3>" + self.name() + "</h3>";
-			infoContent += "<h4>" + dateString + "</h4>";
+			infoContent += "<h3>" + dateString + "</h3>";
+			infoContent += "<h4>" + self.name() + "</h4>";
 			infoContent += "<ul>";
 			infoContent += "<li><h5>Event Series:</h5> <span class=\"detail\"><strong>" + self.series() + "</strong></span></li>";
 			infoContent += "<li><h5>Start Anytime Between:</h5> <span class=\"detail\">" + startFirstString + " - " + startLastString + "</span></li>";
 			infoContent += "<li><h5>Course Closure:</h5> <span class=\"detail\">" + courseCloseText + "</span></li>";
 			if (self.notes() !== "") {
-				infoContent += "<li><h5>Note:</h5> <span class=\"detail\">" + self.notes() + "</span></li>";
+				infoContent += "<li><h5>Notes:</h5> <span class=\"notes\">" + self.notes() + "</span></li>";
 			}
 			infoContent += "<li class=\"notice\">Please check onsite noticeboard for updates</li>";
 			infoContent += "<li class=\"button\"><button name=\"button-g-calendar-add\" onclick = \"addToGCalendar()\">Add Event to Google Calendar</button></li>";

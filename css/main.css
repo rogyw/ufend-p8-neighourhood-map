@@ -69,6 +69,15 @@ body {
 	display: block;
 }
 
+.map-info ul li span.notes {
+	text-align: right;
+	display: block;
+}
+
+.map-info ul li.button {
+	text-align: center;
+}
+
 
 /* hide the mdl main layout obfuscator shown when menu is open */
 
