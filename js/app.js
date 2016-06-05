@@ -72,7 +72,7 @@ var oEvent = function(data) {
 			infoContent += "<h3>" + self.name() + "</h3>";
 			infoContent += "<h4>" + dateString + "</h4>";
 			infoContent += "<ul>";
-			infoContent += "<li><h5>Event Series:</h5> <span class=\"detail\"><strong>" +  self.series() + "</strong></span></li>";
+			infoContent += "<li><h5>Event Series:</h5> <span class=\"detail\"><strong>" + self.series() + "</strong></span></li>";
 			infoContent += "<li><h5>Start Anytime Between:</h5> <span class=\"detail\">" + self.startFirst() + " - " + self.startLast() + "</span></li>";
 			infoContent += "<li><h5>Course Closure:</h5> <span class=\"detail\">" + self.courseClose() + "</span></li>";
 			if (self.notes() !== "") {
@@ -321,9 +321,9 @@ function requestRoutes(coordinates) {
 			console.log(dataATAPI);
 			var resultsCount = dataATAPI.response.length;
 			var tabContent = "<div class=\"map-info\">";
-			tabContent += "<h3>Bus Stops nearby</h3>";
+			tabContent += "<h3>Bus &amp; Train Stops Nearby</h3>";
 			if (resultsCount < 1) {
-				tabContent += "<p>No bus stop found within " + API_ATAPI_STOP_DISTANCE + " metres of registration location.</p>";
+				tabContent += "<p>No public transport stops found within " + API_ATAPI_STOP_DISTANCE + " metres of registration location. Please click link below for alternate details.</p>";
 			} else {
 				tabContent += "<ul>";
 				for (var i = 1;
@@ -343,7 +343,7 @@ function requestRoutes(coordinates) {
 			}
 			tabContent += "</div>";
 
-			infoBubble.addTab("Bus Stops", tabContent);
+			infoBubble.addTab("Bus/Train", tabContent);
 		})
 		.fail(function(data) {
 			console.log("AT API failure.");
