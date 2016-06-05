@@ -15,7 +15,10 @@ var DEFAULT_ZOOM_MAX = 16;
 var MAP_MARKER_ICON = "https://raw.githubusercontent.com/rogyw/ufend-p8-neighourhood-map/master/img/marker-o-flag.png";
 var API_ATAPI_STOP_DISTANCE = 1000;
 var API_ATAPI_SECRET_KEY = "66ea2049-30bf-4ce3-bd6b-701e458de648";
+var API_ATAPI_LOGO = "http://at-api.aucklandtransport.govt.nz/imageresizer/website/logo.png?width=55";
+var API_ATAPI_WEBSITE = "https://at.govt.nz";
 var MAX_BUSSTOPS = 5;
+var IMAGE_LOGO_AK_SUMMERNAV = "http://www.orienteeringauckland.org.nz/assets/Uploads/Resource/Logos/logo-summernav-sml.png";
 /* ======================================================= */
 /* Global */
 /* ======================================================= */
@@ -62,16 +65,20 @@ var oEvent = function(data) {
 
 			var dateString = $.datepicker.formatDate("DD d MM yy", self.dateUTC());
 
-			var infoContent = "<h3>" + self.name() + "</h3>";
-			infoContent += "<h4>" + self.series() + "</h4>";
-			infoContent += "<ul>";
-			infoContent += "<li><strong>Date: " + dateString + "</strong></li>";
-			infoContent += "<li>Start between: " + self.startFirst() + " - " + self.startLast() + "</li>";
-			infoContent += "<li>Course closure Time: " + self.courseClose() + "</li>";
-			if (self.notes() !== "") {
-				infoContent += "<li>Note: " + self.notes() + "</li>";
+			var infoContent = "";
+			if (self.series() == "Auckland SummerNav") {
+				infoContent += "<img class=\"img-summernav\" src=\"" + IMAGE_LOGO_AK_SUMMERNAV + "\" alt=\"Auckland SummerNav\">";
 			}
-			infoContent += "<li>(Please check onsite notice board for updates).</li>";
+			infoContent += "<h3>" + self.name() + "</h3>";
+			infoContent += "<h4>" + dateString + "</h4>";
+			infoContent += "<ul>";
+			infoContent += "<li><h5>Event Series:</h5> <span class=\"detail\"><strong>" +  self.series() + "</strong></span></li>";
+			infoContent += "<li><h5>Start Anytime Between:</h5> <span class=\"detail\">" + self.startFirst() + " - " + self.startLast() + "</span></li>";
+			infoContent += "<li><h5>Course Closure:</h5> <span class=\"detail\">" + self.courseClose() + "</span></li>";
+			if (self.notes() !== "") {
+				infoContent += "<li><h5>Note:</h5> <span class=\"detail\">" + self.notes() + "</span></li>";
+			}
+			infoContent += "<li class=\"notice\">Please check onsite noticeboard for updates</li>";
 			infoContent += "</ul>";
 			return infoContent;
 		});
@@ -316,7 +323,7 @@ function requestRoutes(coordinates) {
 			var tabContent = "<div class=\"map-info\">";
 			tabContent += "<h3>Bus Stops nearby</h3>";
 			if (resultsCount < 1) {
-				tabContent += "<p>No bus stop found within " + API_ATAPI_STOP_DISTANCE + " metres of registration location. Please refer to <a href=\"https://at.govt.nz/\" target=\"_blank\">at.govt.nz</a>.</p>";
+				tabContent += "<p>No bus stop found within " + API_ATAPI_STOP_DISTANCE + " metres of registration location.</p>";
 			} else {
 				tabContent += "<ul>";
 				for (var i = 1;
@@ -326,6 +333,13 @@ function requestRoutes(coordinates) {
 					tabContent += "</li>";
 				}
 				tabContent += "</ul>";
+
+				tabContent += "<div class=\"api-provider\">";
+				tabContent += "<p><a href=\"" + API_ATAPI_WEBSITE + "\" target=\"_blank\"><img alt=\"AT\" src=\"" + API_ATAPI_LOGO + "\"></a>";
+				tabContent += "Data provided by: <a href=\"" + API_ATAPI_WEBSITE + "\" target=\"_blank\">at.govt.nz</a></p>";
+
+				tabContent += "</div>";
+
 			}
 			tabContent += "</div>";
 
