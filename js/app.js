@@ -19,6 +19,7 @@ var API_ATAPI_LOGO = "http://at-api.aucklandtransport.govt.nz/imageresizer/websi
 var API_ATAPI_WEBSITE = "https://at.govt.nz";
 var MAX_BUSSTOPS = 5;
 var IMAGE_LOGO_AK_SUMMERNAV = "http://www.orienteeringauckland.org.nz/assets/Uploads/Resource/Logos/logo-summernav-sml.png";
+var DEBUG = true;
 /* ======================================================= */
 /* Global */
 /* ======================================================= */
@@ -89,18 +90,30 @@ var oEvent = function(data) {
 
 		self.data = data; //store imported raw data in oEvent for reference
 		self.mapMarker = createEventMarker(self.registrationCoord(), self.title(), self.infoBubbleContent());
+
 		self.gCalendarEvent = ko.computed(function() {
 			var description = "";
+			var startFirstString = getTimeString(self.startFirstUTC());
+			var startLastString = getTimeString(self.startLastUTC());
+			var courseCloseText = getTimeString(self.courseCloseUTC());
+
+			description += "Start any time between " + startFirstString + " and " + startLastString + ". ";
+			description += "Course Closure is usually " + courseCloseText + ". ";
+			if (self.notes() !== "") {
+				description += "Notes: " + self.notes() + ". ";
+			}
+			description += "Please always check onsite noticeboard for updates and notices.";
+
 			var myEvent = {
-				'summary': self.title(),
+				'summary': self.title() + "- Orienteering " + self.series(),
 				'location': self.registrationCoord().lat + ", " + self.registrationCoord().lng,
 				'description': description,
 				'start': {
-					'dateTime': '2016-06-28T09:00:00-07:00',
+					'dateTime': self.startFirstUTC(),
 					'timeZone': 'Pacific/Auckland'
 				},
 				'end': {
-					'dateTime': '2016-06-28T17:00:00-07:00',
+					'dateTime': self.courseCloseUTC(),
 					'timeZone': 'Pacific/Auckland'
 				},
 				'reminders': {
@@ -114,7 +127,7 @@ var oEvent = function(data) {
 					}]
 				}
 			};
-
+			return myEvent;
 		});
 	}
 };
@@ -315,6 +328,11 @@ function initMap() {
 	ko.applyBindings(new viewModel());
 }
 
+
+/* ======================================================= */
+/* Date/Time Functions*/
+/* ======================================================= */
+
 /**
  * Converts a date in YY-MM-DD HH:MM to a date object
  * Reference: Based on http://stackoverflow.com/a/22835394
@@ -354,7 +372,9 @@ function getTimeString(value) {
 	}
 	result += minutes;
 	result += (pm === true) ? "pm" : "am";
-	console.log(result);
+	if (DEBUG) {
+		console.log(result);
+	}
 	return result;
 }
 
@@ -370,9 +390,11 @@ function requestRoutes(coordinates) {
 			dataType: "jsonp",
 		})
 		.done(function(data) {
-			console.log("AT API success.");
+			if (DEBUG) {
+				console.log("AT API success.");
+				console.log(data);
+			}
 			dataATAPI = data;
-			console.log(dataATAPI);
 			var resultsCount = dataATAPI.response.length;
 			var tabContent = "<div class=\"map-info\">";
 			tabContent += "<h3>Bus &amp; Train Stops Nearby</h3>";
@@ -400,10 +422,12 @@ function requestRoutes(coordinates) {
 			infoBubble.addTab("Bus/Train", tabContent);
 		})
 		.fail(function(data) {
-			console.log("AT API failure.");
+			if (DEBUG) {
+				console.log("AT API failure.");
+				console.log(data);
+			}
 			alert("Error: Auckland Transport API failure.");
 			dataATAPI = data;
-			console.log(dataATAPI);
 		});
 }
 
@@ -415,7 +439,6 @@ function requestRoutes(coordinates) {
 
 function addToGCalendar() {
 	console.log('addToGCalendar!');
-	var date = new Date();
-	console.log(date.toISOString());
+
 
 }
