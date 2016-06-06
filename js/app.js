@@ -17,7 +17,7 @@ var API_ATAPI_STOP_DISTANCE = 1000;
 var API_ATAPI_SECRET_KEY = "66ea2049-30bf-4ce3-bd6b-701e458de648";
 var API_ATAPI_LOGO = "http://at-api.aucklandtransport.govt.nz/imageresizer/website/logo.png?width=55";
 var API_ATAPI_WEBSITE = "https://at.govt.nz";
-var MAX_BUSSTOPS = 10;
+var MAX_BUSSTOPS = 8;
 var IMAGE_LOGO_AK_SUMMERNAV = "http://www.orienteeringauckland.org.nz/assets/Uploads/Resource/Logos/logo-summernav-sml.png";
 var DEBUG = true;
 /* ======================================================= */
@@ -417,11 +417,12 @@ function requestRoutes(coordinates) {
 			if (resultsCount < 1) {
 				tabContent += "<p>No public transport stops found within " + API_ATAPI_STOP_DISTANCE + " metres of registration location. Please click link below for alternate details.</p>";
 			} else {
-				tabContent += "<ul>";
+				tabContent += "<ul class=\"busstops\">";
+				tabContent += "<li><span class=\"busstops-code\">Stop #</span><span class=\"busstops-address\">Address</span> <span class=\"busstops-distance\">Distance</span>";
 				for (var i = 1;
 					((i < dataATAPI.response.length) && (i < MAX_BUSSTOPS + 1)); i++) {
 					tabContent += "<li>";
-					tabContent += dataATAPI.response[i].stop_code + " - " + dataATAPI.response[i].stop_name + " (" + parseInt(dataATAPI.response[i].st_distance_sphere, 10) + "m)";
+					tabContent += "<span class=\"busstops-code\">" + dataATAPI.response[i].stop_code + "</span><span class=\"busstops-address\">" + dataATAPI.response[i].stop_name + "</span> <span class=\"busstops-distance\">(" + parseInt(dataATAPI.response[i].st_distance_sphere, 10) + "m)</span>";
 					tabContent += "</li>";
 				}
 				tabContent += "</ul>";

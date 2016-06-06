@@ -78,6 +78,32 @@ body {
 	text-align: center;
 }
 
+.map-info ul.busstops li {
+	display: flex;
+	justify-content: space-between;
+}
+
+.map-info ul.busstops li span.busstops-code {
+	display: block;
+	flex-grow: 1;
+}
+
+.map-info ul.busstops li span.busstops-address {
+	display: block;
+	flex-grow: 2;
+	font-size: 0.8em;
+	text-align: center;
+}
+
+.map-info ul.busstops li span.busstops-distance {
+	display: block;
+	flex-grow: 1;
+	font-size: 0.8em;
+	color: black;
+	font-style: italic;
+	text-align: right;
+}
+
 
 /* hide the mdl main layout obfuscator shown when menu is open */
 
