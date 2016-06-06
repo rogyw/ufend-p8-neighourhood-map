@@ -26,6 +26,7 @@ var DEBUG = true;
 
 var map;
 var infoBubble;
+var infoBubbleTabCount = 0;
 var dataATAPI;
 var gCalendarEvent;
 
@@ -81,7 +82,7 @@ var oEvent = function(data) {
 				infoContent += "<li><h5>Notes:</h5> <span class=\"notes\">" + self.notes() + "</span></li>";
 			}
 			infoContent += "<li class=\"notice\">Please check onsite noticeboard for updates</li>";
-			infoContent += "<li class=\"button\" id=\"g-calendar-authorize\"><button name=\"button-g-calendar-add\" onclick = \"gCalendarHandleAuthClick()\">Add Event to Google Calendar</button>";
+			infoContent += "<li class=\"g-calendar-button\"><button name=\"button-g-calendar-add\" onclick = \"gCalendarHandleAuthClick()\">Add Event to Google Calendar</button>";
 			infoContent += "</ul>";
 
 			return infoContent;
@@ -231,12 +232,23 @@ function createEventMarker(coordinates, title, eventInfo, gCalEvent) {
 		newMarker.setAnimation(google.maps.Animation.BOUNCE);
 		var timeoutID = window.setTimeout(function() { newMarker.setAnimation(null); }, 2100);
 
+		if (infoBubble === undefined) {
+			infoBubble = new InfoBubble({
+				maxWidth: 250
+			});
+		}
+
 		if (infoBubble) {
+			//Delete all tabs in infoBubble
+			for (var i = infoBubbleTabCount; i > 0; i--) {
+				infoBubble.removeTab(i - 1);
+				if (DEBUG) { console.log("Removing infoBubble Tab: " + i); }
+			}
+			infoBubbleTabCount = 0;
 			infoBubble.close();
 		}
-		infoBubble = new InfoBubble({
-			maxWidth: 250
-		});
+
+
 		infoBubble.open(map, newMarker);
 		requestRoutes(coordinates);
 
@@ -257,6 +269,7 @@ function createEventMarker(coordinates, title, eventInfo, gCalEvent) {
 		});
 
 		infoBubble.addTab(tabs[0].tabName, tabs[0].content);
+		infoBubbleTabCount += 1; //increase tab counter
 
 	});
 
@@ -423,6 +436,7 @@ function requestRoutes(coordinates) {
 			tabContent += "</div>";
 
 			infoBubble.addTab("Bus/Train", tabContent);
+			infoBubbleTabCount += 1; //increase tabCounter by 1
 		})
 		.fail(function(data) {
 			if (DEBUG) {
