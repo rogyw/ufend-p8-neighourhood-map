@@ -81,7 +81,7 @@ var oEvent = function(data) {
 				infoContent += "<li><h5>Notes:</h5> <span class=\"notes\">" + self.notes() + "</span></li>";
 			}
 			infoContent += "<li class=\"notice\">Please check onsite noticeboard for updates</li>";
-			infoContent += "<li class=\"button\"><button name=\"button-g-calendar-add\" onclick = \"gCalendarHandleAuthClick()\">Add Event to Google Calendar</button>";
+			infoContent += "<li class=\"button\" id=\"g-calendar-authorize\"><button name=\"button-g-calendar-add\" onclick = \"gCalendarHandleAuthClick()\">Add Event to Google Calendar</button>";
 			infoContent += "</ul>";
 
 			return infoContent;
@@ -241,7 +241,10 @@ function createEventMarker(coordinates, title, eventInfo, gCalEvent) {
 		requestRoutes(coordinates);
 
 		gCalendarEvent = gCalEvent;
-
+		if (DEBUG) {
+			console.log("gCalendar Event =");
+			console.log(gCalendarEvent);
+		}
 		var tabs = [];
 
 		var tabContent = "<div class=\"map-info\">";
