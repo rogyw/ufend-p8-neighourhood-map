@@ -36,11 +36,9 @@ var gCalendarEvent;
 //
 
 
-
 /* ======================================================= */
 /* List */
 /* ======================================================= */
-
 
 /**
  * oEvent Model
@@ -83,13 +81,11 @@ var oEvent = function(data) {
 				infoContent += "<li><h5>Notes:</h5> <span class=\"notes\">" + self.notes() + "</span></li>";
 			}
 			infoContent += "<li class=\"notice\">Please check onsite noticeboard for updates</li>";
-			infoContent += "<li class=\"button\"><button name=\"button-g-calendar-add\" onclick = \"addToGCalendar()\">Add Event to Google Calendar</button></li>";
+			infoContent += "<li class=\"button\"><button name=\"button-g-calendar-add\" onclick = \"gCalendarHandleAuthClick()\">Add Event to Google Calendar</button>";
 			infoContent += "</ul>";
+
 			return infoContent;
 		});
-
-		self.data = data; //store imported raw data in oEvent for reference
-		self.mapMarker = createEventMarker(self.registrationCoord(), self.title(), self.infoBubbleContent());
 
 		self.gCalendarEvent = ko.computed(function() {
 			var description = "";
@@ -103,6 +99,7 @@ var oEvent = function(data) {
 				description += "Notes: " + self.notes() + ". ";
 			}
 			description += "Please always check onsite noticeboard for updates and notices.";
+			description += "Further information available at: http://auckoc.org.nz/";
 
 			var myEvent = {
 				'summary': self.title() + "- Orienteering " + self.series(),
@@ -129,6 +126,9 @@ var oEvent = function(data) {
 			};
 			return myEvent;
 		});
+
+		self.data = data; //store imported raw data in oEvent for reference
+		self.mapMarker = createEventMarker(self.registrationCoord(), self.title(), self.infoBubbleContent(), self.gCalendarEvent());
 	}
 };
 
@@ -211,7 +211,7 @@ var viewModel = function() {
  * @param  {string} title The Title to be applied on the marker
  * @return {object}  Returns created Google Map Marker Object
  */
-function createEventMarker(coordinates, title, eventInfo) {
+function createEventMarker(coordinates, title, eventInfo, gCalEvent) {
 
 	var newMarker = new google.maps.Marker({
 		position: coordinates,
@@ -239,6 +239,8 @@ function createEventMarker(coordinates, title, eventInfo) {
 		});
 		infoBubble.open(map, newMarker);
 		requestRoutes(coordinates);
+
+		gCalendarEvent = gCalEvent;
 
 		var tabs = [];
 
@@ -356,6 +358,7 @@ function getUTCDate(ymdString) {
 }
 
 function getTimeString(value) {
+	//Note: This code will probably for intended locale systems only
 	var hours = value.getHours();
 	var minutes = value.getMinutes();
 	var pm = false;
@@ -372,9 +375,6 @@ function getTimeString(value) {
 	}
 	result += minutes;
 	result += (pm === true) ? "pm" : "am";
-	if (DEBUG) {
-		console.log(result);
-	}
 	return result;
 }
 
@@ -429,16 +429,4 @@ function requestRoutes(coordinates) {
 			alert("Error: Auckland Transport API failure.");
 			dataATAPI = data;
 		});
-}
-
-
-/* ======================================================= */
-/* Third Party API - Google Calendar
-/* ======================================================= */
-
-
-function addToGCalendar() {
-	console.log('addToGCalendar!');
-
-
 }
