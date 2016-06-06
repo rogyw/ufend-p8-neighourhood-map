@@ -5,9 +5,9 @@
 "use strict";
 
 // set jshint to ignore console, alert, etc
-/* jshint devel: true */
+/* jshint devel : true */
 // set jshint to ignore external globals
-/* global gCalendarEvent, gapi, DEBUG: false */
+/* global gCalendarEvent, gapi : false */
 
 // Code Reference: Based on https://developers.google.com/google-apps/calendar/quickstart/js
 
@@ -18,12 +18,15 @@ var GCALENDAR_CLIENT_ID = '1035036075694-1eocpmula50dhlu5t8cmealdhhj70t6b.apps.g
 //Read/Write Google Calendar Scope required to insert events
 var GCALENDAR_SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
+// Debugging of output to console.log
+var DEBUG_GCALENDAR = true;
+
 
 /**
  * Check if current user has authorized this application.
  */
 function gCalendarCheckAuth() {
-	if (DEBUG) { console.log("gCalendarCheckAuth: Start - Check if current user has authorized this application."); }
+	if (DEBUG_GCALENDAR) { console.log("gCalendarCheckAuth: Start - Check if current user has authorized this application."); }
 	gapi.auth.authorize({
 		'client_id': GCALENDAR_CLIENT_ID,
 		'scope': GCALENDAR_SCOPES.join(' '),
@@ -31,26 +34,29 @@ function gCalendarCheckAuth() {
 	}, gCalendarHandleAuthResult);
 }
 
+
 /**
  * Handle response from authorization server.
  *
  * @param {Object} authResult Authorization result.
  */
 function gCalendarHandleAuthResult(authResult) {
-	if (DEBUG) { console.log("gCalendarHandleAuthResult: Start - Handle response from authorization server."); }
-	var authorizeElement = document.getElementById('g-calendar-authorize');
+	if (DEBUG_GCALENDAR) { console.log("gCalendarHandleAuthResult: Start - Handle response from authorization server."); }
+	var authorizeElement = document.getElementsByClassName('g-calendar-button');
+	console.log(authorizeElement[0]);
 	if (authResult && !authResult.error) {
 		// Hide auth UI, then load client library.
-		if (DEBUG) { console.log("gCalendarHandleAuthResult: (authResult && !authResult.error) Hide auth UI, then load client library."); }
-		authorizeElement.style.display = 'none';
+		if (DEBUG_GCALENDAR) { console.log("gCalendarHandleAuthResult: (authResult && !authResult.error) Hide auth UI, then load client library."); }
+		authorizeElement[0].style.display = 'none';
 		gCalendarLoadCalendarApi();
 	} else {
-		if (DEBUG) { console.log("gCalendarHandleAuthResult: Show auth UI, allowing the user to initiate authorization by clicking authorize button."); }
+		if (DEBUG_GCALENDAR) { console.log("gCalendarHandleAuthResult: Show auth UI, allowing the user to initiate authorization by clicking authorize button."); }
 		// Show auth UI, allowing the user to initiate authorization by
 		// clicking authorize button.
-		authorizeElement.style.display = 'inline';
+		authorizeElement[0].style.display = 'inline';
 	}
 }
+
 
 /**
  * Initiate auth flow in response to user clicking authorize button.
@@ -58,7 +64,7 @@ function gCalendarHandleAuthResult(authResult) {
  * @param {Event} event Button click event.
  */
 function gCalendarHandleAuthClick(event) {
-	if (DEBUG) { console.log("gCalendarHandleAuthClick: Start - Initiate auth flow in response to user clicking authorize button."); }
+	if (DEBUG_GCALENDAR) { console.log("gCalendarHandleAuthClick: Start - Initiate auth flow in response to user clicking authorize button."); }
 	gapi.auth.authorize({
 			client_id: GCALENDAR_CLIENT_ID,
 			scope: GCALENDAR_SCOPES,
@@ -68,20 +74,22 @@ function gCalendarHandleAuthClick(event) {
 	return false;
 }
 
+
 /**
  * Load Google Calendar client library.
  */
 function gCalendarLoadCalendarApi() {
-	if (DEBUG) { console.log("gCalendarLoadCalendarApi: Start - Load Google Calendar client library"); }
+	if (DEBUG_GCALENDAR) { console.log("gCalendarLoadCalendarApi: Start - Load Google Calendar client library"); }
 	gapi.client.load('calendar', 'v3', gCalendarInsertEvent);
 }
+
 
 function gCalendarInsertEvent() {
 	// Refer to the JavaScript quickstart on how to setup the environment:
 	// https://developers.google.com/google-apps/calendar/quickstart/js
 	// Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
 	// stored credentials.
-	if (DEBUG) {
+	if (DEBUG_GCALENDAR) {
 		console.log("gCalendarInsertEvent: Start");
 		console.log("gCalendarInsertEvent: gCalendarEvent =");
 		console.log(gCalendarEvent);
@@ -92,10 +100,10 @@ function gCalendarInsertEvent() {
 		'resource': gCalendarEvent
 	});
 
-	if (DEBUG) { console.log("gCalendarInsertEvent: request execute"); }
+	if (DEBUG_GCALENDAR) { console.log("gCalendarInsertEvent: request execute"); }
 
 	request.execute(function(value) {
-		if (DEBUG) {
+		if (DEBUG_GCALENDAR) {
 			console.log("gCalendarInsertEvent: value=");
 			console.log(value);
 		}
@@ -103,23 +111,25 @@ function gCalendarInsertEvent() {
 		if (value.error !== undefined) {
 			var errorMessage = "Google Calendar API Request Error: " + value.error.code + " - " + value.error.message;
 			console.log("errorMessage");
-			appendPre(errorMessage);
+			replaceAuthorizeElement(errorMessage);
 		} else {
-			var result = 'Event created: ' + value.htmlLink;
-			appendPre(result);
-			console.log(result);
+			var result = 'Event added to your calendar: <a href="' + value.htmlLink + '" target="_blank">View</a>';
+			replaceAuthorizeElement(result);
+			if (DEBUG_GCALENDAR) { console.log(result); }
 		}
 	});
 
 }
+
+
 /**
- * Append a pre element to the body containing the given message
- * as its text node.
+ * Replaces the authorise element contents to the given message.
  *
  * @param {string} message Text to be placed in pre element.
  */
-function appendPre(message) {
-	var pre = document.getElementById('output');
-	var textContent = document.createTextNode(message + '\n');
-	pre.appendChild(textContent);
+function replaceAuthorizeElement(message) {
+	var authorizeElement = document.getElementsByClassName('g-calendar-button');
+	console.log(authorizeElement);
+	authorizeElement[0].innerHTML = '<p>' + message + '</p>';
+	authorizeElement[0].style.display = 'inline';
 }
