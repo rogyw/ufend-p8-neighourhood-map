@@ -38,6 +38,12 @@ var gCalendarEvent;
 
 
 /* ======================================================= */
+/* Date Format Library */
+/* ======================================================= */
+var dateFormat = new DateFormatter();
+
+
+/* ======================================================= */
 /* List */
 /* ======================================================= */
 
@@ -59,6 +65,11 @@ var oEvent = function(data) {
 
 		self.title = ko.computed(function() {
 			return self.series() + " - " + self.name();
+		});
+
+
+		self.datedName = ko.computed(function() {
+			return 	self.name() + " (" + dateFormat.formatDate(self.dateUTC(), 'D j M y') + ")";
 		});
 
 		self.infoBubbleContent = ko.computed(function() {
@@ -374,32 +385,18 @@ function getUTCDate(ymdString) {
 }
 
 function getTimeString(value) {
-	//Note: This code will probably for intended locale systems only
-	var hours = value.getHours();
-	var minutes = value.getMinutes();
-	var pm = false;
-	var result = "";
 
-	if (hours > 12) {
-		pm = true;
-		hours = hours - 12;
-	}
-	result += hours + ":";
+	//Requires: https://github.com/kartik-v/php-date-formatter
+	var result = dateFormat.formatDate(value, 'g:ia');
 
-	if (minutes < 10) {
-		result += "0";
-	}
-	result += minutes;
-	result += (pm === true) ? "pm" : "am";
 	return result;
 }
-
 
 /* ======================================================= */
 /* Third Party API - Auckland Transport
 /* ======================================================= */
 
-function requestRoutes(coordinates) {
+function requestRoutes(coordinates, datetime) {
 	$.ajax({
 			url: "http://api.at.govt.nz/v1/gtfs/stops/geosearch?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&distance=" + API_ATAPI_STOP_DISTANCE + "&api_key=" + API_ATAPI_SECRET_KEY,
 			type: "GET",
@@ -427,12 +424,12 @@ function requestRoutes(coordinates) {
 				}
 				tabContent += "</ul>";
 
+				tabContent += "<p><a href=\"https://at.govt.nz/bus-train-ferry/journey-planner/\" target=\"_blank\">Plan Your Trip</a></p>";
 				tabContent += "<div class=\"api-provider\">";
 				tabContent += "<p><a href=\"" + API_ATAPI_WEBSITE + "\" target=\"_blank\"><img alt=\"AT\" src=\"" + API_ATAPI_LOGO + "\"></a>";
 				tabContent += "Data provided by: <a href=\"" + API_ATAPI_WEBSITE + "\" target=\"_blank\">at.govt.nz</a></p>";
 
 				tabContent += "</div>";
-
 			}
 			tabContent += "</div>";
 
