@@ -19,7 +19,9 @@ var API_ATAPI_LOGO = "http://at-api.aucklandtransport.govt.nz/imageresizer/websi
 var API_ATAPI_WEBSITE = "https://at.govt.nz";
 var MAX_BUSSTOPS = 8;
 var IMAGE_LOGO_AK_SUMMERNAV = "http://www.orienteeringauckland.org.nz/assets/Uploads/Resource/Logos/logo-summernav-sml.png";
+
 var DEBUG = true;
+
 /* ======================================================= */
 /* Global */
 /* ======================================================= */
@@ -29,6 +31,7 @@ var infoBubble;
 var infoBubbleTabCount = 0;
 var dataATAPI;
 var gCalendarEvent;
+
 
 /* ======================================================= */
 /* TODO */
@@ -69,7 +72,7 @@ var oEvent = function(data) {
 
 
 		self.dateShort = ko.computed(function() {
-			return dateFormat.formatDate(self.dateUTC(), 'D j M y');
+			return dateFormat.formatDate(self.dateUTC(), 'D j M Y');
 		});
 
 		self.infoBubbleContent = ko.computed(function() {
@@ -359,8 +362,8 @@ function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
 	ko.applyBindings(new viewModel());
-}
 
+}
 
 /* ======================================================= */
 /* Date/Time Functions*/

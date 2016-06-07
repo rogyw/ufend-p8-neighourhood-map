@@ -126,6 +126,15 @@ nav .nav-name {
 
 /* hide the mdl main layout obfuscator shown when menu is open */
 
-.mdl-layout__obfuscator.is-visible {
+#neighbourhood-map .mdl-layout__obfuscator.is-visible {
 	opacity: 0;
+}
+
+
+/* override mdl button formatting to increase in height and allow lowercase */
+
+#neighbourhood-map .mdl-button {
+	height: auto;
+	min-height: 36px;
+	text-transform: capitalize;
 }
