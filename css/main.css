@@ -5,6 +5,25 @@ body {
 	padding: 0;
 }
 
+nav {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+nav .nav-date {
+	display: block;
+	width: 100%;
+	background-color: #ff5722;
+	color: white;
+	text-align: center;
+}
+
+nav .nav-name {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
 #map {
 	height: 100%;
 }

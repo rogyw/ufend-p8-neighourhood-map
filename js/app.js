@@ -3,7 +3,7 @@
 // set jshint to ignore console, alert, etc
 /* jshint devel: true */
 // set jshint to ignore external globals
-/* global $, ko, google, InfoBubble, eventsJSON: false */
+/* global $, ko, google, InfoBubble, eventsJSON, DateFormatter: false */
 
 /* ======================================================= */
 /* Constants */
@@ -68,8 +68,8 @@ var oEvent = function(data) {
 		});
 
 
-		self.datedName = ko.computed(function() {
-			return 	self.name() + " (" + dateFormat.formatDate(self.dateUTC(), 'D j M y') + ")";
+		self.dateShort = ko.computed(function() {
+			return dateFormat.formatDate(self.dateUTC(), 'D j M y');
 		});
 
 		self.infoBubbleContent = ko.computed(function() {
@@ -175,15 +175,16 @@ var viewModel = function() {
 
 		// get the filter search text and ignore case
 		var filter = this.filter().toLowerCase();
+		var filteredList;
 
 		if (!filter) {
 			//no search term so reset all as viewable and return all the items
 			this.eventsList().forEach(enableMapMarker);
-			return this.eventsList();
+			filteredList = this.eventsList();
 		} else {
 			//filter all events based on search term and update visibilty before returning matching subset
-			var filteredList = ko.utils.arrayFilter(this.eventsList(), function(event) {
-				if (event.name().toLowerCase().search(filter) !== -1) {
+			filteredList = ko.utils.arrayFilter(this.eventsList(), function(event) {
+				if (event.name().toLowerCase().search(filter) !== -1)  {
 					enableMapMarker(event);
 					return true;
 				} else {
@@ -191,8 +192,11 @@ var viewModel = function() {
 					return false;
 				}
 			});
-			return filteredList;
 		}
+
+		return filteredList.sort(function(a, b) {
+			return ((a.dateUTC() < b.dateUTC()) ? -1 : (a.dateUTC() > b.dateUTC()) ? 1 : 0);
+		});
 	}, self);
 
 	// Trigger resize of map when the filteredEvents changes
