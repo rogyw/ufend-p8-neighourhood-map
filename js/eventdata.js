@@ -3,7 +3,7 @@
 var eventsJSON = [{
 	"dateUTC": "2016-10-27 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Cornwall Park - Archery Carpark",
+	"name": "Cornwall Park",
 	"startFirstUTC": "2016-10-27 04:30",
 	"startLastUTC": "2016-10-27 05:45",
 	"courseCloseUTC": "2016-10-27 06:30",
@@ -11,11 +11,11 @@ var eventsJSON = [{
 		lat: -36.903482,
 		lng: 174.784422
 	},
-	"notes": "Compass not usually required."
+	"notes": "Archery Carpark. Compass not usually required."
 }, {
 	"dateUTC": "2016-11-02 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Hamlins Hill - Carpark",
+	"name": "Hamlins Hill",
 	"startFirstUTC": "2016-11-02 04:30",
 	"startLastUTC": "2016-11-02 05:45",
 	"courseCloseUTC": "2016-11-02 06:30",
@@ -27,7 +27,7 @@ var eventsJSON = [{
 }, {
 	"dateUTC": "2016-11-10 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Auckland Domain - Cricket Grandstand",
+	"name": "Auckland Domain",
 	"startFirstUTC": "2016-11-10 04:30",
 	"startLastUTC": "2016-11-10 05:45",
 	"courseCloseUTC": "2016-11-10 06:30",
@@ -35,11 +35,11 @@ var eventsJSON = [{
 		lat: -36.863269,
 		lng: 174.771962
 	},
-	"notes": "Compass not usually required."
+	"notes": "Cricket Grandstand. Compass not usually required."
 }, {
 	"dateUTC": "2016-11-16 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Highbrook - Pukekiwiriki Entrance",
+	"name": "Highbrook",
 	"startFirstUTC": "2016-11-16 04:30",
 	"startLastUTC": "2016-11-16 05:45",
 	"courseCloseUTC": "2016-11-16 06:30",
@@ -47,11 +47,11 @@ var eventsJSON = [{
 		lat: -36.944184,
 		lng: 174.871469
 	},
-	"notes": "Compass not usually required."
+	"notes": "Pukekiwiriki Entrance. Compass not usually required."
 }, {
 	"dateUTC": "2016-11-22 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Western Springs - Zoo Carpark",
+	"name": "Western Springs",
 	"startFirstUTC": "2016-11-22 04:30",
 	"startLastUTC": "2016-11-22 05:45",
 	"courseCloseUTC": "2016-11-22 06:30",
@@ -59,7 +59,7 @@ var eventsJSON = [{
 		lat: -36.865097,
 		lng: 174.720507
 	},
-	"notes": "Compass not usually required."
+	"notes": "Zoo Carpark. Compass not usually required."
 }, {
 	"dateUTC": "2016-11-30 04:30",
 	"series": "Auckland SummerNav",
@@ -75,7 +75,7 @@ var eventsJSON = [{
 }, {
 	"dateUTC": "2016-12-08 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Ambury Park",
+	"name": "Ambury Regional Park",
 	"startFirstUTC": "2016-12-08 04:30",
 	"startLastUTC": "2016-12-08 05:45",
 	"courseCloseUTC": "2016-12-08 06:30",
@@ -87,7 +87,7 @@ var eventsJSON = [{
 }, {
 	"dateUTC": "2016-12-14 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Epsom Campus - St Andrews Rd Entrance",
+	"name": "Epsom Campus",
 	"startFirstUTC": "2016-12-14 04:30",
 	"startLastUTC": "2016-12-14 05:45",
 	"courseCloseUTC": "2016-12-14 06:30",
@@ -95,7 +95,7 @@ var eventsJSON = [{
 		lat: -36.885772,
 		lng: 174.767751
 	},
-	"notes": "Compass not usually required."
+	"notes": "St Andrews Rd Entrance. Compass not usually required."
 }, {
 	"dateUTC": "2017-01-25 04:30",
 	"series": "Auckland SummerNav",
@@ -111,7 +111,7 @@ var eventsJSON = [{
 }, {
 	"dateUTC": "2017-01-31 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Alexandra Park Raceway - Campbell Crescent Entrance",
+	"name": "Alexandra Park Raceway",
 	"startFirstUTC": "2017-01-31 04:30",
 	"startLastUTC": "2017-01-31 05:45",
 	"courseCloseUTC": "2017-01-31 06:30",
@@ -119,11 +119,11 @@ var eventsJSON = [{
 		lat: -36.889485,
 		lng: 174.776607
 	},
-	"notes": "Compass not usually required."
+	"notes": "Campbell Crescent Entrance. Compass not usually required."
 }, {
 	"dateUTC": "2017-02-08 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Lloyd Elsmore - Rugby Carpark",
+	"name": "Lloyd Elsmore",
 	"startFirstUTC": "2017-02-08 04:30",
 	"startLastUTC": "2017-02-08 05:45",
 	"courseCloseUTC": "2017-02-08 06:30",
@@ -131,7 +131,7 @@ var eventsJSON = [{
 		lat: -36.907876,
 		lng: 174.901683
 	},
-	"notes": "Compass not usually required."
+	"notes": "Rugby Carpark. Compass not usually required."
 }, {
 	"dateUTC": "2017-02-14 04:30",
 	"series": "Auckland SummerNav",
@@ -155,7 +155,7 @@ var eventsJSON = [{
 		lat: -36.945714,
 		lng: 174.761737
 	},
-	"notes": "Bring a good torch or headlamp; Kids can start at dusk; Compass recommended. No Dogs Permitted."
+	"notes": "Bring a good torch or headlamp; Kids can start at dusk; Compass recommended. No Dogs Permitted. Camping available - contact Auckland Council."
 
 }, {
 	"dateUTC": "2017-02-23 04:30",
@@ -184,7 +184,7 @@ var eventsJSON = [{
 }, {
 	"dateUTC": "2017-03-07 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Auckland Domain - Maunsell Rd Carpark",
+	"name": "Auckland Domain",
 	"startFirstUTC": "2017-03-07 04:30",
 	"startLastUTC": "2017-03-07 05:45",
 	"courseCloseUTC": "2017-03-07 06:30",
@@ -192,7 +192,7 @@ var eventsJSON = [{
 		lat: -36.862014,
 		lng: 174.778579
 	},
-	"notes": "Compass not usually required."
+	"notes": "Maunsell Rd Carpark. Compass not usually required."
 }, {
 	"dateUTC": "2017-03-16 04:30",
 	"series": "Auckland SummerNav",
@@ -244,7 +244,7 @@ var eventsJSON = [{
 }, {
 	"dateUTC": "2017-08-19 01:00",
 	"series": "Auckland WinterNav",
-	"name": "Auckland Domain - Cricket Grandstand",
+	"name": "Auckland Domain",
 	"startFirstUTC": "2017-08-19 01:00",
 	"startLastUTC": "2017-08-19 02:15",
 	"courseCloseUTC": "2017-08-19 04:00",
@@ -252,11 +252,11 @@ var eventsJSON = [{
 		lat: -36.863269,
 		lng: 174.771962
 	},
-	"notes": "Compass not usually required."
+	"notes": "Cricket Grandstand. Compass not usually required."
 }, {
 	"dateUTC": "2017-09-16 01:00",
 	"series": "Auckland WinterNav",
-	"name": "Western Springs - Zoo Carpark",
+	"name": "Western Springs",
 	"startFirstUTC": "2017-09-16 01:00",
 	"startLastUTC": "2017-09-16 02:15",
 	"courseCloseUTC": "2017-09-16 04:00",
@@ -264,5 +264,5 @@ var eventsJSON = [{
 		lat: -36.865097,
 		lng: 174.720507
 	},
-	"notes": "Compass not usually required."
+	"notes": "Zoo Carpark. Compass not usually required."
 }];
