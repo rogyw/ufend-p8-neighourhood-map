@@ -184,7 +184,7 @@ var viewModel = function() {
 		} else {
 			//filter all events based on search term and update visibilty before returning matching subset
 			filteredList = ko.utils.arrayFilter(this.eventsList(), function(event) {
-				if (event.name().toLowerCase().search(filter) !== -1)  {
+				if ((event.name().toLowerCase().search(filter) !== -1) || (event.dateShort().toLowerCase().search(filter) !== -1)) {
 					enableMapMarker(event);
 					return true;
 				} else {
