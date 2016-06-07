@@ -15,7 +15,7 @@ var eventsJSON = [{
 }, {
 	"dateUTC": "2016-11-02 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Hamlins Hill",
+	"name": "Mutukaroa - Hamlins Hill Regional Park ",
 	"startFirstUTC": "2016-11-02 04:30",
 	"startLastUTC": "2016-11-02 05:45",
 	"courseCloseUTC": "2016-11-02 06:30",
@@ -99,7 +99,7 @@ var eventsJSON = [{
 }, {
 	"dateUTC": "2017-01-25 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Pt England",
+	"name": "Point England",
 	"startFirstUTC": "2017-01-25 04:30",
 	"startLastUTC": "2017-01-25 05:45",
 	"courseCloseUTC": "2017-01-25 06:30",
@@ -123,7 +123,7 @@ var eventsJSON = [{
 }, {
 	"dateUTC": "2017-02-08 04:30",
 	"series": "Auckland SummerNav",
-	"name": "Lloyd Elsmore",
+	"name": "Lloyd Elsmore Park",
 	"startFirstUTC": "2017-02-08 04:30",
 	"startLastUTC": "2017-02-08 05:45",
 	"courseCloseUTC": "2017-02-08 06:30",
@@ -147,7 +147,7 @@ var eventsJSON = [{
 }, {
 	"dateUTC": "2017-02-18 04:30",
 	"series": "Auckland SummerNav",
-	"name": "(Night Event) Ambury Park",
+	"name": "(Night Event) Ambury Regional Park",
 	"startFirstUTC": "2017-02-18 07:30",
 	"startLastUTC": "2017-02-18 08:15",
 	"courseCloseUTC": "2017-02-18 9:30",
