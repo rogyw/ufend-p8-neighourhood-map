@@ -422,6 +422,13 @@ function getUTCDate(ymdString) {
 	return dateValue;
 }
 
+
+/**
+ * returns time string in 12 hour time H:mm am/pm format
+ * (requires third party javascript library php-date-formatter)
+ * @param  {date} value a javascript date object
+ * @return {string}       the time string
+ */
 function getTimeString(value) {
 
 	//Requires: https://github.com/kartik-v/php-date-formatter
@@ -434,6 +441,11 @@ function getTimeString(value) {
 /* Third Party API - Auckland Transport
 /* ======================================================= */
 
+/**
+ * Obtains a list of Bus and Train Stops from Auckland Transport close to the event
+ * @param  {object} coordinates Destination coordinates for event. coordinates contains lat and lng values
+ * @param  {date } datetime    Event date and start time
+ */
 function requestRoutes(coordinates, datetime) {
 	var request = $.ajax({
 		url: "http://api.at.govt.nz/v1/gtfs/stops/geosearch?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&distance=" + API_ATAPI_STOP_DISTANCE + "&api_key=" + API_ATAPI_SECRET_KEY,
