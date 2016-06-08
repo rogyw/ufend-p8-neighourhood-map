@@ -89,6 +89,7 @@ var oEvent = function(data) {
 		self.courseCloseUTC = ko.observable(getUTCDate(data.courseCloseUTC));
 		self.registrationCoord = ko.observable(data.registrationCoord);
 		self.notes = ko.observable(data.notes);
+		self.url = ko.observable(data.url);
 
 		self.title = ko.computed(function() {
 			return self.series() + " - " + self.name();
@@ -119,6 +120,7 @@ var oEvent = function(data) {
 			if (self.notes() !== "") {
 				infoContent += "<li><h5>Notes:</h5> <span class=\"notes\">" + self.notes() + "</span></li>";
 			}
+			infoContent += "<li><h5>Website:</h5><span class=\"detail\"><a href=\"" + self.url() + "\" target=\"_blank\">" + self.url() + "</a></span></li>";
 			infoContent += "<li class=\"notice\">Please check onsite noticeboard for updates</li>";
 			infoContent += "<li class=\"g-calendar-button\"><button name=\"button-g-calendar-add\" onclick = \"gCalendarHandleAuthClick()\">Add Event to Google Calendar</button>";
 			infoContent += "</ul>";

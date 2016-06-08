@@ -11,7 +11,8 @@ var eventsJSON = [{
 		lat: -36.903482,
 		lng: 174.784422
 	},
-	"notes": "Archery Carpark. Compass not usually required."
+	"notes": "Archery Carpark. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2016-11-02 04:30",
 	"series": "Auckland SummerNav",
@@ -23,8 +24,10 @@ var eventsJSON = [{
 		lat: -36.923982,
 		lng: 174.831291
 	},
-	"notes": "Compass not usually required."
+	"notes": "Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
+
 	"dateUTC": "2016-11-10 04:30",
 	"series": "Auckland SummerNav",
 	"name": "Auckland Domain",
@@ -35,7 +38,8 @@ var eventsJSON = [{
 		lat: -36.863269,
 		lng: 174.771962
 	},
-	"notes": "Cricket Grandstand. Compass not usually required."
+	"notes": "Cricket Grandstand. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2016-11-16 04:30",
 	"series": "Auckland SummerNav",
@@ -47,7 +51,8 @@ var eventsJSON = [{
 		lat: -36.944184,
 		lng: 174.871469
 	},
-	"notes": "Pukekiwiriki Entrance. Compass not usually required."
+	"notes": "Pukekiwiriki Entrance. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2016-11-22 04:30",
 	"series": "Auckland SummerNav",
@@ -59,7 +64,8 @@ var eventsJSON = [{
 		lat: -36.865097,
 		lng: 174.720507
 	},
-	"notes": "Zoo Carpark. Compass not usually required."
+	"notes": "Zoo Carpark. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2016-11-30 04:30",
 	"series": "Auckland SummerNav",
@@ -71,7 +77,8 @@ var eventsJSON = [{
 		lat: -36.928414,
 		lng: 174.690347
 	},
-	"notes": "Compass not usually required."
+	"notes": "Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2016-12-08 04:30",
 	"series": "Auckland SummerNav",
@@ -83,7 +90,8 @@ var eventsJSON = [{
 		lat: -36.945714,
 		lng: 174.761737
 	},
-	"notes": "No Dogs Permitted. Compass not usually required."
+	"notes": "No Dogs Permitted. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2016-12-14 04:30",
 	"series": "Auckland SummerNav",
@@ -95,7 +103,8 @@ var eventsJSON = [{
 		lat: -36.885772,
 		lng: 174.767751
 	},
-	"notes": "St Andrews Rd Entrance. Compass not usually required."
+	"notes": "St Andrews Rd Entrance. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-01-25 04:30",
 	"series": "Auckland SummerNav",
@@ -107,7 +116,8 @@ var eventsJSON = [{
 		lat: -36.883369,
 		lng: 174.871948
 	},
-	"notes": "Compass not usually required."
+	"notes": "Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-01-31 04:30",
 	"series": "Auckland SummerNav",
@@ -119,7 +129,8 @@ var eventsJSON = [{
 		lat: -36.889485,
 		lng: 174.776607
 	},
-	"notes": "Campbell Crescent Entrance. Compass not usually required."
+	"notes": "Campbell Crescent Entrance. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-02-08 04:30",
 	"series": "Auckland SummerNav",
@@ -131,7 +142,8 @@ var eventsJSON = [{
 		lat: -36.907876,
 		lng: 174.901683
 	},
-	"notes": "Rugby Carpark. Compass not usually required."
+	"notes": "Rugby Carpark. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-02-14 04:30",
 	"series": "Auckland SummerNav",
@@ -143,7 +155,8 @@ var eventsJSON = [{
 		lat: -36.898066,
 		lng: 174.788799
 	},
-	"notes": "Compass not usually required."
+	"notes": "Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-02-18 04:30",
 	"series": "Auckland SummerNav",
@@ -155,8 +168,8 @@ var eventsJSON = [{
 		lat: -36.945714,
 		lng: 174.761737
 	},
-	"notes": "Bring a good torch or headlamp; Kids can start at dusk; Compass recommended. No Dogs Permitted. Camping available - contact Auckland Council."
-
+	"notes": "Bring a good torch or headlamp; Kids can start at dusk; Compass recommended. No Dogs Permitted. Camping available - contact Auckland Council.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-02-23 04:30",
 	"series": "Auckland SummerNav",
@@ -168,7 +181,8 @@ var eventsJSON = [{
 		lat: -36.908449,
 		lng: 174.848238
 	},
-	"notes": "Compass not usually required."
+	"notes": "Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-03-01 04:30",
 	"series": "Auckland SummerNav",
@@ -180,7 +194,8 @@ var eventsJSON = [{
 		lat: -36.982238,
 		lng: 174.826492
 	},
-	"notes": "Working Private Farm. Compass not usually required."
+	"notes": "Working Private Farm. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-03-07 04:30",
 	"series": "Auckland SummerNav",
@@ -192,7 +207,8 @@ var eventsJSON = [{
 		lat: -36.862014,
 		lng: 174.778579
 	},
-	"notes": "Maunsell Rd Carpark. Compass not usually required."
+	"notes": "Maunsell Rd Carpark. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-03-16 04:30",
 	"series": "Auckland SummerNav",
@@ -204,7 +220,8 @@ var eventsJSON = [{
 		lat: -36.888302,
 		lng: 174.803875
 	},
-	"notes": "Compass not usually required."
+	"notes": "Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-03-22 04:30",
 	"series": "Auckland SummerNav",
@@ -216,7 +233,8 @@ var eventsJSON = [{
 		lat: -36.865933,
 		lng: 174.727192
 	},
-	"notes": "Compass not usually required."
+	"notes": "Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-05-20 01:00",
 	"series": "Auckland WinterNav",
@@ -228,7 +246,8 @@ var eventsJSON = [{
 		lat: -36.898066,
 		lng: 174.788799
 	},
-	"notes": "Compass not usually required."
+	"notes": "Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-06-17 01:00",
 	"series": "Auckland WinterNav",
@@ -240,7 +259,8 @@ var eventsJSON = [{
 		lat: -36.928414,
 		lng: 174.690347
 	},
-	"notes": "Compass not usually required."
+	"notes": "Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-08-19 01:00",
 	"series": "Auckland WinterNav",
@@ -252,7 +272,8 @@ var eventsJSON = [{
 		lat: -36.863269,
 		lng: 174.771962
 	},
-	"notes": "Cricket Grandstand. Compass not usually required."
+	"notes": "Cricket Grandstand. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }, {
 	"dateUTC": "2017-09-16 01:00",
 	"series": "Auckland WinterNav",
@@ -264,5 +285,6 @@ var eventsJSON = [{
 		lat: -36.865097,
 		lng: 174.720507
 	},
-	"notes": "Zoo Carpark. Compass not usually required."
+	"notes": "Zoo Carpark. Compass not usually required.",
+	"url": "http://www.orienteeringauckland.org.nz/"
 }];
