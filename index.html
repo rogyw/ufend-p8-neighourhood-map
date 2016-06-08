@@ -11,7 +11,7 @@
 	<!-- Material Design Lite -->
 	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.deep_orange-orange.min.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="css/main.css?v=48">
+	<link rel="stylesheet" href="css/main.css?v=54">
 </head>
 
 <body id="neighbourhood-map">
@@ -24,6 +24,13 @@
 				<!-- Add spacer, to align navigation to the right -->
 			</div>
 		</header>
+		<!-- MDL Spinner Component with Single Color -->
+		<div id="neighbourhood-map-spinner">
+			<p> Attempting to load application and communicate with Google Maps...</p>
+			<div class="spinner-wrapper">
+				<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+			</div>
+		</div>
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Events</span>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable

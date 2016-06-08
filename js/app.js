@@ -13,7 +13,9 @@ var DEFAULT_MAP_CENTRE = { lat: -36.9001229, lng: 174.7826388 };
 var DEFAULT_MAP_ZOOM = 11;
 var DEFAULT_ZOOM_MAX = 16;
 var MAP_MARKER_ICON = "https://raw.githubusercontent.com/rogyw/ufend-p8-neighourhood-map/master/img/marker-o-flag.png";
+var MAP_INFOBUBBLE_WIDTH_MAX = 250;
 var AJAX_API_TIMEOUT = 10000;
+var APP_LOAD_TIMEOUT = 15000;
 var API_ATAPI_STOP_DISTANCE = 1000;
 var API_ATAPI_SECRET_KEY = "66ea2049-30bf-4ce3-bd6b-701e458de648";
 var API_ATAPI_LOGO = "http://at-api.aucklandtransport.govt.nz/imageresizer/website/logo.png?width=55";
@@ -23,15 +25,36 @@ var IMAGE_LOGO_AK_SUMMERNAV = "http://www.orienteeringauckland.org.nz/assets/Upl
 
 var DEBUG = true;
 
-/* ======================================================= */
-/* Global */
-/* ======================================================= */
 
+/* ======================================================= */
+/* Globals */
+/* ======================================================= */
+// Google Maps
 var map;
+// InfoBubble for Map pop up information Windows
 var infoBubble;
 var infoBubbleTabCount = 0;
+// Data from Auckland Transport API
 var dataATAPI;
+// Google Calendar Event
 var gCalendarEvent;
+// App Loading Timeout
+var appLoaded = false;
+
+
+/* ======================================================= */
+/* Check for Initial load Timeout */
+/* ======================================================= */
+window.setTimeout(function() {
+	if (appLoaded === false) {
+		//Stop the Spinner Animation
+		var spinner = document.getElementsByClassName("mdl-spinner");
+		if (spinner[0] !== undefined) {
+			spinner[0].className = spinner[0].className.replace("is-active", "");
+		}
+		alert("Sorry, a timeout error has occurred while trying to access the internet. Please check connection and try again. If problem persists, please contact support.");
+	}
+}, APP_LOAD_TIMEOUT);
 
 
 /* ======================================================= */
@@ -218,6 +241,9 @@ var viewModel = function() {
 	self.eventListClick = function(currentEvent) {
 		google.maps.event.trigger(currentEvent.mapMarker, 'click');
 	};
+
+	//Cancel the App loading timeout error message
+	appLoaded = true;
 };
 
 
@@ -253,7 +279,7 @@ function createEventMarker(coordinates, title, eventInfo, gCalEvent) {
 
 		if (infoBubble === undefined) {
 			infoBubble = new InfoBubble({
-				maxWidth: 250
+				maxWidth: MAP_INFOBUBBLE_WIDTH_MAX
 			});
 		}
 
@@ -361,6 +387,10 @@ function initMap() {
 	};
 
 	map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+	//turn off loading display
+	var loadingDiv = document.getElementById("neighbourhood-map-spinner");
+	loadingDiv.style.display = "none";
 
 	ko.applyBindings(new viewModel());
 

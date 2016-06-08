@@ -123,6 +123,15 @@ nav .nav-name {
 	text-align: right;
 }
 
+#neighbourhood-map-spinner {
+	padding: 1em;
+}
+
+#neighbourhood-map-spinner .spinner-wrapper {
+	width: 50px;
+	margin: 4em auto;
+}
+
 
 /* hide the mdl main layout obfuscator shown when menu is open */
 
