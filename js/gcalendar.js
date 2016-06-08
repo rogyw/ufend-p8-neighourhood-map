@@ -65,13 +65,17 @@ function gCalendarHandleAuthResult(authResult) {
  */
 function gCalendarHandleAuthClick(event) {
 	if (DEBUG_GCALENDAR) { console.log("gCalendarHandleAuthClick: Start - Initiate auth flow in response to user clicking authorize button."); }
-	gapi.auth.authorize({
-			client_id: GCALENDAR_CLIENT_ID,
-			scope: GCALENDAR_SCOPES,
-			immediate: false
-		},
-		gCalendarHandleAuthResult);
-	return false;
+	if (typeof gapi === 'undefined') {
+		alert("Sorry, Google Calendar has failed to load and can't be accessed. Try reloading this page.");
+	} else {
+		gapi.auth.authorize({
+				client_id: GCALENDAR_CLIENT_ID,
+				scope: GCALENDAR_SCOPES,
+				immediate: false
+			},
+			gCalendarHandleAuthResult);
+		return false;
+	}
 }
 
 
