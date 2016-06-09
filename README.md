@@ -55,13 +55,13 @@ For more information on Orienteering in New Zealand, visit [Orienteering NZ](htt
 1. Test it worked!
 
 ##### Optimisations completed by Gulp
-gulp-cssnano - minify CSS files
-gulp-autoprefixer - auto-prefix CSS
-gulp-gh-pages - upload to gh-pages
-gulp-uglify  - minfy javascript files
-gulp-imagemin - reduce image sizes
-gulp-htmlmin  - minify html files
-run-sequence, del - used for project building
+* gulp-cssnano - minify CSS files
+* gulp-autoprefixer - auto-prefix CSS
+* gulp-gh-pages - upload to gh-pages
+* gulp-uglify  - minfy javascript files
+* gulp-imagemin - reduce image sizes
+* gulp-htmlmin  - minify html files
+* run-sequence, del - used for project building
 
 ## Contacts
 
