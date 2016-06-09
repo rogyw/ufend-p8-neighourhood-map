@@ -1,3 +1,15 @@
+/*
+ * =======================================================
+ * eventdata.js
+ *  - contains JSON data object containing events related information for orienteering events
+ *
+ * Warning: As at 9 June 2017 these dates are tentative and details may change
+ *
+ * Created by Roger Woodroofe rogyw@yahoo.co.nz
+ * https://github.com/rogyw
+ * =======================================================
+ */
+
 "use strict";
 
 var eventsJSON = [{

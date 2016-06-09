@@ -1,6 +1,16 @@
-/* ======================================================= */
-/* Third Party API - Google Calendar
-/* ======================================================= */
+/*
+ * =======================================================
+ * gcalendar.js
+ *  - contains google calendar api related code for
+ *  https://github.com/rogyw/ufend-p8-neighbourhood-map
+ *
+ * Created by Roger Woodroofe rogyw@yahoo.co.nz
+ * https://github.com/rogyw
+ *
+ * Code Reference: Based on
+ * https://developers.google.com/google-apps/calendar/quickstart/js
+ * =======================================================
+ */
 
 "use strict";
 
@@ -9,7 +19,6 @@
 // set jshint to ignore external globals
 /* global gCalendarEvent, gapi : false */
 
-// Code Reference: Based on https://developers.google.com/google-apps/calendar/quickstart/js
 
 // Your Client ID can be retrieved from your project in the Google
 // Developer Console, https://console.developers.google.com

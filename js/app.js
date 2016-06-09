@@ -1,3 +1,14 @@
+/*
+ * =======================================================
+ * app.js
+ *  - contains core application for
+ *  https://github.com/rogyw/ufend-p8-neighbourhood-map
+ *
+ * Created by Roger Woodroofe rogyw@yahoo.co.nz
+ * https://github.com/rogyw
+ * =======================================================
+ */
+
 "use strict";
 
 // set jshint to ignore console, alert, etc
