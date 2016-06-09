@@ -25,93 +25,99 @@ var del = require('del');
 
 /* specify the file locations and paths for project
  */
-var paths= {
-  css: ['./css/**/*.css'],
-  js: ['./js/**/*.js'],
-  html:['./*.html'],
-  images: ['./img/**/*.+(png|jpg|jpeg|gif|svg)'],
-  extras: ['./*.+(md|ico)'],
-  output: './dist/'
+var paths = {
+	css: ['./css/**/*.css'],
+	js: ['./js/**/*.js'],
+	html: ['./*.html'],
+	images: ['./img/**/*.+(png|jpg|jpeg|gif|svg)'],
+	extras: ['./*.+(md|ico)',
+		'./bower_components/knockout/dist/knockout.js',
+		'./bower_components/knockout/LICENSE',
+		'./bower_components/knockout/README.md',
+		'./bower_components/php-date-formatter/js/php-date-formatter.min.js',
+		'/bower_components/php-date-formatter/LICENSE.md',
+		'/bower_components/php-date-formatter/README.md'
+	],
+	output: './dist/'
 };
 
 /* Gulp devlopment watch tasks for project
  */
 gulp.task('default', function() {
-  gulp.watch(paths.css, ['styles']);
-  gulp.watch(paths.js, ['scripts']);
-  gulp.watch(paths.images, ['images']);
-  gulp.watch(paths.html, ['html']);
-  gulp.watch(paths.extras, ['extras']);
+	gulp.watch(paths.css, ['styles']);
+	gulp.watch(paths.js, ['scripts']);
+	gulp.watch(paths.images, ['images']);
+	gulp.watch(paths.html, ['html']);
+	gulp.watch(paths.extras, ['extras']);
 });
 
 /* CSS files task - styles
  */
 gulp.task('styles', function() {
-  return gulp.src(paths.css, {base: './'})
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions']
-    }))
-    .pipe(cssnano())
-    .pipe(gulp.dest(paths.output));
+	return gulp.src(paths.css, { base: './' })
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions']
+		}))
+		.pipe(cssnano())
+		.pipe(gulp.dest(paths.output));
 });
 
 /* Javascript files task - scripts
  */
 gulp.task('scripts', function() {
-  return gulp.src(paths.js, {base: './'})
-    .pipe(uglify())
-    .pipe(gulp.dest(paths.output));
+	return gulp.src(paths.js, { base: './' })
+		.pipe(uglify())
+		.pipe(gulp.dest(paths.output));
 });
 
 /* Image files compression task - images
  */
 gulp.task('images', function() {
-  return gulp.src(paths.images, {base: './'})
-    .pipe(imagemin())
-    .pipe(gulp.dest(paths.output));
+	return gulp.src(paths.images, { base: './' })
+		.pipe(imagemin())
+		.pipe(gulp.dest(paths.output));
 });
 
 /* HTML files task - html
  */
 gulp.task('html', function() {
-  return gulp.src(paths.html, {base: './'})
-    .pipe(htmlmin({
-      collapseWhitespace: true,
-      removeComments: true,
-      minifyJS: true,
-      minifyCSS: true
-    }))
-    .pipe(gulp.dest(paths.output));
+	return gulp.src(paths.html, { base: './' })
+		.pipe(htmlmin({
+			collapseWhitespace: true,
+			removeComments: true,
+			minifyJS: true,
+			minifyCSS: true
+		}))
+		.pipe(gulp.dest(paths.output));
 });
 
 /* Other files needing to be copied to output - extras
  */
-gulp.task('extras', function(){
-  return gulp.src(paths.extras)
-    .pipe(gulp.dest(paths.output));
+gulp.task('extras', function() {
+	return gulp.src(paths.extras)
+		.pipe(gulp.dest(paths.output));
 });
 
 /* Delete all contents in dist output folder - clean:output
  * reference: https://css-tricks.com/gulp-for-beginners/
  */
-gulp.task('clean:output', function(){
-  return del.sync([paths.output + '**'])
+gulp.task('clean:output', function() {
+	return del.sync([paths.output + '**'])
 });
 
 /* Carry out all tasks to clear and build output folder - rebuild
  * reference: https://css-tricks.com/gulp-for-beginners/
  * Uses runSequence to ensure tasks completed in order.
  */
-gulp.task('rebuild', function(callback){
-  runSequence('clean:output',
-              ['styles','scripts','images','html','extras'],
-              callback)
+gulp.task('rebuild', function(callback) {
+	runSequence('clean:output', ['styles', 'scripts', 'images', 'html', 'extras'],
+		callback)
 });
 
 /* Deploy output folder to GitHub gh-pages - deploy
  * reference: https://www.npmjs.com/package/gulp-gh-pages
  */
 gulp.task('deploy', function() {
-  return gulp.src(paths.output + '**/*')
-    .pipe(ghPages({message: "chore: Update via gulp deploy [timestamp]" }));
+	return gulp.src(paths.output + '**/*')
+		.pipe(ghPages({ message: "chore: Update via gulp deploy [timestamp]" }));
 });
