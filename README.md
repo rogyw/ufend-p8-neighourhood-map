@@ -1,7 +1,8 @@
 ## ufend-p8-neighbourhood-map
 
 A live copy of this project is available at:
-[http://roger.navevent.co.nz/orienteering-event-map/](http://roger.navevent.co.nz/orienteering-event-map/)
+[http://roger.navevent.co.nz/orienteering-events-map/](http://roger.navevent.co.nz/orienteering-events-map/)
+
 
 
 ### Introduction
@@ -15,6 +16,7 @@ For each event, details on the date, registration location, start times and time
 **Adding an event into your personal Google calendar** is as easy as a click of a button!
 
 This repository contains Roger Woodroofe's completed Map Neighbourhood project for the Udacity Front End Web Developer  Nanodegree.
+More information on the project requirements are available at: [Udacity Front End Web Developer Nananodegree overview](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001#).
 
 ### About Orienteering
 
