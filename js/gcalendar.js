@@ -19,7 +19,7 @@ var GCALENDAR_CLIENT_ID = '1035036075694-1eocpmula50dhlu5t8cmealdhhj70t6b.apps.g
 var GCALENDAR_SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
 // Debugging of output to console.log
-var DEBUG_GCALENDAR = true;
+var DEBUG_GCALENDAR = false;
 
 
 /**

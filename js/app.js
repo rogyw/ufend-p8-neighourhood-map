@@ -23,7 +23,7 @@ var API_ATAPI_WEBSITE = "https://at.govt.nz";
 var MAX_BUSSTOPS = 8;
 var IMAGE_LOGO_AK_SUMMERNAV = "http://www.orienteeringauckland.org.nz/assets/Uploads/Resource/Logos/logo-summernav-sml.png";
 
-var DEBUG = true;
+var DEBUG = false;
 
 
 /* ======================================================= */
