@@ -405,8 +405,8 @@ function initMap() {
 /**
  * Converts a date in YY-MM-DD HH:MM to a date object
  * Reference: Based on http://stackoverflow.com/a/22835394
- * @param  {[type]} ymdString [description]
- * @return {[type]}           [description]
+ * @param  {string} ymdString string in YY-MM-DD HH:MM UTC format
+ * @return {date}   The javascript date representing the UTC time string
  */
 function getUTCDate(ymdString) {
 
