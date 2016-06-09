@@ -21,16 +21,16 @@
 			<div class="mdl-layout__header-row">
 				<!-- Title -->
 				<span class="mdl-layout-title">Auckland Orienteering Events</span>
-				<!-- Add spacer, to align navigation to the right -->
 			</div>
 		</header>
-		<!-- MDL Spinner Component with Single Color -->
+		<!-- Loading wait animation - MDL Spinner Component with Single Color -->
 		<div id="neighbourhood-map-spinner">
 			<p> Attempting to load application and communicate with Google Maps...</p>
 			<div class="spinner-wrapper">
 				<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
 			</div>
 		</div>
+		<!-- Side list of Events with search option -->
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Events</span>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
@@ -46,6 +46,7 @@
 				<p class="mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect" data-bind="click: $parent.eventListClick"><span class="nav-date" data-bind="text: dateShort"></span><span class="nav-name " data-bind="text: name"></span></p>
 			</nav>
 		</div>
+		<!-- Main Map -->
 		<main id="map" class="mdl-layout__content">
 		</main>
 	</div>
