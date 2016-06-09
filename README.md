@@ -44,10 +44,11 @@ For more information on Orienteering in New Zealand, visit [Orienteering NZ](htt
 
 1. Fork the [repository](https://github.com/rogyw/ufend-P8-neighbourhood-map.git) on GitHub.
 1. Use git to copy/clone your new repository to your local system.
-1. Install [npm](https://docs.npmjs.com/getting-started/installing-node) if not already in use.
+1. Install or update [node.js and npm](https://nodejs.org/en/).
 1. Install [gulp.js](http://gulpjs.com/) if not already in use.
 1. Install all gulp packages used by project.
 ``` npm install --save-dev gulp-cssnano gulp-autoprefixer gulp-gh-pages gulp-uglify gulp-imagemin gulp-htmlmin run-sequence del```
+1. (optional) Install jsDoc. Note that jsDoc needs to be run manually to generate code  documentation. ```npm install jsdoc```
 1. Open your local console and change the current directory to the project root folder (and location of gulpfile.js). The subfolder `dist` contains the automatically generated optimised files.
 1. To refresh the contents of `dist` folder use `gulp rebuild`.  the rebuild will delete the old dist folder and rebuild based on current source files.
 1. To deploy the contents of `dist` folder to your live `gh-pages` for the repostitory on Github use `gulp deploy`
