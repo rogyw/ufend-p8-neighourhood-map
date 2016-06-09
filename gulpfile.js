@@ -31,12 +31,12 @@ var paths = {
 	html: ['./*.html'],
 	images: ['./img/**/*.+(png|jpg|jpeg|gif|svg)'],
 	extras: ['./*.+(md|ico)',
-		'./bower_components/knockout/dist/knockout.js',
-		'./bower_components/knockout/LICENSE',
-		'./bower_components/knockout/README.md',
-		'./bower_components/php-date-formatter/js/php-date-formatter.min.js',
-		'/bower_components/php-date-formatter/LICENSE.md',
-		'/bower_components/php-date-formatter/README.md'
+		'**/bower_components/knockout/dist/knockout.js',
+		'**/bower_components/knockout/LICENSE',
+		'**/bower_components/knockout/README.md',
+		'**/bower_components/php-date-formatter/js/php-date-formatter.min.js',
+		'**/bower_components/php-date-formatter/LICENSE.md',
+		'**/bower_components/php-date-formatter/README.md'
 	],
 	output: './dist/'
 };
