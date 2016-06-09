@@ -1,14 +1,18 @@
 ## ufend-p8-neighbourhood-map
 
+A live copy of this project is available at:
+[http://roger.navevent.co.nz/orienteering-event-map/](http://roger.navevent.co.nz/orienteering-event-map/)
+
+
 ### Introduction
 
-The "Auckland Orienteering Events" site provides an interactive display of upcoming orienteering events in the Auckland region and brief details about the events.
+The "Auckland Orienteering Events" site provides an **interactive display of upcoming orienteering events in the Auckland region** and brief details about the events.
 
-Interactive text search functionality is provided within the list of events to assist in finding events on a certain day of the week, upcoming month of the year, or within the areas of interest.
+**Interactive text search functionality** is provided within the list of events to assist in finding events on a certain day of the week, upcoming month of the year, or within the areas of interest.
 
-For each event, details on the date, registration location, start times and times are provided along with additional assistance identifying the closest train/bus stations.
+For each event, details on the date, registration location, start times and times are provided along with additional **assistance identifying the closest train/bus stations**.
 
-Adding an event into your personal Google calendar is as easy as a click of a button!
+**Adding an event into your personal Google calendar** is as easy as a click of a button!
 
 This repository contains Roger Woodroofe's completed Map Neighbourhood project for the Udacity Front End Web Developer  Nanodegree.
 
