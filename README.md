@@ -20,7 +20,7 @@ Orienteers use a detailed orienteering map that uses an international mapping st
 
 Walk, Jog, or Run. Easy or challenging navigation. Individuals or go as a group. It's up to the participants.  Orienteering offers an activity that excercises the body and mind at the same time - and top athletes need to manage the balance between both. Suitable for all ages and most abilities, events can be either by foot, mountain-bike, ski's or trail (by vision alone). It's an excellent family based activity as all ages can usually participate in an event during the same time and area.
 
-For more information on Orienteering in New Zealand, visit [Orienteering NZ](http://www.orienteering.org/) or to find your local orienteering organisation visit the [IOF](http://www.orienteering.org/).
+For more information on Orienteering in New Zealand, visit [Orienteering NZ](http://www.orienteering.org.nz/) or to find your local orienteering organisation visit the [IOF](http://www.orienteering.org/).
 
 
 ### Project Information
