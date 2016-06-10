@@ -23,7 +23,7 @@
 var DEFAULT_MAP_CENTRE = { lat: -36.9001229, lng: 174.7826388 };
 var DEFAULT_MAP_ZOOM = 11;
 var DEFAULT_ZOOM_MAX = 16;
-var MAP_MARKER_ICON = "https://raw.githubusercontent.com/rogyw/ufend-p8-neighourhood-map/master/img/marker-o-flag.png";
+var MAP_MARKER_ICON = "http://roger.navevent.co.nz/orienteering-events-map/img/marker-o-flag.png";
 var MAP_INFOBUBBLE_WIDTH_MAX = 250;
 var AJAX_API_TIMEOUT = 10000;
 var APP_LOAD_TIMEOUT = 15000;
