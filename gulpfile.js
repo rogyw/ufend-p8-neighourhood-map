@@ -47,7 +47,7 @@ var paths = {
 	js: ['js/**/*.js'],
 	html: ['*.html'],
 	images: ['img/**/*.+(png|jpg|jpeg|gif|svg)'],
-	extras: ['*.+(md|ico)'],
+	extras: ['*.+(md|ico|png)'],
 	bower: ['bower_components/php-date-formatter/js/php-date-formatter.js',
 		'bower_components/knockout/dist/knockout.js'
 	]
