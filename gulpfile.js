@@ -1,4 +1,5 @@
-/* Gulp Build file for ufend-p8-neighbourhood-map
+/*
+ * Gulp Build file for ufend-p8-neighbourhood-map
  * Project 8 - Udacity Front End Web Developer Nanodegree
  * refer to README.md for details
  *
@@ -11,7 +12,12 @@
  * https://www.npmjs.com/
  */
 
-/* Specify Gulp Packages used
+"use strict";
+// set jshint to ignore external node globals
+/* jshint node: true */
+
+/*
+ * Specify Gulp Packages used
  */
 var gulp = require('gulp');
 var cssnano = require('gulp-cssnano');
@@ -20,104 +26,129 @@ var ghPages = require('gulp-gh-pages');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var htmlmin = require('gulp-htmlmin');
+var flatten = require('gulp-flatten');
 var runSequence = require('run-sequence');
 var del = require('del');
 
-/* specify the file locations and paths for project
+/*
+ * specify the src and destinatation folders
  */
-var paths = {
-	css: ['./css/**/*.css'],
-	js: ['./js/**/*.js'],
-	html: ['./*.html'],
-	images: ['./img/**/*.+(png|jpg|jpeg|gif|svg)'],
-	extras: ['./*.+(md|ico)',
-		'**/bower_components/knockout/dist/knockout.js',
-		'**/bower_components/knockout/LICENSE',
-		'**/bower_components/knockout/README.md',
-		'**/bower_components/php-date-formatter/js/php-date-formatter.min.js',
-		'**/bower_components/php-date-formatter/LICENSE.md',
-		'**/bower_components/php-date-formatter/README.md'
-	],
-	output: './dist/'
+var base = {
+	src: 'src/',
+	bower: 'bower_components/',
+	output: 'dist/'
 };
 
-/* Gulp devlopment watch tasks for project
+/*
+ * Specify the file locations and paths for project (relative to base.src)
+ */
+var paths = {
+	css: ['css/**/*.css'],
+	js: ['js/**/*.js'],
+	html: ['*.html'],
+	images: ['img/**/*.+(png|jpg|jpeg|gif|svg)'],
+	extras: ['*.+(md|ico)'],
+	bower: ['bower_components/php-date-formatter/js/php-date-formatter.js',
+		'bower_components/knockout/dist/knockout.js'
+	]
+};
+
+/*
+ * Gulp devlopment watch tasks for project
  */
 gulp.task('default', function() {
-	gulp.watch(paths.css, ['styles']);
-	gulp.watch(paths.js, ['scripts']);
-	gulp.watch(paths.images, ['images']);
-	gulp.watch(paths.html, ['html']);
-	gulp.watch(paths.extras, ['extras']);
+	gulp.watch(base.src.concat(paths.css), ['styles']);
+	gulp.watch(base.src.concat(paths.js), ['scripts']);
+	gulp.watch(base.src.concat(paths.images), ['images']);
+	gulp.watch(base.src.concat(paths.html), ['html']);
+	gulp.watch(base.src.concat(paths.extras), ['extras']);
+	gulp.watch(base.bower.concat(paths.bower), ['bower']);
 });
 
-/* CSS files task - styles
+/*
+ * CSS files task - styles
  */
 gulp.task('styles', function() {
-	return gulp.src(paths.css, { base: './' })
+	return gulp.src(base.src.concat(paths.css), { base: base.src })
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions']
 		}))
 		.pipe(cssnano())
-		.pipe(gulp.dest(paths.output));
+		.pipe(gulp.dest(base.output));
 });
 
-/* Javascript files task - scripts
+/*
+ * Javascript files task - scripts
  */
 gulp.task('scripts', function() {
-	return gulp.src(paths.js, { base: './' })
+	return gulp.src(base.src.concat(paths.js), { base: base.src })
 		.pipe(uglify())
-		.pipe(gulp.dest(paths.output));
+		.pipe(gulp.dest(base.output));
 });
 
-/* Image files compression task - images
+/*
+ * Image files compression task - images
  */
 gulp.task('images', function() {
-	return gulp.src(paths.images, { base: './' })
+	return gulp.src(base.src.concat(paths.images), { base: base.src })
 		.pipe(imagemin())
-		.pipe(gulp.dest(paths.output));
+		.pipe(gulp.dest(base.output));
 });
 
-/* HTML files task - html
+/*
+ * HTML files task - html
  */
 gulp.task('html', function() {
-	return gulp.src(paths.html, { base: './' })
+	return gulp.src(base.src.concat(paths.html), { base: base.src })
 		.pipe(htmlmin({
 			collapseWhitespace: true,
 			removeComments: true,
 			minifyJS: true,
 			minifyCSS: true
 		}))
-		.pipe(gulp.dest(paths.output));
+		.pipe(gulp.dest(base.output));
 });
 
-/* Other files needing to be copied to output - extras
+/*
+ * Other files needing to be copied to output - extras
  */
 gulp.task('extras', function() {
-	return gulp.src(paths.extras)
-		.pipe(gulp.dest(paths.output));
+	return gulp.src(base.src.concat(paths.extras))
+		.pipe(gulp.dest(base.output));
 });
 
-/* Delete all contents in dist output folder - clean:output
+/*
+ * External bower_components files needing to be copied to output - bower
+ */
+gulp.task('bower', function() {
+	gulp.src(paths.bower, { base: base.bower })
+		.pipe(flatten())
+		.pipe(gulp.dest(base.output.concat('js/external')));
+});
+
+/*
+ * Delete all contents in dist output folder - clean:output
  * reference: https://css-tricks.com/gulp-for-beginners/
  */
 gulp.task('clean:output', function() {
-	return del.sync([paths.output + '**'])
+	return del.sync([base.output + '**']);
 });
 
-/* Carry out all tasks to clear and build output folder - rebuild
+/*
+ * Carry out all tasks to clear and build output folder - rebuild
  * reference: https://css-tricks.com/gulp-for-beginners/
  * Uses runSequence to ensure tasks completed in order.
  */
 gulp.task('rebuild', function(callback) {
-	runSequence('clean:output', ['styles', 'scripts', 'images', 'html', 'extras'],
-		callback)
+	runSequence('clean:output', ['styles', 'scripts', 'images', 'html', 'extras', 'bower'],
+		callback);
 });
 
-/* Deploy output folder to GitHub gh-pages - deploy
+/*
+ * Deploy output folder to GitHub gh-pages - deploy
  * reference: https://www.npmjs.com/package/gulp-gh-pages
  */
 gulp.task('deploy', function() {
-	return gulp.src(paths.output + '**/*')
+	return gulp.src(base.output + '**/*')
 		.pipe(ghPages({ message: "chore: Update via gulp deploy [timestamp]" }));
 });
