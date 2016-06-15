@@ -399,7 +399,15 @@ function initMap() {
 		maxZoom: DEFAULT_ZOOM_MAX
 	};
 
-	map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	var myMapElement = document.getElementById("map-main");
+	if (typeof myMapElement === "undefined") {
+		var errorText = "Application Error: the <div id='map-main' class='map-main'> element to hold map was not found in html.";
+		console.log(errorText);
+		alert(errorText);
+		return;
+	}
+
+	map = new google.maps.Map(myMapElement, mapOptions);
 
 	//turn off loading display
 	var loadingDiv = document.getElementById("neighbourhood-map-spinner");
