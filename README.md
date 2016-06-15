@@ -1,24 +1,23 @@
 ## ufend-p8-neighbourhood-map
 
-A live copy of this project is available at:
+The original live copy of this project is available at:
 [http://roger.navevent.co.nz/orienteering-events-map/](http://roger.navevent.co.nz/orienteering-events-map/)
-
 
 
 ### Introduction
 
 The "Auckland Orienteering Events" site provides an **interactive display of upcoming orienteering events in the Auckland region** and brief details about the events.
 
-**Interactive text search functionality** is provided within the list of events to assist in finding events on a certain day of the week, upcoming month of the year, or within the areas of interest.
+**Interactive text search functionality** is provided within the list of events to assist in finding events on a certain day of the week, upcoming month of the year, or within the region of interest.
 
 For each event, details on the date, registration location, start times and times are provided along with additional **assistance identifying the closest train/bus stations**.
 
-**Adding an event into your personal Google calendar** is as easy as a click of a button!
+**Adding an individual event into your personal Google calendar** is easy through a button on each event.
 
 This repository contains Roger Woodroofe's completed Map Neighbourhood project for the Udacity Front End Web Developer Nanodegree.
 More information on the project requirements are available at: [Udacity Front End Web Developer Nanodegree overview](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001#).
 
-### About Orienteering
+#### About Orienteering
 
 Orienteering is a map based sport and recreational activity.
 
@@ -38,29 +37,52 @@ For more information on Orienteering in New Zealand, visit [Orienteering NZ](htt
 * Material Design Lite - Page and component styles
 * JQuery UI - AJAX services and date conversion functionality (Date picker alternative until MDL implementation available).
 * InfoBubble Google Maps extension - for tabbed infoWindow support
-*php-date-formatter.js script - provides date string formatting
+* php-date-formatter.js script - provides date string formatting
 
 *Additional functionality requires:*
 
 * Google Calendar API - allows user to add event to Calendar
 * Auckland Transport (AT) API - allows user to see list of local bus/train stops
 
+Note: Copyright and license text of third party modules are included in their source code.
 
-##### Using Gulp build tool with this project
+#### How to Use This Project
+##### Repository Structure
 
-1. Fork the [repository](https://github.com/rogyw/ufend-P8-neighbourhood-map.git) on GitHub.
-1. Use git to copy/clone your new repository to your local system.
-1. Install or update [node.js and npm](https://nodejs.org/en/).
-1. Install [gulp.js](http://gulpjs.com/) if not already in use.
-1. Install all gulp packages used by project.
-``` npm install --save-dev gulp-cssnano gulp-autoprefixer gulp-gh-pages gulp-uglify gulp-imagemin gulp-htmlmin run-sequence del```
-1. (optional) Install jsDoc. Note that jsDoc needs to be run manually to generate code  documentation. ```npm install jsdoc```
-1. Open your local console and change the current directory to the project root folder (and location of gulpfile.js). The subfolder `dist` contains the automatically generated optimised files.
-1. To refresh the contents of `dist` folder use `gulp rebuild`.  the rebuild will delete the old dist folder and rebuild based on current source files.
-1. To deploy the contents of `dist` folder to your live `gh-pages` for the repostitory on Github use `gulp deploy`
-1. Test it worked!
+Root folder `\` contains build configuration files and this `README.md`
+The subfolder `\src\` contains source files and `\dist\` contains the gulp generated optimised files ready for use.
 
-##### Optimisations completed by Gulp
+##### A. Initial Development Structure Setup
+
+1. (optional) Fork or clone the [repository](https://github.com/rogyw/ufend-P8-neighbourhood-map.git) on GitHub.
+1. Use git to clone the repository to your local system. `git clone https://github.com/rogyw/ufend-P8-neighbourhood-map.git`
+1. Install or update to the latest version of [node.js and npm](https://nodejs.org/en/).
+1. Open your local console and change the current directory to the project root folder (location of `\package.json` and `\gulpfile.js`).
+1. Run the command `npm install` to install required gulp modules and jsDoc as defined in included `package.json` file.
+1. Obtain API Keys and update configuration settings in source as outlined in section below.
+1. To refresh the contents of `dist` folder use the command `gulp rebuild`.  The rebuild will delete the old dist folder and rebuild based on current source files.
+1. Copy files from `dist` to your web hosting account or alternatively to deploy the contents of `dist` folder to your live `gh-pages` for the repostitory on Github use `gulp deploy`.
+1. Visit your site to test it works!
+
+##### B. Configuration of Installation
+
+This repository uses several APIs which require an appropriate API Key to enable the full use of this code.
+Note: The keys included in this repository may not be valid or may be limited to use from specific domain names.
+
+1. Google Maps API
+  1. Visit the Google Maps API for Web - Javascript documentation pages at [https://developers.google.com/maps/documentation/javascript/](https://developers.google.com/maps/documentation/javascript/)
+  1. Obtain a Google Maps Key
+  1. Update the following line in the `\src\index.html` to specify your Google Maps Key. Make sure you leave the double quotation mark following the end of the key.
+  ```<script defer src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsT" async></script>```
+1. Google Calendar
+  1. Visit the Google Developer Console for Google APIs, https://console.developers.google.com
+  1. Create Credentials for Google OAuth 2.0 and enable the Google Calendar API. Refer to current [Google API Help](https://support.google.com/cloud/answer/6158849) for further instructions.
+  1. Edit and save the `src\gcalendar.js` file to set the constant `GCALENDAR_CLIENT_ID` to your personal Google API credentials key. e.g. `var GCALENDAR_CLIENT_ID = '0123456789012-abcdefghijklmnopqrstuvwxyz123456.apps.googleusercontent.com';`
+1. Auckland Transport API
+  1. Obtain your API Key by signing up for a development API Key at: [https://api.at.govt.nz/registration/](https://api.at.govt.nz/registration/)
+  1. Edit and save the `src\app.js` file to set the constant `API_ATAPI_SECRET_KEY` to your personal Auckland Transport API account key. e.g. `var API_ATAPI_SECRET_KEY = "abcd1234-efgh5678-ijkl9012-mnop3456";`
+
+##### Optimisations to files in dist completed by Gulp
 * gulp-cssnano - minify CSS files
 * gulp-autoprefixer - auto-prefix CSS
 * gulp-gh-pages - upload to gh-pages
@@ -75,4 +97,4 @@ For more information on Orienteering in New Zealand, visit [Orienteering NZ](htt
 [Udacity website](https://www.udacity.com/)
 
 ###Roger Woodroofe
-Contact Roger Woodroofe through [GitHub](https://github.com/rogyw) or email [rogyw@yahoo.co.nz](mailto:rogyw@yahoo.co.nz)
+Contact Roger Woodroofe through [Rogyw on GitHub](https://github.com/rogyw) or email [rogyw@yahoo.co.nz](mailto:rogyw@yahoo.co.nz)
