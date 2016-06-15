@@ -6,28 +6,25 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Auckland Orienteering Events Map</title>
-
 	<link rel="icon" type="image/ico" href="/images/favicon.ico">
 	<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon.png" />
 	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
 	<link rel="icon" sizes="192x192" href="touch-icon-192x192.png">
 	<meta name="theme-color" content="#ff5722">
-
 	<!-- jQuery datepicker -->
 	<link rel="stylesheet" href="css/jquery-ui.css">
 	<!-- Material Design Lite -->
 	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.deep_orange-orange.min.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="css/main.css">
-
 	<!-- iOS tweaks - Reference: (via Google Dev) http://taylor.fausak.me/2015/01/27/ios-8-web-apps/ -->
-    <!-- Allow web app to be run in full-screen mode if they save to home. -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <!-- Configure the status bar. Black looks great with orange.-->
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- Allow web app to be run in full-screen mode if they save to home. -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- Configure the status bar. Black looks great with orange.-->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 </head>
 
-<body id="neighbourhood-map">
+<body class="neighbourhood-map">
 	<!-- Always shows a header, even in smaller screens. -->
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer">
 		<header class="mdl-layout__header">
@@ -37,7 +34,7 @@
 			</div>
 		</header>
 		<!-- Loading wait animation - MDL Spinner Component with Single Color -->
-		<div id="neighbourhood-map-spinner">
+		<div class="neighbourhood-map-spinner">
 			<p> Attempting to load application and communicate with Google Maps...</p>
 			<div class="spinner-wrapper">
 				<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
@@ -60,7 +57,7 @@
 			</nav>
 		</div>
 		<!-- Main Map -->
-		<main id="map" class="mdl-layout__content">
+		<main id="map-main" class="map-main mdl-layout__content">
 		</main>
 	</div>
 	<!-- jQuery -->

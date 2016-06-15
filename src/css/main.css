@@ -10,7 +10,7 @@ nav {
 	flex-wrap: wrap;
 }
 
-nav .nav-date {
+.nav-date {
 	display: block;
 	width: 100%;
 	background-color: #ff5722;
@@ -18,13 +18,13 @@ nav .nav-date {
 	text-align: center;
 }
 
-nav .nav-name {
+.nav-name {
 	display: block;
 	width: 100%;
 	text-align: center;
 }
 
-#map {
+.map-main {
 	height: 100%;
 }
 
@@ -123,11 +123,11 @@ nav .nav-name {
 	text-align: right;
 }
 
-#neighbourhood-map-spinner {
+.neighbourhood-map-spinner {
 	padding: 1em;
 }
 
-#neighbourhood-map-spinner .spinner-wrapper {
+.neighbourhood-map-spinner .spinner-wrapper {
 	width: 50px;
 	margin: 4em auto;
 }
@@ -135,14 +135,14 @@ nav .nav-name {
 
 /* hide the mdl main layout obfuscator shown when menu is open */
 
-#neighbourhood-map .mdl-layout__obfuscator.is-visible {
+.mdl-layout__obfuscator.is-visible {
 	opacity: 0;
 }
 
 
 /* override mdl button formatting to increase in height and allow lowercase */
 
-#neighbourhood-map .mdl-button {
+.neighbourhood-map .mdl-button {
 	height: auto;
 	min-height: 36px;
 	text-transform: capitalize;
