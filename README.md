@@ -82,6 +82,21 @@ Note: The keys included in this repository may not be valid or may be limited to
   1. Obtain your API Key by signing up for a development API Key at: [https://api.at.govt.nz/registration/](https://api.at.govt.nz/registration/)
   1. Edit and save the `src\app.js` file to set the constant `API_ATAPI_SECRET_KEY` to your personal Auckland Transport API account key. e.g. `var API_ATAPI_SECRET_KEY = "abcd1234-efgh5678-ijkl9012-mnop3456";`
 
+##### C. Running a Local Http Web Server
+
+(Optional) If you do not currently have an http web server available:
+
+Python provides  the ability to easily serve a folder via an http web service on your local computer.
+1. Download and install Python from [https://www.python.org/downloads/](https://www.python.org/downloads/).
+2. At the console command line prompt, change to the folder containing the set of files to be used.
+```cd /my/path/to/files/dist```
+Note: You can use either `\dist\` or `\src\` from the repository.
+* `\dist\` contains optimised files for production use. Section A above describes how to generate the `dist` set of files from the repository.
+* `/src/` contains the source files before optimisations which will be easier to use if you intend to view, edit, or debug the code.
+3. At the console command line prompt, type `python -m SimpleHTTPServer 8080` to serve the current directories files to `http://localhost:8080/`
+4. Open a web browser and view `http://localhost:8080/`
+
+
 ##### Optimisations to files in dist completed by Gulp
 * gulp-cssnano - minify CSS files
 * gulp-autoprefixer - auto-prefix CSS
