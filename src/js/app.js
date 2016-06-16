@@ -23,16 +23,16 @@
 var DEFAULT_MAP_CENTRE = { lat: -36.9001229, lng: 174.7826388 };
 var DEFAULT_MAP_ZOOM = 11;
 var DEFAULT_ZOOM_MAX = 16;
-var MAP_MARKER_ICON = "http://roger.navevent.co.nz/orienteering-events-map/img/marker-o-flag.png";
+var MAP_MARKER_ICON = "img/marker-o-flag.png";
 var MAP_INFOBUBBLE_WIDTH_MAX = 250;
 var AJAX_API_TIMEOUT = 10000;
 var APP_LOAD_TIMEOUT = 15000;
 var API_ATAPI_STOP_DISTANCE = 1000;
 var API_ATAPI_SECRET_KEY = "66ea2049-30bf-4ce3-bd6b-701e458de648";
-var API_ATAPI_LOGO = "http://at-api.aucklandtransport.govt.nz/imageresizer/website/logo.png?width=55";
+var API_ATAPI_LOGO = "https://at-api.aucklandtransport.govt.nz/imageresizer/website/logo.png?width=55";
 var API_ATAPI_WEBSITE = "https://at.govt.nz";
 var MAX_BUSSTOPS = 8;
-var IMAGE_LOGO_AK_SUMMERNAV = "http://www.orienteeringauckland.org.nz/assets/Uploads/Resource/Logos/logo-summernav-sml.png";
+var IMAGE_LOGO_AK_SUMMERNAV = "img/logo-summernav-sml.png";
 
 var DEBUG = false;
 
@@ -469,7 +469,7 @@ function getTimeString(value) {
  */
 function requestRoutes(coordinates, datetime) {
 	var request = $.ajax({
-		url: "http://api.at.govt.nz/v1/gtfs/stops/geosearch?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&distance=" + API_ATAPI_STOP_DISTANCE + "&api_key=" + API_ATAPI_SECRET_KEY,
+		url: "https://api.at.govt.nz/v1/gtfs/stops/geosearch?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&distance=" + API_ATAPI_STOP_DISTANCE + "&api_key=" + API_ATAPI_SECRET_KEY,
 		type: "GET",
 		dataType: "jsonp",
 		timeout: AJAX_API_TIMEOUT,
