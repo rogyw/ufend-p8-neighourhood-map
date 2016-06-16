@@ -95,10 +95,11 @@ To install simplehttp2server:
 1. Move the downloaded `simplehttp2server` file into a folder included in your [system path](http://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them).
 1. Within a command line console, change current directory to the folder containing files to be served. `cd /pathtofiles/`
 1. At the command prompt, type `simplehttp2server`. simplehttp2server will start and display the port number it is listening on.
-1. View the site at `http://localhost:5000/` where 5000 is the `listening on` port number.
+1. View the site at `https://localhost:5000/` where 5000 is the `listening on` port number.
 
 Note:
  * Further details can be found in the [simplehttp2server README](https://github.com/GoogleChrome/simplehttp2server/) and in the [video - HTTP/2, Totally Tooling Tips](https://www.youtube.com/watch?v=qx9tHwhjkHs).
+ * Make sure you use https:// and not http:// with simplehttp2server.
 
 ###### HTTP/1 using Python simplehttpserver
 
