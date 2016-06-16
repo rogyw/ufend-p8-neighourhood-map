@@ -86,6 +86,22 @@ Note: The keys included in this repository may not be valid or may be limited to
 
 (Optional) If you do not currently have an http web server available:
 
+###### HTTP/2 using simplehttp2server
+
+To install simplehttp2server:
+
+1. Download the appropriate precompiled release of simplehttp2server for your system by visiting [simplehttp2server Releases page on Github](https://github.com/GoogleChrome/simplehttp2server/releases).
+1. (optional) If required, rename the downloaded file to the appropriate filename for your system. For example on Windows: `rename simplehttp2server_windows_amd64 simplehttp2server.exe`
+1. Move the downloaded `simplehttp2server` file into a folder included in your [system path](http://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them).
+1. Within a command line console, change current directory to the folder containing files to be served. `cd \pathtofiles\`
+1. At the command prompt, type `simplehttp2server`. simplehttp2server will start and display the port number it is listening on.
+1. View the site at `http://localhost:5000/` where 5000 is the `listening on` port number.
+
+Note:
+ * Further details can be found in the [simplehttp2server README](https://github.com/GoogleChrome/simplehttp2server/) and in the [video - HTTP/2, Totally Tooling Tips](https://www.youtube.com/watch?v=qx9tHwhjkHs).
+
+###### HTTP/1 using Python simplehttpserver
+
 Python provides  the ability to easily serve a folder via an http web service on your local computer.
 1. Download and install Python from [https://www.python.org/downloads/](https://www.python.org/downloads/).
 2. At the console command line prompt, change to the folder containing the set of files to be used.
