@@ -98,8 +98,9 @@ To install simplehttp2server:
 1. View the site at `https://localhost:5000/` where 5000 is the `listening on` port number.
 
 Note:
- * Further details can be found in the [simplehttp2server README](https://github.com/GoogleChrome/simplehttp2server/) and in the [video - HTTP/2, Totally Tooling Tips](https://www.youtube.com/watch?v=qx9tHwhjkHs).
- * Make sure you use https:// and not http:// with simplehttp2server.
+ * Further details available in the [simplehttp2server README](https://github.com/GoogleChrome/simplehttp2server/) and the [video - HTTP/2, Totally Tooling Tips](https://www.youtube.com/watch?v=qx9tHwhjkHs).
+ * Make sure you use https:// with simplehttp2server as use of http:// will produce unexpected behaviour.
+ * A security warning will be displayed in your browser indicating the certificate is provided by an unknown authority.
 
 ###### HTTP/1 using Python simplehttpserver
 
@@ -122,6 +123,16 @@ Note: You can use either `/dist/` or `/src/` from the repository.
 * gulp-imagemin - reduce image sizes
 * gulp-htmlmin  - minify html files
 * run-sequence, del - used for project building
+
+
+## Changelog
+
+0.2 Project Submission 2
+* Updated Documentation
+* Adds HTTPS / HTTP/2 Support
+* fixes and code improvements
+
+0.1 initial project submission
 
 ## Contacts
 
