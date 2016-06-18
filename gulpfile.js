@@ -29,14 +29,15 @@ var htmlmin = require('gulp-htmlmin');
 var flatten = require('gulp-flatten');
 var runSequence = require('run-sequence');
 var del = require('del');
+var concat = require('gulp-concat');
 
 /*
  * specify the src and destinatation folders
  */
 var base = {
-	src: 'src/',
-	bower: 'bower_components/',
-	output: 'dist/'
+	src: './src/',
+	bower: './bower_components/',
+	output: './dist/'
 };
 
 /*
@@ -45,6 +46,7 @@ var base = {
 var paths = {
 	css: ['css/**/*.css'],
 	js: ['js/**/*.js'],
+	jsExternal: ['js-external/**/*.js'],
 	html: ['*.html'],
 	images: ['img/**/*.+(png|jpg|jpeg|gif|svg)'],
 	extras: ['*.+(md|ico|png)'],
@@ -59,6 +61,7 @@ var paths = {
 gulp.task('default', function() {
 	gulp.watch(base.src.concat(paths.css), ['styles']);
 	gulp.watch(base.src.concat(paths.js), ['scripts']);
+	gulp.watch(base.src.concat(paths.jsExternal), ['externaljs']);
 	gulp.watch(base.src.concat(paths.images), ['images']);
 	gulp.watch(base.src.concat(paths.html), ['html']);
 	gulp.watch(base.src.concat(paths.extras), ['extras']);
@@ -82,8 +85,26 @@ gulp.task('styles', function() {
  */
 gulp.task('scripts', function() {
 	return gulp.src(base.src.concat(paths.js), { base: base.src })
+		.pipe(concat('scripts.js'))
 		.pipe(uglify())
-		.pipe(gulp.dest(base.output));
+		.pipe(gulp.dest(base.output + 'js/'));
+});
+
+/*
+ * Javascript External files task - externaljs
+ */
+gulp.task('externaljs', function() {
+	return gulp.src(base.src.concat(paths.jsExternal))
+		.pipe(gulp.dest(base.output + 'js/'));
+});
+
+/*
+ * External bower_components files needing to be copied to output - bower
+ */
+gulp.task('bower', function() {
+	gulp.src(paths.bower, { base: base.bower })
+		.pipe(flatten())
+		.pipe(gulp.dest(base.output.concat('js/')));
 });
 
 /*
@@ -118,15 +139,6 @@ gulp.task('extras', function() {
 });
 
 /*
- * External bower_components files needing to be copied to output - bower
- */
-gulp.task('bower', function() {
-	gulp.src(paths.bower, { base: base.bower })
-		.pipe(flatten())
-		.pipe(gulp.dest(base.output.concat('js/external')));
-});
-
-/*
  * Delete all contents in dist output folder - clean:output
  * reference: https://css-tricks.com/gulp-for-beginners/
  */
@@ -140,7 +152,7 @@ gulp.task('clean:output', function() {
  * Uses runSequence to ensure tasks completed in order.
  */
 gulp.task('rebuild', function(callback) {
-	runSequence('clean:output', ['styles', 'scripts', 'images', 'html', 'extras', 'bower'],
+	runSequence('clean:output', ['styles', 'scripts', 'externaljs', 'images', 'html', 'extras', 'bower'],
 		callback);
 });
 
