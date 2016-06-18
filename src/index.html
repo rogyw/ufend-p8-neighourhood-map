@@ -76,7 +76,7 @@
 	<script src="js/php-date-formatter.js"></script>
 	<script src="js/scripts.js"></script>
 	<!-- Google Maps API -->
-	<script defer src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyA3IYdjwekchcEnCTNo9oLUCxNHXZFaPcg" async></script>
+	<script onerror="onAPILoadError(event)" defer src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyA3IYdjwekchcEnCTNo9oLUCxNHXZFaPcg" async></script>
 	<script>
 	(function(i, s, o, g, r, a, m) {
 		i['GoogleAnalyticsObject'] = r;

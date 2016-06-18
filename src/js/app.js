@@ -16,30 +16,14 @@
 // set jshint to ignore external globals
 /* global $, ko, google, eventsJSON: false */
 /* prereq: config.js */
-/* global getUTCDate, getTimeString, dateFormat :false */
+/* global DEBUG, getUTCDate, getTimeString, dateFormat :false */
 
 
 /* ======================================================= */
 /* Globals */
 /* ======================================================= */
-// App Loading Timeout
-var appLoaded = false;
 // Google Maps
 var map;
-
-/* ======================================================= */
-/* Check for Initial load Timeout */
-/* ======================================================= */
-window.setTimeout(function() {
-	if (appLoaded === false) {
-		//Stop the Spinner Animation
-		var spinner = document.getElementsByClassName("mdl-spinner");
-		if (spinner[0] !== undefined) {
-			spinner[0].className = spinner[0].className.replace("is-active", "");
-		}
-		alert("Sorry, a timeout error has occurred while trying to access the internet. Please check connection and try again. If problem persists, please contact support.");
-	}
-}, APP_LOAD_TIMEOUT);
 
 
 /* ======================================================= */
@@ -147,7 +131,6 @@ var oEvent = function(data) {
 /**
  * viewModel
  */
-
 var viewModel = function() {
 
 	//self represents the viewModel this
@@ -213,9 +196,6 @@ var viewModel = function() {
 	self.eventListClick = function(currentEvent) {
 		google.maps.event.trigger(currentEvent.mapMarker, 'click');
 	};
-
-	//Cancel the App loading timeout error message
-	appLoaded = true;
 };
 
 
@@ -251,4 +231,18 @@ function initMap() {
 
 	ko.applyBindings(new viewModel());
 
+}
+
+
+function onAPILoadError(event){
+	var statusText = "Sorry, an error occurred while trying to load a required resource. Please check internet connection and try again.";
+
+	if(typeof(event) !== 'undefined'){
+		if(DEBUG) {
+			console.log(event);
+		}
+		statusText += "\n Source: " + event.target.src;
+	}
+	console.log(statusText);
+	alert(statusText);
 }
