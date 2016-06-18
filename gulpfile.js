@@ -28,6 +28,7 @@ var imagemin = require('gulp-imagemin');
 var htmlmin = require('gulp-htmlmin');
 var flatten = require('gulp-flatten');
 var runSequence = require('run-sequence');
+var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
 var concat = require('gulp-concat');
 
@@ -85,8 +86,10 @@ gulp.task('styles', function() {
  */
 gulp.task('scripts', function() {
 	return gulp.src(base.src.concat(paths.js), { base: base.src })
+		.pipe(sourcemaps.init())
 		.pipe(concat('scripts.js'))
 		.pipe(uglify())
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(base.output + 'js/'));
 });
 
