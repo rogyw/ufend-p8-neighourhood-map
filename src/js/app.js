@@ -230,19 +230,4 @@ function initMap() {
 	loadingDiv.style.display = "none";
 
 	ko.applyBindings(new viewModel());
-
-}
-
-
-function onAPILoadError(event){
-	var statusText = "Sorry, an error occurred while trying to load a required resource. Please check internet connection and try again.";
-
-	if(typeof(event) !== 'undefined'){
-		if(DEBUG) {
-			console.log(event);
-		}
-		statusText += "\n Source: " + event.target.src;
-	}
-	console.log(statusText);
-	alert(statusText);
 }

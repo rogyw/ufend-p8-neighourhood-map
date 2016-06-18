@@ -60,16 +60,26 @@
 		<main id="map-main" class="map-main mdl-layout__content">
 		</main>
 	</div>
+	<script>
+	function onAPILoadError(event) {
+		var statusText = "Sorry, an error occurred while trying to load a required resource.\nPlease check internet connection and try again.";
+		if (typeof(event) !== 'undefined') {
+			statusText += "\nSource:\n" + event.target.src;
+		}
+		console.log(statusText);
+		alert(statusText);
+	}
+	</script>
 	<!-- jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script onerror="onAPILoadError(event)" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<!-- jQuery UI  datepicker -->
 	<script src="js/jquery-ui.min.js"></script>
 	<!-- Knockout.js -->
 	<script src="js/knockout.js"></script>
 	<!-- Google Calendar API -->
-	<script src="https://apis.google.com/js/client.js?onload=gCalendarCheckAuth"></script>
+	<script onerror="onAPILoadError(event)" src="https://apis.google.com/js/client.js?onload=gCalendarCheckAuth"></script>
 	<!-- Material Design Lite -->
-	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+	<script onerror="onAPILoadError(event)" defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 	<!-- Google Maps API - infoBubble extension to extend infoWindow -->
 	<script src="js/infobubble.js"></script>
 	<!-- Javascript date library - php-date-formatter -->
