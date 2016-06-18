@@ -105,7 +105,7 @@ gulp.task('externaljs', function() {
  * External bower_components files needing to be copied to output - bower
  */
 gulp.task('bower', function() {
-	gulp.src(paths.bower, { base: base.bower })
+	return gulp.src(paths.bower, { base: base.bower })
 		.pipe(flatten())
 		.pipe(gulp.dest(base.output.concat('js/')));
 });
