@@ -1,6 +1,6 @@
 /*
  * =======================================================
- * gcalendar.js
+ * api-gcalendar.js
  *  - contains google calendar api related code for
  *  https://github.com/rogyw/ufend-p8-neighbourhood-map
  *
@@ -19,14 +19,14 @@
 // set jshint to ignore external globals
 /* global gCalendarEvent, gapi : false */
 
-
+/* ======================================================= */
+/* Constants*/
+/* ======================================================= */
 // Your Client ID can be retrieved from your project in the Google
 // Developer Console, https://console.developers.google.com
 var GCALENDAR_CLIENT_ID = '1035036075694-1eocpmula50dhlu5t8cmealdhhj70t6b.apps.googleusercontent.com';
-
 //Read/Write Google Calendar Scope required to insert events
 var GCALENDAR_SCOPES = ["https://www.googleapis.com/auth/calendar"];
-
 // Debugging of output to console.log
 var DEBUG_GCALENDAR = false;
 
@@ -56,7 +56,9 @@ function gCalendarHandleAuthResult(authResult) {
 		console.log("gCalendarHandleAuthResult: Start - Handle response from authorization server.");
 	}
 	var authorizeElement = document.getElementsByClassName('g-calendar-button');
-	console.log(authorizeElement[0]);
+	if (DEBUG_GCALENDAR) {
+		console.log(authorizeElement[0]);
+	}
 	if (authResult && !authResult.error) {
 		// Hide auth UI, then load client library.
 		if (DEBUG_GCALENDAR) {
