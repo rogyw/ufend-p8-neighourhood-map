@@ -21,6 +21,7 @@ var DEFAULT_MAP_CENTRE = { lat: -36.9001229, lng: 174.7826388 },
 	DEFAULT_ZOOM_MAX = 16,
 	MAP_MARKER_ICON = "img/marker-o-flag.png",
 	MAP_INFOBUBBLE_WIDTH_MAX = 250,
+	MAP_MARKER_HIDE_ONLY = true,  //Toggles between Map Marker removal or use of setVisible
 	AJAX_API_TIMEOUT = 10000,
 	API_ATAPI_STOP_DISTANCE = 1000,
 	API_ATAPI_SECRET_KEY = "66ea2049-30bf-4ce3-bd6b-701e458de648",

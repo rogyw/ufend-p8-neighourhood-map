@@ -118,7 +118,12 @@ function createEventMarker(coordinates, title, eventInfo, gCalEvent) {
  * @param  {object} element Event Object
  */
 function enableMapMarker(element) {
-	element.mapMarker.setMap(map);
+	if (MAP_MARKER_HIDE_ONLY === true) {
+		element.mapMarker.setVisible(true);
+	} else {
+		element.mapMarker.setMap(map);
+	}
+
 }
 
 
@@ -127,7 +132,11 @@ function enableMapMarker(element) {
  * @param  {object} element Event Object
  */
 function disableMapMarker(element) {
-	element.mapMarker.setMap(null);
+	if (MAP_MARKER_HIDE_ONLY === true) {
+		element.mapMarker.setVisible(false);
+	} else {
+		element.mapMarker.setMap(null);
+	}
 }
 
 
