@@ -34,10 +34,14 @@ nav {
 	flex-wrap: wrap;
 }
 
+.map-info .img-holder{
+	width: 125px;
+	margin: 0 auto;
+}
+
 .map-info img.img-summernav {
-	width: 185px;
+	width: 100%;
 	height: auto;
-	margin: auto;
 }
 
 .map-info h3 {

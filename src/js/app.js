@@ -62,9 +62,13 @@ var oEvent = function(data) {
 			var courseCloseText = getTimeString(self.courseCloseUTC());
 
 			var infoContent = "";
+			infoContent += "<div class=\"img-holder\">";
 			if (self.series() == "Auckland SummerNav") {
 				infoContent += "<img class=\"img-summernav\" src=\"" + IMAGE_LOGO_AK_SUMMERNAV + "\" alt=\"Auckland SummerNav\">";
+			} else {
+				infoContent += "<img class=\"img-summernav\" src=\"" + IMAGE_LOGO_AK_CLUB + "\" alt=\"Auckland Orienteers\">";
 			}
+			infoContent += "</div>";
 			infoContent += "<h3>" + dateString + "</h3>";
 			infoContent += "<h4>" + self.name() + "</h4>";
 			infoContent += "<ul>";

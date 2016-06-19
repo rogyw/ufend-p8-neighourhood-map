@@ -21,13 +21,14 @@ var DEFAULT_MAP_CENTRE = { lat: -36.9001229, lng: 174.7826388 },
 	DEFAULT_ZOOM_MAX = 16,
 	MAP_MARKER_ICON = "img/marker-o-flag.png",
 	MAP_INFOBUBBLE_WIDTH_MAX = 250,
-	MAP_MARKER_HIDE_ONLY = true,  //Toggles between Map Marker removal or use of setVisible
+	MAP_MARKER_HIDE_ONLY = true, //Toggles between Map Marker removal or use of setVisible
 	AJAX_API_TIMEOUT = 10000,
 	API_ATAPI_STOP_DISTANCE = 1000,
 	API_ATAPI_SECRET_KEY = "66ea2049-30bf-4ce3-bd6b-701e458de648",
 	API_ATAPI_LOGO = "https://at-api.aucklandtransport.govt.nz/imageresizer/website/logo.png?width=55",
 	API_ATAPI_WEBSITE = "https://at.govt.nz",
 	MAX_BUSSTOPS = 8,
-	IMAGE_LOGO_AK_SUMMERNAV = "img/logo-summernav-sml.png";
+	IMAGE_LOGO_AK_SUMMERNAV = "img/logo-summernav-sml.png",
+	IMAGE_LOGO_AK_CLUB = "img/clublogo_ak.png";
 
 var DEBUG = false;
