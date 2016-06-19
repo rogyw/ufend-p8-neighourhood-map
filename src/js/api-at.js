@@ -90,7 +90,7 @@ function requestRoutes(coordinates, datetime) {
 			tabContent += "Data provided by: <a href=\"" + API_ATAPI_WEBSITE + "\" target=\"_blank\">at.govt.nz</a></p>";
 			tabContent += "</div>";
 		}
-		tabContent += "<p><a href=\"https://at.govt.nz/bus-train-ferry/journey-planner/\" target=\"_blank\"><button name=\"button-plan-at-trip\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent\">Plan Your Trip</button></a></p>";
+		tabContent += "<div class=\"button-holder\"><a href=\"https://at.govt.nz/bus-train-ferry/journey-planner/\" target=\"_blank\"><button name=\"button-plan-at-trip\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent\">Plan Your Trip</button></a></div>";
 
 		tabContent += "</div>";
 

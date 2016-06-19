@@ -34,11 +34,13 @@ nav {
 	flex-wrap: wrap;
 }
 
+
 /*
  * Use wrapper around image to resize and maintain aspect ratio
  * reference: https://www.kirupa.com/html5/preserve_an_image_aspect_ratio_when_resized.htm
  */
-.map-info .img-holder{
+
+.map-info .img-holder {
 	width: 125px;
 	margin: 0 auto;
 }
@@ -127,6 +129,14 @@ nav {
 	color: black;
 	font-style: italic;
 	text-align: right;
+}
+
+.map-info .error-text {
+	font-style: italic;
+}
+
+.map-info .button-holder {
+	margin: 0 auto;
 }
 
 .neighbourhood-map-spinner {
