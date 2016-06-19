@@ -74,7 +74,7 @@ var oEvent = function(data) {
 			if (self.notes() !== "") {
 				infoContent += "<li><h5>Notes:</h5> <span class=\"notes\">" + self.notes() + "</span></li>";
 			}
-			infoContent += "<li><h5>Website:</h5><span class=\"detail\"><a href=\"" + self.url() + "\" target=\"_blank\">" + self.url() + "</a></span></li>";
+			infoContent += "<li><h5>Website:</h5><span class=\"detail\"><a href=\"" + self.url() + "\" target=\"_blank\">" + stripUrlHttp(self.url()) + "</a></span></li>";
 			infoContent += "<li class=\"notice\">Please check onsite noticeboard for updates</li>";
 			infoContent += "<li class=\"g-calendar-button\"><button name=\"button-g-calendar-add\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent\" onclick = \"gCalendarHandleAuthClick()\">Add Event to Google Calendar</button>";
 			infoContent += "</ul>";

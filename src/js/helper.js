@@ -1,8 +1,10 @@
 /*
  * =======================================================
- * app-datetime.js
- *  - contains date functions for
+ * helpers.js
+ *  - contains helper functions for
  *  https://github.com/rogyw/ufend-p8-neighbourhood-map
+ *
+ * Including Date manipulation and String helpers
  *
  * Created by Roger Woodroofe rogyw@yahoo.co.nz
  * https://github.com/rogyw
@@ -59,5 +61,16 @@ function getTimeString(value) {
 	//Requires: https://github.com/kartik-v/php-date-formatter
 	var result = dateFormat.formatDate(value, 'g:ia');
 
+	return result;
+}
+
+
+function stripUrlHttp(url) {
+	if (typeof(url !=== 'string')){
+		//return url untouched if not given a string
+		return url;
+	}
+	var result = url.trim();
+	result = result.replace(/^http[s]?\:\/\//i, "");
 	return result;
 }
