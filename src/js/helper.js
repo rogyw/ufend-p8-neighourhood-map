@@ -66,7 +66,7 @@ function getTimeString(value) {
 
 
 function stripUrlHttp(url) {
-	if (typeof(url !=== 'string')){
+	if (typeof(url) !== 'string') {
 		//return url untouched if not given a string
 		return url;
 	}
