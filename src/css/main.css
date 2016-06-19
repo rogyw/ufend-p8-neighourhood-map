@@ -47,7 +47,7 @@ nav {
 	font-weight: bold;
 	text-align: center;
 	margin: 0;
-	margin-top: 1em;
+	margin-top: 0.2em;
 }
 
 .map-info h4 {
@@ -57,7 +57,6 @@ nav {
 	font-weight: bold;
 	text-align: center;
 	margin: 0;
-	margin-bottom: 1em;
 }
 
 .map-info ul {
@@ -69,7 +68,6 @@ nav {
 .map-info li {}
 
 .map-info ul li.notice {
-	padding-top: 1em;
 	font-style: italic;
 	font-size: 0.7em;
 	text-align: center;
@@ -82,18 +80,18 @@ nav {
 	text-transform: uppercase;
 }
 
-.map-info ul li span.detail {
+.map-info .detail {
 	text-align: right;
 	font-weight: bold;
 	display: block;
 }
 
-.map-info ul li span.notes {
+.map-info .notes {
 	text-align: right;
 	display: block;
 }
 
-.map-info ul li.g-calendar-button {
+.map-info .g-calendar-button {
 	text-align: center;
 }
 
