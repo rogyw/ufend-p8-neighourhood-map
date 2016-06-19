@@ -54,11 +54,26 @@ function requestRoutes(coordinates, datetime) {
 			console.log("AT API success.");
 			console.log(data);
 		}
+
 		dataATAPI = data;
-		var resultsCount = dataATAPI.response.length;
+
+		if ((typeof(data) === 'undefined') || (data == 'null')) {
+			var result = "Error: AT API request - received an unexpected empty reply.";
+			console.log(result);
+			alert(result);
+			return;
+		}
+
 		var tabContent = "<div class=\"map-info\">";
 		tabContent += "<h3>Bus &amp; Train Stops Nearby</h3>";
-		if (resultsCount < 1) {
+
+		//check if an error is being reported by server
+		if ((typeof(dataATAPI.response) === 'undefined') || (dataATAPI.status == 'Error')) {
+			tabContent += "<p class=\"error-text\">Sorry, no information available.<br>An unexpected response was received from provider.</p>";
+			var error = dataATAPI.error;
+			console.log("AT API Response Error: " + error.status + " - " + error.message);
+		} else if (dataATAPI.response.length < 1) {
+			//successful request but empty set result
 			tabContent += "<p>No public transport stops found within " + API_ATAPI_STOP_DISTANCE + " metres of registration location. Please click link below for alternate details.</p>";
 		} else {
 			tabContent += "<ul class=\"busstops\">";
@@ -70,14 +85,13 @@ function requestRoutes(coordinates, datetime) {
 				tabContent += "</li>";
 			}
 			tabContent += "</ul>";
-
-			tabContent += "<p><a href=\"https://at.govt.nz/bus-train-ferry/journey-planner/\" target=\"_blank\">Plan Your Trip</a></p>";
 			tabContent += "<div class=\"api-provider\">";
 			tabContent += "<p><a href=\"" + API_ATAPI_WEBSITE + "\" target=\"_blank\"><img alt=\"AT\" src=\"" + API_ATAPI_LOGO + "\"></a>";
 			tabContent += "Data provided by: <a href=\"" + API_ATAPI_WEBSITE + "\" target=\"_blank\">at.govt.nz</a></p>";
-
 			tabContent += "</div>";
 		}
+		tabContent += "<p><a href=\"https://at.govt.nz/bus-train-ferry/journey-planner/\" target=\"_blank\"><button name=\"button-plan-at-trip\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent\">Plan Your Trip</button></a></p>";
+
 		tabContent += "</div>";
 
 		infoBubble.addTab("Bus/Train", tabContent);
@@ -85,10 +99,14 @@ function requestRoutes(coordinates, datetime) {
 	});
 
 	request.fail(function(xhr, err) {
-		alert("Sorry, we experienced a problem with the Auckland Transport API. Bus/Train information is temporarily unavailable. Error: " + err);
+		var result = "Sorry, we experienced a problem with the Auckland Transport API. Bus/Train information is temporarily unavailable. Error: " + err + " Status: " + xhr.status;
+		console.log(result);
+		alert(result);
+
 		if (DEBUG) {
 			console.log("AT API call failure:");
 			console.log(err);
+			console.log(xhr);
 		}
 	});
 }
