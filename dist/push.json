@@ -1,0 +1,32 @@
+{
+	"/index.html": {
+		"/css/main.css": {
+			"weight": 1,
+			"type": "style"
+		},
+		"/css/jquery-ui.css": {
+			"weight": 1,
+			"type": "style"
+		},
+		"/js/knockout.js": {
+			"weight": 1,
+			"type": "script"
+		},
+		"/js/jquery-ui.min.js": {
+			"weight": 1,
+			"type": "script"
+		},
+		"/js/infobubble.js": {
+			"weight": 1,
+			"type": "script"
+		},
+		"/js/php-date-formatter.js": {
+			"weight": 1,
+			"type": "script"
+		},
+		"/js/scripts.js": {
+			"weight": 1,
+			"type": "script"
+		}
+	}
+}
