@@ -148,6 +148,14 @@ nav {
 	margin: 4em auto;
 }
 
+.loadingWaitDisplayed {
+	display: block;
+}
+
+.loadingWaitHidden {
+	display: none;
+}
+
 
 /* hide the mdl main layout obfuscator shown when menu is open */
 

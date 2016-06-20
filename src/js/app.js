@@ -15,8 +15,7 @@
 /* jshint devel: true */
 // set jshint to ignore external globals
 /* global $, ko, google, eventsJSON: false */
-/* prereq: config.js */
-/* global DEBUG, getUTCDate, getTimeString, dateFormat :false */
+/* global getUTCDate, getTimeString, dateFormat :false */
 
 
 /* ======================================================= */
@@ -24,7 +23,6 @@
 /* ======================================================= */
 // Google Maps
 var map;
-
 
 /* ======================================================= */
 /* List */
@@ -142,6 +140,11 @@ var viewModel = function() {
 
 	self.eventsList = ko.observableArray();
 	self.filter = ko.observable("");
+	self.loadingStatus = ko.observable(true);
+
+	self.displayLoadingWait = ko.computed(function() {
+		return self.loadingStatus() === true ? "loadingWaitDisplayed" : "loadingWaitHidden";
+	}, self);
 
 	//Sort the JSON events data to place markers on map in reverse chronological order.
 	//Reference: Based on http://stackoverflow.com/a/8900824
@@ -207,6 +210,20 @@ var viewModel = function() {
 /* initMap */
 /* ======================================================= */
 
+function onAPIMapLoadError(event) {
+	var statusText = "Sorry, an error occurred while trying to load a required resource.\nPlease check internet connection and try again.";
+	if (typeof(event) !== 'undefined') {
+		statusText += "\nSource:\n" + event.target.src;
+	}
+	console.log(statusText);
+	alert(statusText);
+
+	// Map and call back to Knockout are not available
+	// let user know not to keep waiting - Turn off wait display
+	var loadingDiv = document.getElementById("neighbourhood-map-spinner");
+	loadingDiv.innerHTML = "<h2>Unavailable.</h2><p>Failed to load required resources. Please check internet connection and try again.</p>";
+}
+
 /**
  * Initialises the Map and places all Event Markers on Map
  * @return {boolean} Returns false on success, true if failure
@@ -229,9 +246,10 @@ function initMap() {
 
 	map = new google.maps.Map(myMapElement, mapOptions);
 
-	//turn off loading display
-	var loadingDiv = document.getElementById("neighbourhood-map-spinner");
-	loadingDiv.style.display = "none";
+	//set up access to update of loading display using knockout
+	//reference: http://stackoverflow.com/a/9480044
+	window.vm = new viewModel();
+	ko.applyBindings(window.vm);
 
-	ko.applyBindings(new viewModel());
+	window.vm.loadingStatus(false);
 }
