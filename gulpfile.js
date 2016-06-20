@@ -50,7 +50,7 @@ var paths = {
 	jsExternal: ['js-external/**/*.js'],
 	html: ['*.html'],
 	images: ['img/**/*.+(png|jpg|jpeg|gif|svg)'],
-	extras: ['*.+(md|ico|png)'],
+	extras: ['*.+(md|ico|png|json)'],
 	bower: ['bower_components/php-date-formatter/js/php-date-formatter.js',
 		'bower_components/knockout/dist/knockout.js'
 	]
