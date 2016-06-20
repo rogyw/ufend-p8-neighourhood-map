@@ -59,6 +59,7 @@ The subfolder `/src/` contains source files and `/dist/` contains the gulp gener
 1. Install or update to the latest version of [node.js and npm](https://nodejs.org/en/).
 1. Open your local console and change the current directory to the project root folder (location of `/package.json` and `/gulpfile.js`).
 1. Run the command `npm install` to install required gulp modules and jsDoc as defined in included `package.json` file.
+1. Run the command `bower install` to install required bower dependancies.
 1. Obtain API Keys and update configuration settings in source as outlined in section below.
 1. To refresh the contents of `dist` folder use the command `gulp rebuild`.  The rebuild will delete the old dist folder and rebuild based on current source files.
 1. Copy files from `dist` to your web hosting account or alternatively to deploy the contents of `dist` folder to your live `gh-pages` for the repostitory on Github use `gulp deploy`.
