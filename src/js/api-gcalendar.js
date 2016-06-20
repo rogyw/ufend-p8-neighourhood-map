@@ -17,7 +17,7 @@
 // set jshint to ignore console, alert, etc
 /* jshint devel : true */
 // set jshint to ignore external globals
-/* global gCalendarEvent, gapi : false */
+/* global gCalendarEvent, gapi, DEBUG : false */
 
 /* ======================================================= */
 /* Constants*/
@@ -35,9 +35,6 @@ var DEBUG_GCALENDAR = false;
  * Check if current user has authorized this application.
  */
 function gCalendarCheckAuth() {
-	if (DEBUG_GCALENDAR) {
-		console.log("gCalendarCheckAuth: Start - Check if current user has authorized this application.");
-	}
 	gapi.auth.authorize({
 		'client_id': GCALENDAR_CLIENT_ID,
 		'scope': GCALENDAR_SCOPES.join(' '),
@@ -52,24 +49,12 @@ function gCalendarCheckAuth() {
  * @param {Object} authResult Authorization result.
  */
 function gCalendarHandleAuthResult(authResult) {
-	if (DEBUG_GCALENDAR) {
-		console.log("gCalendarHandleAuthResult: Start - Handle response from authorization server.");
-	}
 	var authorizeElement = document.getElementsByClassName('g-calendar-button');
-	if (DEBUG_GCALENDAR) {
-		console.log(authorizeElement[0]);
-	}
 	if (authResult && !authResult.error) {
 		// Hide auth UI, then load client library.
-		if (DEBUG_GCALENDAR) {
-			console.log("gCalendarHandleAuthResult: (authResult && !authResult.error) Hide auth UI, then load client library.");
-		}
 		authorizeElement[0].style.display = 'none';
 		gCalendarLoadCalendarApi();
 	} else {
-		if (DEBUG_GCALENDAR) {
-			console.log("gCalendarHandleAuthResult: Show auth UI, allowing the user to initiate authorization by clicking authorize button.");
-		}
 		// Show auth UI, allowing the user to initiate authorization by
 		// clicking authorize button.
 		authorizeElement[0].style.display = 'inline';
@@ -83,9 +68,6 @@ function gCalendarHandleAuthResult(authResult) {
  * @param {Event} event Button click event.
  */
 function gCalendarHandleAuthClick(event) {
-	if (DEBUG_GCALENDAR) {
-		console.log("gCalendarHandleAuthClick: Start - Initiate auth flow in response to user clicking authorize button.");
-	}
 	if (typeof gapi === 'undefined') {
 		alert("Sorry, Google Calendar has failed to load and can't be accessed. Try reloading this page.");
 	} else {
@@ -104,9 +86,6 @@ function gCalendarHandleAuthClick(event) {
  * Load Google Calendar client library.
  */
 function gCalendarLoadCalendarApi() {
-	if (DEBUG_GCALENDAR) {
-		console.log("gCalendarLoadCalendarApi: Start - Load Google Calendar client library");
-	}
 	gapi.client.load('calendar', 'v3', gCalendarInsertEvent);
 }
 
@@ -120,26 +99,13 @@ function gCalendarInsertEvent() {
 	// https://developers.google.com/google-apps/calendar/quickstart/js
 	// Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
 	// stored credentials.
-	if (DEBUG_GCALENDAR) {
-		console.log("gCalendarInsertEvent: Start");
-		console.log("gCalendarInsertEvent: gCalendarEvent =");
-		console.log(gCalendarEvent);
-	}
 
 	var request = gapi.client.calendar.events.insert({
 		'calendarId': 'primary',
 		'resource': gCalendarEvent
 	});
 
-	if (DEBUG_GCALENDAR) {
-		console.log("gCalendarInsertEvent: request execute");
-	}
-
 	request.execute(function(value) {
-		if (DEBUG_GCALENDAR) {
-			console.log("gCalendarInsertEvent: value=");
-			console.log(value);
-		}
 		var resultText;
 		if (value.error !== undefined) {
 			resultText = "Sorry, there was an error trying to add the event into Google Calendar. Google Calendar API Error: " + value.error.code + " - " + value.error.message;
@@ -148,7 +114,7 @@ function gCalendarInsertEvent() {
 		} else {
 			resultText = 'Success! Event has been added to your calendar: <a href="' + value.htmlLink + '" target="_blank">View</a>';
 			replaceAuthorizeElement(resultText);
-			if (DEBUG_GCALENDAR) {
+			if (DEBUG) {
 				console.log(resultText);
 			}
 		}
@@ -164,7 +130,6 @@ function gCalendarInsertEvent() {
  */
 function replaceAuthorizeElement(message) {
 	var authorizeElement = document.getElementsByClassName('g-calendar-button');
-	console.log(authorizeElement);
 	authorizeElement[0].innerHTML = '<p>' + message + '</p>';
 	authorizeElement[0].style.display = 'inline';
 }
