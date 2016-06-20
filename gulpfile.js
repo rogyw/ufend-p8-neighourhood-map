@@ -86,6 +86,16 @@ gulp.task('styles', function() {
  */
 gulp.task('scripts', function() {
 	return gulp.src(base.src.concat(paths.js), { base: base.src })
+		.pipe(concat('scripts.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest(base.output + 'js/'));
+});
+
+/*
+ * Javascript files task - debugscripts : includes sourcemaps for debug info
+ */
+gulp.task('debugscripts', function() {
+	return gulp.src(base.src.concat(paths.js), { base: base.src })
 		.pipe(sourcemaps.init())
 		.pipe(concat('scripts.js'))
 		.pipe(uglify())
