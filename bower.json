@@ -1,18 +1,20 @@
 {
-  "name": "ufend-p8-neighbourhood-map",
-  "description": "Neighbourhood Map Project for Udacity Front End Web Developer Nanodegree",
-  "main": "index.html",
-  "license": "MIT",
-  "homepage": "http://rogyw.github.io/",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "knockout": "~3.4.0",
-    "material-design-lite": "^1.1.3"
-  }
+	"name": "ufend-p8-neighbourhood-map",
+	"description": "Neighbourhood Map Project for Udacity Front End Web Developer Nanodegree",
+	"main": "index.html",
+	"license": "MIT",
+	"homepage": "https://github.com/rogyw/ufend-p8-neighourhood-map",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {},
+	"devDependencies": {
+		"knockout": "~3.4.0",
+		"material-design-lite": "^1.1.3",
+		"php-date-formatter": "^1.3.3"
+	}
 }
