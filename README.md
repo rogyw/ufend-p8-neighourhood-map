@@ -103,16 +103,19 @@ Note:
  * Make sure you use https:// with simplehttp2server as use of http:// will produce unexpected behaviour.
  * A security warning will be displayed in your browser indicating the certificate is provided by an unknown authority.
 
-###### HTTP/1 using Python simplehttpserver
+###### HTTP/1 using Python simplehttpserver or Python http.server
 
-Python provides  the ability to easily serve a folder via an http web service on your local computer.
+Python provides the ability to easily serve a folder via an http web service on your local development computer for testing purposes.
 1. Download and install Python from [https://www.python.org/downloads/](https://www.python.org/downloads/).
 2. At the console command line prompt, change to the folder containing the set of files to be used.
 ```cd /my/path/to/files/dist```
 Note: You can use either `/dist/` or `/src/` from the repository.
 * `/dist/` contains optimised files for production use. Section A above describes how to generate the `dist` set of files from the repository.
 * `/src/` contains the source files before optimisations which will be easier to use if you intend to view, edit, or debug the code.
-3. At the console command line prompt, type `python -m SimpleHTTPServer 8080` to serve the current directories files to `http://localhost:8080/`
+3. At the console command line prompt, type either:
+  * (Python 2) `python -m SimpleHTTPServer 8080` or
+  * (Python 3) `python -m http.server 8080`.
+  This will start the service serving the current directories files as `http://localhost:8080/`
 4. Open a web browser and view `http://localhost:8080/`
 
 
