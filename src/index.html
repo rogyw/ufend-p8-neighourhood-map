@@ -60,6 +60,41 @@
 		<main id="map-main" class="map-main mdl-layout__content">
 		</main>
 	</div>
+	<script type="text/html" id="event-information-template">
+		<div class="img-holder">"
+			<img data-bind="attr: { href: url, alt: series }">
+		</div>
+		<h3 data-bind="text: dateString"></h3>
+		<h4 data-bind="text: name"></h4>
+		<ul>
+			<li>
+				<h5>Event Series:</h5>
+				<span class="detail" data-bind="text: series"></span>
+			</li>
+			<li>
+				<h5>Start Anytime Between:</h5>
+				<span class="detail" data-bind="text: startWindowString"></span>
+			</li>
+			<li>
+				<h5>Course Closure:</h5>
+				<span class="detail" data-bind="text: courseCloseString"></span>
+			</li>
+			<li>
+				<h5>Notes:</h5>
+				<span class="notes" data-bind="text: notes"></span>
+			</li>
+			<li class="notice">
+				Note: These details are tentative and subject to change.
+			</li>
+			<li>
+				<h5>Website:</h5>
+				<span class="detail">
+					<a data-bind="text: urlString, attr: { href: url}" target="_blank"></a>
+				</span>
+			</li>
+			<li class="g-calendar-button"></li>
+		</ul>
+	</script>
 	<script>
 	function onAPILoadError(event) {
 		var statusText = "Sorry, an error occurred while trying to load a required resource.\nPlease check internet connection and try again.";
