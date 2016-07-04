@@ -35,6 +35,7 @@ var oEvent = function(data) {
 	var self = this;
 	if (data !== null) {
 		self.dateUTC = ko.observable(getUTCDate(data.dateUTC));
+
 		self.series = ko.observable(data.series);
 		self.name = ko.observable(data.name);
 		self.startFirstUTC = ko.observable(getUTCDate(data.startFirstUTC));
@@ -52,13 +53,31 @@ var oEvent = function(data) {
 			return dateFormat.formatDate(self.dateUTC(), 'D j M Y');
 		});
 
+		self.dateString = ko.computed(function() {
+			return $.datepicker.formatDate("DD d MM yy", self.dateUTC());
+		});
+
+		self.courseCloseString = ko.computed(function() {
+			return getTimeString(self.courseCloseUTC());
+		});
+
+		self.startWindowString = ko.computed(function() {
+			return getTimeString(self.startFirstUTC()) + " - " + getTimeString(self.startLastUTC());
+		});
+
+		self.urlString = ko.computed(function() {
+			return stripUrlHttp(self.url());
+		});
+
+		self.imageEventSeries = ko.computed(function() {
+			if (self.series() == "Auckland SummerNav") {
+				return IMAGE_LOGO_AK_SUMMERNAV;
+			} else {
+				return IMAGE_LOGO_AK_CLUB;
+			}
+		});
+
 		self.infoBubbleContent = ko.computed(function() {
-
-			var dateString = $.datepicker.formatDate("DD d MM yy", self.dateUTC());
-			var startFirstString = getTimeString(self.startFirstUTC());
-			var startLastString = getTimeString(self.startLastUTC());
-			var courseCloseText = getTimeString(self.courseCloseUTC());
-
 			var infoContent = "";
 			infoContent += "<div class=\"img-holder\">";
 			if (self.series() == "Auckland SummerNav") {
@@ -67,16 +86,16 @@ var oEvent = function(data) {
 				infoContent += "<img class=\"img-summernav\" src=\"" + IMAGE_LOGO_AK_CLUB + "\" alt=\"Auckland Orienteers\">";
 			}
 			infoContent += "</div>";
-			infoContent += "<h3>" + dateString + "</h3>";
+			infoContent += "<h3>" + self.dateString() + "</h3>";
 			infoContent += "<h4>" + self.name() + "</h4>";
 			infoContent += "<ul>";
 			infoContent += "<li><h5>Event Series:</h5> <span class=\"detail\"><strong>" + self.series() + "</strong></span></li>";
-			infoContent += "<li><h5>Start Anytime Between:</h5> <span class=\"detail\">" + startFirstString + " - " + startLastString + "</span></li>";
-			infoContent += "<li><h5>Course Closure:</h5> <span class=\"detail\">" + courseCloseText + "</span></li>";
+			infoContent += "<li><h5>Start Anytime Between:</h5> <span class=\"detail\">" + self.startWindowString() + "</span></li>";
+			infoContent += "<li><h5>Course Closure:</h5> <span class=\"detail\">" + self.courseCloseString() + "</span></li>";
 			if (self.notes() !== "") {
 				infoContent += "<li><h5>Notes:</h5> <span class=\"notes\">" + self.notes() + "</span></li>";
 			}
-			infoContent += "<li><h5>Website:</h5><span class=\"detail\"><a href=\"" + self.url() + "\" target=\"_blank\">" + stripUrlHttp(self.url()) + "</a></span></li>";
+			infoContent += "<li><h5>Website:</h5><span class=\"detail\"><a href=\"" + self.url() + "\" target=\"_blank\">" + self.urlString() + "</a></span></li>";
 			infoContent += "<li class=\"notice\">Note: These details are tentative and subject to change,</li>";
 			infoContent += "<li class=\"g-calendar-button\"><button name=\"button-g-calendar-add\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent\" onclick = \"gCalendarHandleAuthClick()\">Add Event to Google Calendar</button>";
 			infoContent += "</ul>";
