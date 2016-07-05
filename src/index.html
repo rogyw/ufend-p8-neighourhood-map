@@ -28,6 +28,8 @@
 <body class="neighbourhood-map">
 	<!-- Always shows a header, even in smaller screens. -->
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer">
+
+		<!-- =-=-=-=-=-=-=-=-=-= Header =-=-=-=-=-=-=-=-=-= -->
 		<header class="mdl-layout__header">
 			<div class="mdl-layout__header-row">
 				<!-- Title -->
@@ -36,17 +38,20 @@
 			<!-- Tabs -->
 			<div class="mdl-layout__tab-bar mdl-js-ripple-effect">
 				<a href="#scroll-tab-1" class="mdl-layout__tab is-active">Event Details</a>
-				<a href="#scroll-tab-2" class="mdl-layout__tab">Tab 2</a>
+				<a href="#scroll-tab-2" class="mdl-layout__tab">Bus &amp; Train</a>
 			</div>
 		</header>
-		<!-- Loading wait animation - MDL Spinner Component with Single Color -->
+
+		<!-- =-=-=-=-=-=-=-=-=-= Loading wait animation =-=-=-=-=-=-=-=-=-= -->
+		<!-- MDL Spinner Component with Single Color -->
 		<div id="neighbourhood-map-spinner" class="neighbourhood-map-spinner" data-bind="css: displayLoadingWait">
 			<p> Attempting to load application and communicate with Google Maps...</p>
 			<div class="spinner-wrapper">
 				<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
 			</div>
 		</div>
-		<!-- Side list of Events with search option -->
+
+		<!-- =-=-=-=-=-=-=-=-=-= Side list of Events with search option =-=-=-=-=-=-=-=-=-= -->
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Events</span>
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
@@ -63,54 +68,86 @@
 			</nav>
 		</div>
 		<main class="mdl-layout__content">
+			<!-- =-=-=-=-=-=-=-=-=-= Section: Scroll Tab 1 - Event Details =-=-=-=-=-=-=-=-=-= -->
 			<section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
 				<div class="page-content" data-bind="if: selectedEvent">
-					<div class="map-info" data-bind="template: { name: 'event-information-template', data: selectedEvent }"></div>
+					<div class="map-info" data-bind="with: selectedEvent">
+						<div class="img-holder">
+							<img data-bind="attr: { src: imageEventSeries, alt: series }">
+						</div>
+						<h3 data-bind="text: dateString"></h3>
+						<h4 data-bind="text: name"></h4>
+						<ul>
+							<li>
+								<h5>Event Series:</h5>
+								<span class="detail" data-bind="text: series"></span>
+							</li>
+							<li>
+								<h5>Start Anytime Between:</h5>
+								<span class="detail" data-bind="text: startWindowString"></span>
+							</li>
+							<li>
+								<h5>Course Closure:</h5>
+								<span class="detail" data-bind="text: courseCloseString"></span>
+							</li>
+							<li>
+								<h5>Notes:</h5>
+								<span class="notes" data-bind="text: notes"></span>
+							</li>
+							<li class="notice">
+								Note: These details are tentative and subject to change.
+							</li>
+							<li>
+								<h5>Website:</h5>
+								<span class="detail">
+									<a data-bind="text: websiteString, attr: { href: url }" target="_blank"></a>
+								</span>
+							</li>
+							<li class="g-calendar-button"></li>
+						</ul>
+					</div>
 				</div>
 			</section>
+			<!-- =-=-=-=-=-=-=-=-=-= Section: Scroll Tab 2- Bus & Train =-=-=-=-=-=-=-=-=-= -->
 			<section class="mdl-layout__tab-panel" id="scroll-tab-2">
-				<div class="page-content" data-bind="if: selectedEvent">Page 2 Holder</div>
+				<div class="page-content" data-bind="if: selectedEvent">
+					<div class="map-info">
+						<h3>Bus &amp; Train Stops Nearby</h3>
+						<p>No public transport stops found within <span>API_ATAPI_STOP_DISTANCE</span> metres of registration location. Please click link below for alternate details.</p>
+						<ul class="busstops">
+							<li>
+								<span class="busstops-code">Stop #</span>
+								<span class="busstops-address">Address</span>
+								<span class="busstops-distance">Distance</span>
+							</li>
+							<li>
+								<span class="busstops-code">stop_code</span>
+								<span class="busstops-address">stop_name</span>
+								<span class="busstops-distance">st_distance_sphere</span>
+							</li>
+						</ul>
+						<div class="api-provider">
+							<p>
+								<a href="API_ATAPI_WEBSITE" target="_blank"><img alt="AT" src="API_ATAPI_LOGO"></a>
+								Data provided by:
+								<a href="API_ATAPI_WEBSITE" target="_blank">at.govt.nz</a>
+							</p>
+						</div>
+						<div class="button-holder">
+							<a href="https://at.govt.nz/bus-train-ferry/journey-planner/" target="_blank">
+								<button name="button-plan-at-trip" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Plan Your Trip</button>
+							</a>
+						</div>
+					</div>
+				</div>
 			</section>
 		</main>
-		<!-- Main Map -->
+		<!-- =-=-=-=-=-=-=-=-=-= Main Map =-=-=-=-=-=-=-=-=-= -->
+
 		<div id="map-main" class="map-main">
 		</div>
 	</div>
-	<script type="text/html" id="event-information-template">
-		<div class="img-holder">
-			<img data-bind="attr: { src: imageEventSeries, alt: series }">
-		</div>
-		<h3 data-bind="text: dateString"></h3>
-		<h4 data-bind="text: name"></h4>
-		<ul>
-			<li>
-				<h5>Event Series:</h5>
-				<span class="detail" data-bind="text: series"></span>
-			</li>
-			<li>
-				<h5>Start Anytime Between:</h5>
-				<span class="detail" data-bind="text: startWindowString"></span>
-			</li>
-			<li>
-				<h5>Course Closure:</h5>
-				<span class="detail" data-bind="text: courseCloseString"></span>
-			</li>
-			<li>
-				<h5>Notes:</h5>
-				<span class="notes" data-bind="text: notes"></span>
-			</li>
-			<li class="notice">
-				Note: These details are tentative and subject to change.
-			</li>
-			<li>
-				<h5>Website:</h5>
-				<span class="detail">
-					<a data-bind="text: websiteString, attr: { href: url }" target="_blank"></a>
-				</span>
-			</li>
-			<li class="g-calendar-button"></li>
-		</ul>
-	</script>
+
 	<script>
 	function onAPILoadError(event) {
 		var statusText = "Sorry, an error occurred while trying to load a required resource.\nPlease check internet connection and try again.";

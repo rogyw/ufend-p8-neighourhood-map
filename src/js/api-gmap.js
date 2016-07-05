@@ -24,6 +24,7 @@
 	DEFAULT_MAP_CENTRE,
 	DEFAULT_MAP_ZOOM,
 	MAP_MARKER_ICON,
+	MAP_MARKER_HIDE_ONLY,
 	infoBubble,
 	infoBubbleTabCount,
 	DEBUG :false

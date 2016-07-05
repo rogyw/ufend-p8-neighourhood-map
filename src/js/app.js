@@ -148,6 +148,8 @@ var oEvent = function(data) {
 
 		self.data = data; //store imported raw data in oEvent for reference
 		self.mapMarker = createEventMarker(self);
+
+		self.transportStations = ko.observableArray();
 	}
 };
 
@@ -163,6 +165,7 @@ var viewModel = function() {
 	self.eventsList = ko.observableArray();
 	self.filter = ko.observable("");
 	self.loadingStatus = ko.observable(true);
+	self.apiMessage= ko.observable();
 
 	self.displayLoadingWait = ko.computed(function() {
 		return self.loadingStatus() === true ? "loadingWaitDisplayed" : "loadingWaitHidden";
@@ -227,6 +230,8 @@ var viewModel = function() {
 	self.eventListClick = function(currentEvent) {
 		google.maps.event.trigger(currentEvent.mapMarker, 'click');
 	};
+
+
 };
 
 
@@ -285,6 +290,9 @@ function initMap() {
 	infoBubble.addTab(tabs[0].tabName, tabs[0].content);
 	infoBubbleTabCount += 1; //increase tab counter
 
+	google.maps.event.addListener(map, 'click', function() {
+		alert('TODO something');
+    });
 
 	//set up access to update of loading display using knockout
 	//reference: http://stackoverflow.com/a/9480044
