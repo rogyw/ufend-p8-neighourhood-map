@@ -14,10 +14,26 @@
 // set jshint to ignore console, alert, etc
 /* jshint devel: true */
 // set jshint to ignore external globals
-/* global $, ko, google, eventsJSON: false */
-/* global getUTCDate, getTimeString, dateFormat :false */
-
-
+/* global $, ko, google,
+	eventsJSON,
+	getUTCDate,
+	getTimeString,
+	dateFormat,
+	DEFAULT_MAP_CENTRE,
+	DEFAULT_MAP_ZOOM,
+	DEFAULT_ZOOM_MAX,
+	MAP_INFOBUBBLE_WIDTH_MAX,
+	API_ATAPI_LOGO,
+	API_ATAPI_WEBSITE,
+	IMAGE_LOGO_AK_SUMMERNAV,
+	IMAGE_LOGO_AK_CLUB : false
+*/
+/* global stripUrlHttp,
+	createEventMarker,
+	enableMapMarker,
+	disableMapMarker,
+	resizeMap : false
+*/
 /* ======================================================= */
 /* Globals */
 /* ======================================================= */
@@ -148,8 +164,6 @@ var oEvent = function(data) {
 
 		self.data = data; //store imported raw data in oEvent for reference
 		self.mapMarker = createEventMarker(self);
-
-		self.transportStations = ko.observableArray();
 	}
 };
 
@@ -165,7 +179,12 @@ var viewModel = function() {
 	self.eventsList = ko.observableArray();
 	self.filter = ko.observable("");
 	self.loadingStatus = ko.observable(true);
-	self.apiMessage= ko.observable();
+
+	self.apiATMessage = ko.observable("");
+	self.apiATLogo = ko.observable(API_ATAPI_LOGO);
+	self.apiATWebsite = ko.observable(API_ATAPI_WEBSITE);
+	self.apiATWebsiteString = ko.observable(stripUrlHttp(API_ATAPI_WEBSITE));
+	self.apiATStations = ko.observableArray([]);
 
 	self.displayLoadingWait = ko.computed(function() {
 		return self.loadingStatus() === true ? "loadingWaitDisplayed" : "loadingWaitHidden";
@@ -230,8 +249,6 @@ var viewModel = function() {
 	self.eventListClick = function(currentEvent) {
 		google.maps.event.trigger(currentEvent.mapMarker, 'click');
 	};
-
-
 };
 
 
@@ -292,7 +309,7 @@ function initMap() {
 
 	google.maps.event.addListener(map, 'click', function() {
 		alert('TODO something');
-    });
+	});
 
 	//set up access to update of loading display using knockout
 	//reference: http://stackoverflow.com/a/9480044

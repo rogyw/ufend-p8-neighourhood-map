@@ -23,12 +23,10 @@
 	<!-- Configure the status bar. Black looks great with orange.-->
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 </head>
-</div>
 
 <body class="neighbourhood-map">
 	<!-- Always shows a header, even in smaller screens. -->
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer">
-
 		<!-- =-=-=-=-=-=-=-=-=-= Header =-=-=-=-=-=-=-=-=-= -->
 		<header class="mdl-layout__header">
 			<div class="mdl-layout__header-row">
@@ -41,7 +39,6 @@
 				<a href="#scroll-tab-2" class="mdl-layout__tab">Bus &amp; Train</a>
 			</div>
 		</header>
-
 		<!-- =-=-=-=-=-=-=-=-=-= Loading wait animation =-=-=-=-=-=-=-=-=-= -->
 		<!-- MDL Spinner Component with Single Color -->
 		<div id="neighbourhood-map-spinner" class="neighbourhood-map-spinner" data-bind="css: displayLoadingWait">
@@ -50,7 +47,6 @@
 				<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
 			</div>
 		</div>
-
 		<!-- =-=-=-=-=-=-=-=-=-= Side list of Events with search option =-=-=-=-=-=-=-=-=-= -->
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Events</span>
@@ -73,7 +69,7 @@
 				<div class="page-content" data-bind="if: selectedEvent">
 					<div class="map-info" data-bind="with: selectedEvent">
 						<div class="img-holder">
-							<img data-bind="attr: { src: imageEventSeries, alt: series }">
+							<img src="" alt="" data-bind="attr: { src: imageEventSeries, alt: series }">
 						</div>
 						<h3 data-bind="text: dateString"></h3>
 						<h4 data-bind="text: name"></h4>
@@ -113,29 +109,35 @@
 				<div class="page-content" data-bind="if: selectedEvent">
 					<div class="map-info">
 						<h3>Bus &amp; Train Stops Nearby</h3>
-						<p>No public transport stops found within <span>API_ATAPI_STOP_DISTANCE</span> metres of registration location. Please click link below for alternate details.</p>
-						<ul class="busstops">
-							<li>
-								<span class="busstops-code">Stop #</span>
-								<span class="busstops-address">Address</span>
-								<span class="busstops-distance">Distance</span>
-							</li>
-							<li>
-								<span class="busstops-code">stop_code</span>
-								<span class="busstops-address">stop_name</span>
-								<span class="busstops-distance">st_distance_sphere</span>
-							</li>
-						</ul>
+						<div data-bind="if: apiATMessage().length > 0">
+							<p data-bind="text: apiATMessage"></p>
+						</div>
+						<div data-bind="if: apiATStations().length > 0">
+							<ul class="busstops">
+								<li>
+									<span class="busstops-code">Stop #</span>
+									<span class="busstops-address">Address</span>
+									<span class="busstops-distance">Distance</span>
+								</li>
+							</ul>
+							<ul class="busstops" data-bind="foreach: apiATStations">
+								<li>
+									<span class="busstops-code " data-bind="text: stopCode "></span>
+									<span class="busstops-address " data-bind="text: stopName "></span>
+									<span class="busstops-distance " data-bind="text: stopDistance "></span>
+								</li>
+							</ul>
+						</div>
 						<div class="api-provider">
 							<p>
-								<a href="API_ATAPI_WEBSITE" target="_blank"><img alt="AT" src="API_ATAPI_LOGO"></a>
+								<a target="_blank" data-bind="attr: { href: apiATWebsite } "><img src="" alt="" data-bind="attr: { src: apiATLogo, alt: apiATWebsite } "></a>
 								Data provided by:
-								<a href="API_ATAPI_WEBSITE" target="_blank">at.govt.nz</a>
+								<a target="_blank" data-bind="attr: { href: apiATWebsite }, text: apiATWebsiteString "></a>
 							</p>
 						</div>
 						<div class="button-holder">
-							<a href="https://at.govt.nz/bus-train-ferry/journey-planner/" target="_blank">
-								<button name="button-plan-at-trip" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Plan Your Trip</button>
+							<a href="https://at.govt.nz/bus-train-ferry/journey-planner/ " target="_blank">
+								<button name="button-plan-at-trip " class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent ">Plan Your Trip</button>
 							</a>
 						</div>
 					</div>
@@ -143,39 +145,37 @@
 			</section>
 		</main>
 		<!-- =-=-=-=-=-=-=-=-=-= Main Map =-=-=-=-=-=-=-=-=-= -->
-
-		<div id="map-main" class="map-main">
+		<div id="map-main" class="map-main ">
 		</div>
 	</div>
-
 	<script>
 	function onAPILoadError(event) {
-		var statusText = "Sorry, an error occurred while trying to load a required resource.\nPlease check internet connection and try again.";
+		var statusText = "Sorry, an error occurred while trying to load a required resource.\nPlease check internet connection and try again. ";
 		if (typeof(event) !== 'undefined') {
-			statusText += "\nSource:\n" + event.target.src;
+			statusText += "\nSource:\n " + event.target.src;
 		}
 		console.log(statusText);
 		alert(statusText);
 	}
 	</script>
 	<!-- jQuery -->
-	<script onerror="onAPILoadError(event)" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+	<script onerror="onAPILoadError(event) " src="https://code.jquery.com/jquery-3.0.0.min.js "></script>
 	<!-- jQuery UI  datepicker -->
-	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery-ui.min.js "></script>
 	<!-- Knockout.js -->
-	<script src="js/knockout.js"></script>
+	<script src="js/knockout.js "></script>
 	<!-- Google Calendar API -->
-	<script onerror="onAPILoadError(event)" src="https://apis.google.com/js/client.js?onload=gCalendarCheckAuth"></script>
+	<script onerror="onAPILoadError(event) " src="https://apis.google.com/js/client.js?onload=gCalendarCheckAuth "></script>
 	<!-- Material Design Lite -->
-	<!-- <script onerror="onAPILoadError(event)" defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>-->
-	<script src="js/material.js"></script>
+	<script onerror="onAPILoadError(event) " defer src="https://code.getmdl.io/1.1.3/material.min.js "></script>
+	<!-- <script src="js/material.js "></script> -->
 	<!-- Google Maps API - infoBubble extension to extend infoWindow -->
-	<script src="js/infobubble.js"></script>
+	<script src="js/infobubble.js "></script>
 	<!-- Javascript date library - php-date-formatter -->
-	<script src="js/php-date-formatter.js"></script>
-	<script src="js/scripts.js"></script>
+	<script src="js/php-date-formatter.js "></script>
+	<script src="js/scripts.js "></script>
 	<!-- Google Maps API -->
-	<script onerror="onAPIMapLoadError(event)" defer src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyA3IYdjwekchcEnCTNo9oLUCxNHXZFaPcg" async></script>
+	<script onerror="onAPIMapLoadError(event) " defer src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyA3IYdjwekchcEnCTNo9oLUCxNHXZFaPcg " async></script>
 	<script>
 	(function(i, s, o, g, r, a, m) {
 		i['GoogleAnalyticsObject'] = r;

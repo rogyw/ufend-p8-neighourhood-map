@@ -59,7 +59,7 @@ function requestRoutes(coordinates, datetime) {
 		if ((typeof(data) === 'undefined') || (data == 'null')) {
 			result = "Error: AT API request - received an unexpected empty reply.";
 			console.log(result);
-			window.vm.apiMessage(result);
+			window.vm.apiATMessage(result);
 			return;
 		}
 
@@ -68,11 +68,11 @@ function requestRoutes(coordinates, datetime) {
 			error = dataATAPI.error;
 			console.log("AT API Response Error: " + error.status + " - " + error.message);
 			result = "Sorry, no information available. An unexpected response was received from provider.";
-			window.vm.apiMessage(result);
+			window.vm.apiATMessage(result);
 		} else if (dataATAPI.response.length < 1) {
 			//successful request but empty set result
 			result = "No public transport stops found within " + API_ATAPI_STOP_DISTANCE + " metres of registration location.";
-			window.vm.apiMessage(result);
+			window.vm.apiATMessage(result);
 		} else {
 			for (var i = 1;
 				((i < dataATAPI.response.length) && (i < MAX_BUSSTOPS + 1)); i++) {
@@ -81,7 +81,8 @@ function requestRoutes(coordinates, datetime) {
 					stopName: dataATAPI.response[i].stop_name,
 					stopDistance: parseInt(dataATAPI.response[i].st_distance_sphere, 10) + "m"
 				};
-				window.vm.transportStations.push(stop);
+				console.log(stop);
+				window.vm.apiATStations.push(stop);
 			}
 		}
 	});
@@ -89,7 +90,7 @@ function requestRoutes(coordinates, datetime) {
 	request.fail(function(xhr, err) {
 		var result = "Sorry, we experienced a problem with the Auckland Transport API. Bus/Train information is temporarily unavailable. Error: " + err + " Status: " + xhr.status;
 		console.log(result);
-		window.vm.apiMessage(result);
+		window.vm.apiATMessage(result);
 		if (DEBUG) {
 			console.log("AT API call failure:");
 			console.log(err);
