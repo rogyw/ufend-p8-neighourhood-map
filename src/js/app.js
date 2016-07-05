@@ -23,6 +23,9 @@
 /* ======================================================= */
 // Google Maps
 var map;
+// InfoBubble for Map pop up information Windows
+var infoBubble;
+var infoBubbleTabCount = 0;
 
 /* ======================================================= */
 /* List */
@@ -144,7 +147,7 @@ var oEvent = function(data) {
 		});
 
 		self.data = data; //store imported raw data in oEvent for reference
-		self.mapMarker = createEventMarker(self.registrationCoord(), self.title(), self.infoBubbleContent(), self.gCalendarEvent());
+		self.mapMarker = createEventMarker(self);
 	}
 };
 
@@ -176,6 +179,8 @@ var viewModel = function() {
 	eventsJSON.forEach(function(eventItem) {
 		self.eventsList.push(new oEvent(eventItem));
 	});
+
+	self.selectedEvent = ko.observable(self.eventsList()[0]);
 
 	//filter the items using the filter text
 	// Reference http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
@@ -264,6 +269,22 @@ function initMap() {
 	}
 
 	map = new google.maps.Map(myMapElement, mapOptions);
+
+	infoBubble = new InfoBubble({ maxWidth: MAP_INFOBUBBLE_WIDTH_MAX });
+
+	var tabs = [];
+	//var tabContent = "<div class=\"map-info\" data-bind=\"template: { name: 'event-information-template' }\" ></div>";
+	var tabContent = '<p>Hello<p><div class="map-info" data-bind="template: { name: "event-information-template", data: selectedEvent }"></div>';
+
+
+	tabs.push({
+		"tabName": "Event Details",
+		"content": tabContent
+	});
+
+	infoBubble.addTab(tabs[0].tabName, tabs[0].content);
+	infoBubbleTabCount += 1; //increase tab counter
+
 
 	//set up access to update of loading display using knockout
 	//reference: http://stackoverflow.com/a/9480044

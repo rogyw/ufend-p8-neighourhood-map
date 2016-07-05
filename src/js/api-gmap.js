@@ -21,11 +21,11 @@
 /* global requestRoutes: false */
 // set jshint to expect external CONSTANTS
 /* global google,
-	InfoBubble,
 	DEFAULT_MAP_CENTRE,
 	DEFAULT_MAP_ZOOM,
 	MAP_MARKER_ICON,
-	MAP_INFOBUBBLE_WIDTH_MAX,
+	infoBubble,
+	infoBubbleTabCount,
 	DEBUG :false
 */
 
@@ -33,9 +33,7 @@
 /* ======================================================= */
 /* Globals */
 /* ======================================================= */
-// InfoBubble for Map pop up information Windows
-var infoBubble;
-var infoBubbleTabCount = 0;
+
 // Google Calendar Event
 var gCalendarEvent;
 
@@ -48,7 +46,11 @@ var gCalendarEvent;
  * @param  {string} title The Title to be applied on the marker
  * @return {object}  Returns created Google Map Marker Object
  */
-function createEventMarker(coordinates, title, eventInfo, gCalEvent) {
+function createEventMarker(oEvent) {
+
+	var coordinates = oEvent.registrationCoord();
+	var title = oEvent.title();
+	var gCalEvent = oEvent.gCalendarEvent();
 
 	var newMarker = new google.maps.Marker({
 		position: coordinates,
@@ -65,48 +67,30 @@ function createEventMarker(coordinates, title, eventInfo, gCalEvent) {
 	// reference: http://stackoverflow.com/a/4540249
 	google.maps.event.addListener(newMarker, 'click', function() {
 
+		window.vm.selectedEvent(oEvent);
+
 		newMarker.setAnimation(google.maps.Animation.BOUNCE);
 		var timeoutID = window.setTimeout(function() { newMarker.setAnimation(null); }, 2100);
 
-		if (infoBubble === undefined) {
-			infoBubble = new InfoBubble({
-				maxWidth: MAP_INFOBUBBLE_WIDTH_MAX
-			});
-		}
-
 		if (infoBubble) {
-			//Delete all tabs in infoBubble
-			for (var i = infoBubbleTabCount; i > 0; i--) {
+			//Delete extra tabs in infoBubble except the first event information tab
+			for (var i = infoBubbleTabCount; i > 1; i--) {
 				infoBubble.removeTab(i - 1);
+				infoBubbleTabCount--;
 				if (DEBUG) { console.log("Removing infoBubble Tab: " + i); }
 			}
-			infoBubbleTabCount = 0;
 			infoBubble.close();
 		}
-
 
 		infoBubble.open(map, newMarker);
 		requestRoutes(coordinates);
 
+		//TODO sort out calendar
 		gCalendarEvent = gCalEvent;
 		if (DEBUG) {
 			console.log("gCalendar Event =");
 			console.log(gCalendarEvent);
 		}
-		var tabs = [];
-
-		var tabContent = "<div class=\"map-info\">";
-		tabContent += eventInfo;
-		tabContent += "</div>";
-
-		tabs.push({
-			"tabName": "Event Details",
-			"content": tabContent
-		});
-
-		infoBubble.addTab(tabs[0].tabName, tabs[0].content);
-		infoBubbleTabCount += 1; //increase tab counter
-
 	});
 
 	return newMarker;
