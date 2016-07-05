@@ -69,9 +69,6 @@ var oEvent = function(data) {
 		});
 
 		self.websiteString = ko.computed(function() {
-			console.log(self.url());
-			console.log(typeof self.url());
-			console.log(stripUrlHttp(self.url()));
 			return stripUrlHttp(self.url());
 		});
 
@@ -183,7 +180,7 @@ var viewModel = function() {
 		self.eventsList.push(new oEvent(eventItem));
 	});
 
-	self.selectedEvent = ko.observable(self.eventsList()[0]);
+	self.selectedEvent = ko.observable();
 
 	//filter the items using the filter text
 	// Reference http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
