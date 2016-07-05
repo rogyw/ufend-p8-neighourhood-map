@@ -68,7 +68,10 @@ var oEvent = function(data) {
 			return getTimeString(self.startFirstUTC()) + " - " + getTimeString(self.startLastUTC());
 		});
 
-		self.urlString = ko.computed(function() {
+		self.websiteString = ko.computed(function() {
+			console.log(self.url());
+			console.log(typeof self.url());
+			console.log(stripUrlHttp(self.url()));
 			return stripUrlHttp(self.url());
 		});
 
@@ -98,7 +101,7 @@ var oEvent = function(data) {
 			if (self.notes() !== "") {
 				infoContent += "<li><h5>Notes:</h5> <span class=\"notes\">" + self.notes() + "</span></li>";
 			}
-			infoContent += "<li><h5>Website:</h5><span class=\"detail\"><a href=\"" + self.url() + "\" target=\"_blank\">" + self.urlString() + "</a></span></li>";
+			infoContent += "<li><h5>Website:</h5><span class=\"detail\"><a href=\"" + self.url() + "\" target=\"_blank\">" + self.websiteString() + "</a></span></li>";
 			infoContent += "<li class=\"notice\">Note: These details are tentative and subject to change,</li>";
 			infoContent += "<li class=\"g-calendar-button\"><button name=\"button-g-calendar-add\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent\" onclick = \"gCalendarHandleAuthClick()\">Add Event to Google Calendar</button>";
 			infoContent += "</ul>";

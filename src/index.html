@@ -37,7 +37,6 @@
 			<div class="mdl-layout__tab-bar mdl-js-ripple-effect">
 				<a href="#scroll-tab-1" class="mdl-layout__tab is-active">Event Details</a>
 				<a href="#scroll-tab-2" class="mdl-layout__tab">Tab 2</a>
-				<a href="#scroll-tab-3" class="mdl-layout__tab">Tab 3</a>
 			</div>
 		</header>
 		<!-- Loading wait animation - MDL Spinner Component with Single Color -->
@@ -78,8 +77,8 @@
 		</div>
 	</div>
 	<script type="text/html" id="event-information-template">
-		<div class="img-holder">"
-			<img data-bind="attr: { href: url, alt: series }">
+		<div class="img-holder">
+			<img data-bind="attr: { src: imageEventSeries, alt: series }">
 		</div>
 		<h3 data-bind="text: dateString"></h3>
 		<h4 data-bind="text: name"></h4>
@@ -106,7 +105,7 @@
 			<li>
 				<h5>Website:</h5>
 				<span class="detail">
-					<a data-bind="text: urlString, attr: { href: url}" target="_blank"></a>
+					<a data-bind="text: websiteString, attr: { href: url }" target="_blank"></a>
 				</span>
 			</li>
 			<li class="g-calendar-button"></li>
