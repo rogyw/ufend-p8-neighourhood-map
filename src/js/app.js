@@ -180,8 +180,7 @@ var viewModel = function() {
 		// Clear the selected event
 		self.selectedEvent(null);
 		// Clear all stations
-		self.apiATStations
-([]);
+		self.apiATStations([]);
 	};
 
 	//filter the items using the filter text

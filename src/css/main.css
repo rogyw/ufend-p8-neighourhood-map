@@ -181,7 +181,7 @@ nav {
 	min-width: 120px;
 }
 
-.event-info-window h4 {
+.event-info-window .name {
 	font-size: 1.2em;
 	line-height: 1.2em;
 	font-weight: bold;
@@ -192,5 +192,12 @@ nav {
 	background-color: #ff5722;
 	color: white;
 	font-weight: bold;
+	font-size: 14px;
+	line-height: 20px;
 	margin: 0;
+}
+
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
