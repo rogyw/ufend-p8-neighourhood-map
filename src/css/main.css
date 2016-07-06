@@ -171,3 +171,7 @@ nav {
 	min-height: 36px;
 	text-transform: capitalize;
 }
+
+.menu-event-details-disabled {
+	display: none;
+}
