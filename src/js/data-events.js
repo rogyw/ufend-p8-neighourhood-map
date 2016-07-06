@@ -1,6 +1,6 @@
 /*
  * =======================================================
- * eventdata.js
+ * data-events.js
  *  - contains JSON data object containing events related information for orienteering events
  *
  * Warning: As at 9 June 2017 these dates are tentative and details may change
