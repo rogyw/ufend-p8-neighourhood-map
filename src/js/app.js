@@ -22,7 +22,7 @@
 	DEFAULT_MAP_CENTRE,
 	DEFAULT_MAP_ZOOM,
 	DEFAULT_ZOOM_MAX,
-	MAP_INFOBUBBLE_WIDTH_MAX,
+	MAP_INFOWINDOW_WIDTH_MAX,
 	API_ATAPI_LOGO,
 	API_ATAPI_WEBSITE,
 	IMAGE_LOGO_AK_SUMMERNAV,
@@ -39,9 +39,8 @@
 /* ======================================================= */
 // Google Maps
 var map;
-// InfoBubble for Map pop up information Windows
-var infoBubble;
-var infoBubbleTabCount = 0;
+// infoWindow for Map pop up information
+var infoWindow;
 
 /* ======================================================= */
 /* List */
@@ -94,32 +93,6 @@ var oEvent = function(data) {
 			} else {
 				return IMAGE_LOGO_AK_CLUB;
 			}
-		});
-
-		self.infoBubbleContent = ko.computed(function() {
-			var infoContent = "";
-			infoContent += "<div class=\"img-holder\">";
-			if (self.series() == "Auckland SummerNav") {
-				infoContent += "<img class=\"img-summernav\" src=\"" + IMAGE_LOGO_AK_SUMMERNAV + "\" alt=\"Auckland SummerNav\">";
-			} else {
-				infoContent += "<img class=\"img-summernav\" src=\"" + IMAGE_LOGO_AK_CLUB + "\" alt=\"Auckland Orienteers\">";
-			}
-			infoContent += "</div>";
-			infoContent += "<h3>" + self.dateString() + "</h3>";
-			infoContent += "<h4>" + self.name() + "</h4>";
-			infoContent += "<ul>";
-			infoContent += "<li><h5>Event Series:</h5> <span class=\"detail\"><strong>" + self.series() + "</strong></span></li>";
-			infoContent += "<li><h5>Start Anytime Between:</h5> <span class=\"detail\">" + self.startWindowString() + "</span></li>";
-			infoContent += "<li><h5>Course Closure:</h5> <span class=\"detail\">" + self.courseCloseString() + "</span></li>";
-			if (self.notes() !== "") {
-				infoContent += "<li><h5>Notes:</h5> <span class=\"notes\">" + self.notes() + "</span></li>";
-			}
-			infoContent += "<li><h5>Website:</h5><span class=\"detail\"><a href=\"" + self.url() + "\" target=\"_blank\">" + self.websiteString() + "</a></span></li>";
-			infoContent += "<li class=\"notice\">Note: These details are tentative and subject to change,</li>";
-			infoContent += "<li class=\"g-calendar-button\"><button name=\"button-g-calendar-add\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent\" onclick = \"gCalendarHandleAuthClick()\">Add Event to Google Calendar</button>";
-			infoContent += "</ul>";
-
-			return infoContent;
 		});
 
 		self.gCalendarEvent = ko.computed(function() {
@@ -203,9 +176,9 @@ var viewModel = function() {
 	});
 
 	self.selectedEvent = ko.observable();
-	self.selectedEventClose = function(){
+	self.selectedEventClose = function() {
 		self.selectedEvent(null);
-	}
+	};
 
 	//filter the items using the filter text
 	// Reference http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
@@ -249,7 +222,7 @@ var viewModel = function() {
 	};
 	window.addEventListener('resize', self.redrawMap);
 
-	//Add eventList Click open marker info window
+	//Add eventList Click open marker information
 	self.eventListClick = function(currentEvent) {
 		google.maps.event.trigger(currentEvent.mapMarker, 'click');
 	};
@@ -296,23 +269,10 @@ function initMap() {
 
 	map = new google.maps.Map(myMapElement, mapOptions);
 
-	infoBubble = new InfoBubble({ maxWidth: MAP_INFOBUBBLE_WIDTH_MAX });
-
-	var tabs = [];
-	//var tabContent = "<div class=\"map-info\" data-bind=\"template: { name: 'event-information-template' }\" ></div>";
-	var tabContent = '<p>Hello<p><div class="map-info" data-bind="template: { name: "event-information-template", data: selectedEvent }"></div>';
-
-
-	tabs.push({
-		"tabName": "Event Details",
-		"content": tabContent
-	});
-
-	infoBubble.addTab(tabs[0].tabName, tabs[0].content);
-	infoBubbleTabCount += 1; //increase tab counter
+	infoWindow = new google.maps.InfoWindow({ maxWidth: MAP_INFOWINDOW_WIDTH_MAX });
 
 	// Add Event Listener to close close event details when infoWindow closed
-	google.maps.event.addListener(infoBubble,'closeclick', function() {
+	google.maps.event.addListener(infoWindow, 'closeclick', function() {
 		window.vm.selectedEventClose();
 	});
 

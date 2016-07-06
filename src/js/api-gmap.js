@@ -25,8 +25,7 @@
 	DEFAULT_MAP_ZOOM,
 	MAP_MARKER_ICON,
 	MAP_MARKER_HIDE_ONLY,
-	infoBubble,
-	infoBubbleTabCount,
+	infoWindow,
 	DEBUG :false
 */
 
@@ -63,8 +62,8 @@ function createEventMarker(oEvent) {
 	//Make the Marker visible on the map
 	newMarker.setMap(map);
 
-	//add Listener to ensure Information Window is opened when Marker clicked
-	// Note: uses global infoBubble to enable closing of any previous open info Window
+	//add Listener to ensure Information is displayed when Marker clicked
+	// Note: uses global infoWindow to enable closing of any previous open info Window
 	// reference: http://stackoverflow.com/a/4540249
 	google.maps.event.addListener(newMarker, 'click', function() {
 
@@ -73,17 +72,11 @@ function createEventMarker(oEvent) {
 		newMarker.setAnimation(google.maps.Animation.BOUNCE);
 		var timeoutID = window.setTimeout(function() { newMarker.setAnimation(null); }, 2100);
 
-		if (infoBubble) {
-			//Delete extra tabs in infoBubble except the first event information tab
-			for (var i = infoBubbleTabCount; i > 1; i--) {
-				infoBubble.removeTab(i - 1);
-				infoBubbleTabCount--;
-				if (DEBUG) { console.log("Removing infoBubble Tab: " + i); }
-			}
-			infoBubble.close();
+		if (infoWindow) {
+			infoWindow.close();
 		}
 
-		infoBubble.open(map, newMarker);
+		infoWindow.open(map, newMarker);
 		requestRoutes(coordinates);
 
 		//TODO sort out calendar
@@ -132,9 +125,9 @@ function resizeMap(eventList) {
 
 	var count = eventList.length;
 
-	//Close infoBubble on all Map resize events
-	if (infoBubble) {
-		infoBubble.close();
+	//Close infoWindow on all Map resize events
+	if (infoWindow) {
+		infoWindow.close();
 	}
 
 	// Zoom map to fit the new bounds
