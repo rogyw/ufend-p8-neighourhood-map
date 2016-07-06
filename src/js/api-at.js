@@ -81,7 +81,9 @@ function requestRoutes(coordinates, datetime) {
 					stopName: dataATAPI.response[i].stop_name,
 					stopDistance: parseInt(dataATAPI.response[i].st_distance_sphere, 10) + "m"
 				};
-				console.log(stop);
+				if (DEBUG) {
+					console.log(stop);
+				}
 				window.vm.apiATStations.push(stop);
 			}
 		}

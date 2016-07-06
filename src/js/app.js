@@ -203,6 +203,9 @@ var viewModel = function() {
 	});
 
 	self.selectedEvent = ko.observable();
+	self.selectedEventClose = function(){
+		self.selectedEvent(null);
+	}
 
 	//filter the items using the filter text
 	// Reference http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
@@ -307,8 +310,8 @@ function initMap() {
 	infoBubble.addTab(tabs[0].tabName, tabs[0].content);
 	infoBubbleTabCount += 1; //increase tab counter
 
-	google.maps.event.addListener(map, 'click', function() {
-		alert('TODO something');
+	google.maps.event.addListener(infoBubble,'closeclick', function() {
+		window.vm.selectedEventClose();
 	});
 
 	//set up access to update of loading display using knockout
