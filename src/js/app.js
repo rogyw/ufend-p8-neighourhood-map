@@ -177,7 +177,11 @@ var viewModel = function() {
 
 	self.selectedEvent = ko.observable();
 	self.selectedEventClose = function() {
+		// Clear the selected event
 		self.selectedEvent(null);
+		// Clear all stations
+		self.apiATStations
+([]);
 	};
 
 	//filter the items using the filter text

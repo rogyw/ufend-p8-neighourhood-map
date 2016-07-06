@@ -74,6 +74,9 @@ function requestRoutes(coordinates, datetime) {
 			result = "No public transport stops found within " + API_ATAPI_STOP_DISTANCE + " metres of registration location.";
 			window.vm.apiATMessage(result);
 		} else {
+			// Clear all current stations
+			window.vm.apiATStations([]);
+			// Obtain set of closest stations
 			for (var i = 1;
 				((i < dataATAPI.response.length) && (i < MAX_BUSSTOPS + 1)); i++) {
 				var stop = {
