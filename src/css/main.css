@@ -178,19 +178,17 @@ nav {
 
 .event-info-window {
 	text-align: center;
+	min-width: 120px;
 }
 
 .event-info-window h4 {
 	font-size: 1.2em;
 	line-height: 1.2em;
 	font-weight: bold;
-	padding: 0;
 	margin: 0;
 }
 
 .event-info-window .date {
-	display: block;
-	width: 100%;
 	background-color: #ff5722;
 	color: white;
 	font-weight: bold;
