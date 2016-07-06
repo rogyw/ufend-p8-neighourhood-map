@@ -41,8 +41,9 @@ function requestRoutes(coordinates, datetime) {
 
 	var result, error;
 
-	// Clear all previous values
+	// Clear all previous AT API call stored values
 	window.vm.apiATStations([]);
+	window.vm.apiATMessage("");
 
 	var request = $.ajax({
 		url: "https://api.at.govt.nz/v1/gtfs/stops/geosearch?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&distance=" + API_ATAPI_STOP_DISTANCE + "&api_key=" + API_ATAPI_SECRET_KEY,
