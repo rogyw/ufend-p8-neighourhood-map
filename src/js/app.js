@@ -239,6 +239,7 @@ var viewModel = function() {
 
 	// Trigger resize of map when the filteredEvents changes
 	self.filteredEvents.subscribe(function(newValue) {
+		self.selectedEventClose();
 		resizeMap(newValue);
 	});
 
@@ -310,6 +311,7 @@ function initMap() {
 	infoBubble.addTab(tabs[0].tabName, tabs[0].content);
 	infoBubbleTabCount += 1; //increase tab counter
 
+	// Add Event Listener to close close event details when infoWindow closed
 	google.maps.event.addListener(infoBubble,'closeclick', function() {
 		window.vm.selectedEventClose();
 	});
