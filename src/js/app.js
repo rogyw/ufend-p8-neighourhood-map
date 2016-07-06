@@ -181,6 +181,7 @@ var viewModel = function() {
 		self.selectedEvent(null);
 		// Clear all stations
 		self.apiATStations([]);
+		infoWindow.close();
 	};
 
 	//filter the items using the filter text

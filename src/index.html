@@ -36,9 +36,9 @@
 			<!-- Event Detail Tabs Menu -->
 			<div class="mdl-layout__tab-bar mdl-js-ripple-effect md-24" data-bind="css: { 'menu-event-details-disabled': !selectedEvent() }">
 				<a href="#scroll-tab-1" class="mdl-layout__tab is-active"> <i class="material-icons" title="Event Details">details</i></a>
-				<a href="#scroll-tab-2" class="mdl-layout__tab "><i class="material-icons" title="Add to Calendar">event</i>+</a>
+				<a href="#scroll-tab-2" class="mdl-layout__tab"><i class="material-icons" title="Add to Calendar">event</i>+</a>
 				<a href="#scroll-tab-3" class="mdl-layout__tab" data-bind="css: { 'menu-event-details-disabled': apiATStations().length == 0 }"><i class="material-icons" title="Bus + Train">directions_bus</i><i class="material-icons" title="Bus + Train">train</i></a>
-				<a href="#scroll-tab-4" class="mdl-layout__tab "><i class="material-icons" title="Close">close</i></a>
+				<a href="#" class="event-close" data-bind="click: selectedEventClose"><i class="material-icons md-24 md-light" title="Close">close</i></a>
 			</div>
 		</header>
 		<!-- =-=-=-=-=-=-=-=-=-= Loading wait animation =-=-=-=-=-=-=-=-=-= -->
@@ -101,7 +101,7 @@
 								<h5>Website:</h5>
 								<span class="detail">
 									<a data-bind="text: websiteString, attr: { href: url }" target="_blank"></a>
-								</span>
+				</span>
 							</li>
 							<li class="g-calendar-button">
 								<button name="button-g-calendar-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="gCalendarHandleAuthClick()">Add Event to Google Calendar</button>

@@ -214,3 +214,9 @@ nav {
 .mdl-layout__tab .mdl-layout__tab-ripple-container {
 	overflow: visible;
 }
+
+.event-close {
+	color: white;
+	display: block;
+	line-height: 48px;
+}
