@@ -76,7 +76,10 @@ function createEventMarker(oEvent) {
 			infoWindow.close();
 		}
 
+		var content = "<div class=\"event-info-window\"><h4>" + oEvent.name() + "</h4><p class=\"date\"> " + oEvent.dateShort() + " </p></div>";
+		infoWindow.setContent(content);
 		infoWindow.open(map, newMarker);
+
 		requestRoutes(coordinates);
 
 		//TODO sort out calendar
