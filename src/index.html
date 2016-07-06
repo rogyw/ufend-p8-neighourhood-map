@@ -36,8 +36,8 @@
 			<!-- Event Detail Tabs Menu -->
 			<div class="mdl-layout__tab-bar mdl-js-ripple-effect md-24" data-bind="css: { 'menu-event-details-disabled': !selectedEvent() }">
 				<a href="#scroll-tab-1" class="mdl-layout__tab is-active"> <i class="material-icons" title="Event Details">details</i></a>
-				<a href="#scroll-tab-2" class="mdl-layout__tab" data-bind="css: { 'menu-event-details-disabled': apiATStations().length == 0 }"><i class="material-icons" title="Bus + Train">directions_bus</i><i class="material-icons" title="Bus + Train">train</i></a>
-				<a href="#scroll-tab-3" class="mdl-layout__tab "><i class="material-icons" title="Add Event">event</i>+</a>
+				<a href="#scroll-tab-2" class="mdl-layout__tab "><i class="material-icons" title="Add to Calendar">event</i>+</a>
+				<a href="#scroll-tab-3" class="mdl-layout__tab" data-bind="css: { 'menu-event-details-disabled': apiATStations().length == 0 }"><i class="material-icons" title="Bus + Train">directions_bus</i><i class="material-icons" title="Bus + Train">train</i></a>
 				<a href="#scroll-tab-4" class="mdl-layout__tab "><i class="material-icons" title="Close">close</i></a>
 			</div>
 		</header>
@@ -110,8 +110,28 @@
 					</div>
 				</div>
 			</section>
-			<!-- =-=-=-=-=-=-=-=-=-= Section: Scroll Tab 2- Bus & Train =-=-=-=-=-=-=-=-=-= -->
-			<section class="mdl-layout__tab-panel" id="scroll-tab-2">
+			<!-- =-=-=-=-=-=-=-=-=-= Section: Scroll Tab 2 - Add to Calendar =-=-=-=-=-=-=-=-=-= -->
+			<section class="mdl-layout__tab-panel is-active" id="scroll-tab-2">
+				<div class="page-content" data-bind="if: selectedEvent">
+					<div class="map-info" data-bind="with: selectedEvent">
+						<ul>
+							<li>
+								<h3 data-bind="text: dateString"></h3>
+								<h4 data-bind="text: name"></h4>
+							</li>
+							<li>
+								<h5>Start Anytime Between:</h5>
+								<span class="detail" data-bind="text: startWindowString"></span>
+							</li>
+							<li class="g-calendar-button">
+								<button name="button-g-calendar-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="gCalendarHandleAuthClick()">Add Event to Google Calendar</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<!-- =-=-=-=-=-=-=-=-=-= Section: Scroll Tab 3- Bus & Train =-=-=-=-=-=-=-=-=-= -->
+			<section class="mdl-layout__tab-panel" id="scroll-tab-3">
 				<div class="page-content" data-bind="if: selectedEvent">
 					<div class="map-info">
 						<h3>Bus &amp; Train Stops Nearby</h3>
@@ -149,27 +169,7 @@
 					</div>
 				</div>
 			</section>
-			<!-- =-=-=-=-=-=-=-=-=-= Section: Scroll Tab 3 - Add to Calendar =-=-=-=-=-=-=-=-=-= -->
-			<section class="mdl-layout__tab-panel is-active" id="scroll-tab-3">
-				<div class="page-content" data-bind="if: selectedEvent">
-					<div class="map-info" data-bind="with: selectedEvent">
-						<ul>
-							<li>
-								<h3 data-bind="text: dateString"></h3>
-								<h4 data-bind="text: name"></h4>
-							</li>
-							<li>
-								<h5>Start Anytime Between:</h5>
-								<span class="detail" data-bind="text: startWindowString"></span>
-							</li>
-							<li class="g-calendar-button">
-								<button name="button-g-calendar-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="gCalendarHandleAuthClick()">Add Event to Google Calendar</button>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</section>
-			<!-- =-=-=-=-=-=-=-=-=-= Section: Scroll Tab 3 - Close =-=-=-=-=-=-=-=-=-= -->
+			<!-- =-=-=-=-=-=-=-=-=-= Section: Scroll Tab 4 - Close =-=-=-=-=-=-=-=-=-= -->
 			<section class="mdl-layout__tab-panel is-active" id="scroll-tab-4">
 				<div class="page-content" data-bind="if: selectedEvent">
 				</div>
