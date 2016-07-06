@@ -41,6 +41,9 @@ function requestRoutes(coordinates, datetime) {
 
 	var result, error;
 
+	// Clear all previous values
+	window.vm.apiATStations([]);
+
 	var request = $.ajax({
 		url: "https://api.at.govt.nz/v1/gtfs/stops/geosearch?lat=" + coordinates.lat + "&lng=" + coordinates.lng + "&distance=" + API_ATAPI_STOP_DISTANCE + "&api_key=" + API_ATAPI_SECRET_KEY,
 		type: "GET",
@@ -74,8 +77,6 @@ function requestRoutes(coordinates, datetime) {
 			result = "No public transport stops found within " + API_ATAPI_STOP_DISTANCE + " metres of registration location.";
 			window.vm.apiATMessage(result);
 		} else {
-			// Clear all current stations
-			window.vm.apiATStations([]);
 			// Obtain set of closest stations
 			for (var i = 1;
 				((i < dataATAPI.response.length) && (i < MAX_BUSSTOPS + 1)); i++) {
