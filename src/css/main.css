@@ -157,24 +157,7 @@ nav {
 }
 
 
-/* hide the mdl main layout obfuscator shown when menu is open */
-
-.mdl-layout__obfuscator.is-visible {
-	opacity: 0;
-}
-
-
-/* override mdl button formatting to increase in height and allow lowercase */
-
-.neighbourhood-map .mdl-button {
-	height: auto;
-	min-height: 36px;
-	text-transform: capitalize;
-}
-
-.menu-event-details-disabled {
-	display: none;
-}
+/* Map infoWindow */
 
 .event-info-window {
 	text-align: center;
@@ -197,7 +180,37 @@ nav {
 	margin: 0;
 }
 
+
+/* override mdl button formatting to increase in height and allow lowercase */
+
+.neighbourhood-map .mdl-button {
+	height: auto;
+	min-height: 36px;
+	text-transform: capitalize;
+}
+
+.menu-event-details-disabled {
+	display: none;
+}
+
+
+/* hide the mdl main layout obfuscator shown when menu is open */
+
+.mdl-layout__obfuscator.is-visible {
+	opacity: 0;
+}
+
+
+/* Adjust MDL List of Events to reduce vertical spacing */
+
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
 	padding-top: 2px;
 	padding-bottom: 2px;
+}
+
+
+/* Adjust MDL Event Tab Menu to allow Ripple to overflow text area */
+
+.mdl-layout__tab .mdl-layout__tab-ripple-container {
+	overflow: visible;
 }
