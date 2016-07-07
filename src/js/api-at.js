@@ -37,7 +37,7 @@ var dataATAPI;
  * @param  {object} coordinates Destination coordinates for event. coordinates contains lat and lng values
  * @param  {date } datetime    Event date and start time
  */
-function requestRoutes(coordinates, datetime) {
+function requestRoutes(coordinates) {
 
 	var result, error;
 

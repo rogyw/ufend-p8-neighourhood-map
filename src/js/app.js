@@ -32,6 +32,8 @@
 	createEventMarker,
 	enableMapMarker,
 	disableMapMarker,
+	getDateString,
+	getTime24String,
 	resizeMap : false
 */
 /* ======================================================= */
@@ -63,31 +65,31 @@ var oEvent = function(data) {
 		self.notes = ko.observable(data.notes);
 		self.url = ko.observable(data.url);
 
-		self.title = ko.computed(function() {
+		self.title = ko.pureComputed(function() {
 			return self.series() + " - " + self.name();
 		});
 
-		self.dateShort = ko.computed(function() {
+		self.dateShort = ko.pureComputed(function() {
 			return dateFormat.formatDate(self.dateUTC(), 'D j M Y');
 		});
 
-		self.dateString = ko.computed(function() {
+		self.dateString = ko.pureComputed(function() {
 			return $.datepicker.formatDate("DD d MM yy", self.dateUTC());
 		});
 
-		self.courseCloseString = ko.computed(function() {
+		self.courseCloseString = ko.pureComputed(function() {
 			return getTimeString(self.courseCloseUTC());
 		});
 
-		self.startWindowString = ko.computed(function() {
+		self.startWindowString = ko.pureComputed(function() {
 			return getTimeString(self.startFirstUTC()) + " - " + getTimeString(self.startLastUTC());
 		});
 
-		self.websiteString = ko.computed(function() {
+		self.websiteString = ko.pureComputed(function() {
 			return stripUrlHttp(self.url());
 		});
 
-		self.imageEventSeries = ko.computed(function() {
+		self.imageEventSeries = ko.pureComputed(function() {
 			if (self.series() == "Auckland SummerNav") {
 				return IMAGE_LOGO_AK_SUMMERNAV;
 			} else {
@@ -135,6 +137,30 @@ var oEvent = function(data) {
 			return myEvent;
 		});
 
+		// Link to AT website with destination pre-entered
+		// Note: Auckland Transport link does not use or appear to accept URL encoding
+		self.aucklandTransportLink = ko.pureComputed(function() {
+			var urlLink = "https://at.govt.nz/bus-train-ferry/journey-planner/#";
+			var coordinates = self.registrationCoord().lat + "," + self.registrationCoord().lng;
+			var searchValues = {
+				"from": "",
+				"fromLoc": "",
+				"to": coordinates,
+				"toLoc": coordinates,
+				"timeMode": "B",
+				"date": getDateString(self.startFirstUTC()),
+				"time": getTime24String(self.startFirstUTC()),
+				"modes": ["BUS", "TRAIN", "FERRY"],
+				"transfers": "-1"
+			};
+			return urlLink + JSON.stringify(searchValues);
+		});
+
+		// Add link for Bus and Train planning
+		self.aucklandTransportLinkOpen = ko.pureComputed(function() {
+			window.open(self.aucklandTransportLink());
+		});
+
 		self.data = data; //store imported raw data in oEvent for reference
 		self.mapMarker = createEventMarker(self);
 	}
@@ -159,7 +185,7 @@ var viewModel = function() {
 	self.apiATWebsiteString = ko.observable(stripUrlHttp(API_ATAPI_WEBSITE));
 	self.apiATStations = ko.observableArray([]);
 
-	self.displayLoadingWait = ko.computed(function() {
+	self.displayLoadingWait = ko.pureComputed(function() {
 		return self.loadingStatus() === true ? "loadingWaitDisplayed" : "loadingWaitHidden";
 	}, self);
 
@@ -183,6 +209,12 @@ var viewModel = function() {
 		self.apiATStations([]);
 		infoWindow.close();
 	};
+
+
+	self.eventNotSelected = ko.pureComputed(function() {
+		console.log(self.selectedEvent());
+		return (typeof self.selectedEvent() === undefined || self.selectedEvent() === null);
+	});
 
 	//filter the items using the filter text
 	// Reference http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
@@ -229,11 +261,6 @@ var viewModel = function() {
 	// Add eventList Click open marker information
 	self.eventListClick = function(currentEvent) {
 		google.maps.event.trigger(currentEvent.mapMarker, 'click');
-	};
-
-	// Add link for Bus and Train planning
-	self.apiATPlanButtonClick = function() {
-		window.open('https://at.govt.nz/bus-train-ferry/journey-planner/');
 	};
 };
 

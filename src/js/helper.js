@@ -64,6 +64,35 @@ function getTimeString(value) {
 	return result;
 }
 
+/**
+ * returns time string in 24 hour time HM:mm format
+ * (requires third party javascript library php-date-formatter)
+ * @param  {date} value a javascript date object
+ * @return {string}       the time string
+ */
+function getTime24String(value) {
+
+	//Requires: https://github.com/kartik-v/php-date-formatter
+	var result = dateFormat.formatDate(value, 'H:i');
+
+	return result;
+}
+
+
+/**
+ * returns date string in YYYY-MM-DD format
+ * (requires third party javascript library php-date-formatter)
+ * @param  {date} value a javascript date object
+ * @return {string}       the date string in YYYY-MM-DD
+ */
+function getDateString(value) {
+
+	//Requires: https://github.com/kartik-v/php-date-formatter
+	var result = dateFormat.formatDate(value, 'Y-m-d');
+
+	return result;
+}
+
 
 function stripUrlHttp(url) {
 	if (typeof(url) !== 'string') {
