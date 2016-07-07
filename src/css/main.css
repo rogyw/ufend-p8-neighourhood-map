@@ -28,24 +28,32 @@ nav {
 	height: 100%;
 }
 
-.map-info {
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
+.page-content {
+	margin-right: 5px;
 }
 
+.map-info {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: flex-start;
+	list-style-type: none;
+}
 
 /*
  * Use wrapper around image to resize and maintain aspect ratio
  * reference: https://www.kirupa.com/html5/preserve_an_image_aspect_ratio_when_resized.htm
  */
 
-.map-info .img-holder {
+.event-img-holder {
 	width: 125px;
 	margin: 0 auto;
 }
 
-.map-info img.img-summernav {
+.event-img-holder img {
 	width: 100%;
 	height: auto;
 }
@@ -55,9 +63,9 @@ nav {
 	font-size: 1.4em;
 	line-height: 1.4em;
 	font-weight: bold;
-	text-align: center;
 	margin: 0;
 	margin-top: 0.2em;
+	text-align: center;
 }
 
 .map-info h4 {
@@ -69,15 +77,14 @@ nav {
 	margin: 0;
 }
 
-.map-info ul {
-	list-style-type: none;
-	padding: 0;
-	width: 100%;
+.map-info li {
+	text-align: center;
+	flex-grow: 1;
+	padding: 0 10px 0 10px;
+	margin: 5px;
 }
 
-.map-info li {}
-
-.map-info ul li.notice {
+.notice {
 	font-style: italic;
 	font-size: 0.7em;
 	text-align: center;
@@ -85,19 +92,21 @@ nav {
 
 .map-info h5 {
 	color: #757575;
+	font-style: italic;
 	margin: 0;
 	font-size: 0.7em;
-	text-transform: uppercase;
+	text-transform: capitalize;
+	text-align: left;
 }
 
 .map-info .detail {
-	text-align: right;
+	text-align: center;
 	font-weight: bold;
 	display: block;
 }
 
 .map-info .notes {
-	text-align: right;
+	text-align: center;
 	display: block;
 }
 
@@ -105,30 +114,54 @@ nav {
 	text-align: center;
 }
 
-.map-info ul.busstops li {
+.busstops {
+	width: 100%;
+	margin: 0;
+	padding: 0;
 	display: flex;
-	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-around;
+	list-style-type: none;
 }
 
-.map-info ul.busstops li span.busstops-code {
+.busstops li {
+	padding: 0;
+	margin: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #757575;
+}
+
+.busstops li span.busstops-code {
 	display: block;
+	background-color: #757575;
+	color: white;
+	font-weight: bold;
 	flex-grow: 1;
 }
 
-.map-info ul.busstops li span.busstops-address {
+.busstops li span.busstops-address {
 	display: block;
 	flex-grow: 2;
 	font-size: 0.8em;
 	text-align: center;
+	padding: 0 5px 0 5px;
 }
 
-.map-info ul.busstops li span.busstops-distance {
+.busstops li span.busstops-distance {
 	display: block;
 	flex-grow: 1;
 	font-size: 0.8em;
 	color: black;
 	font-style: italic;
 	text-align: right;
+	padding: 0 5px 0 5px;
+}
+
+.g-calendar-button {
+	margin: 5px;
+	padding: 5px;
 }
 
 .map-info .error-text {

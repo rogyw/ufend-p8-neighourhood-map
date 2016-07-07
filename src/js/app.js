@@ -226,9 +226,14 @@ var viewModel = function() {
 	};
 	window.addEventListener('resize', self.redrawMap);
 
-	//Add eventList Click open marker information
+	// Add eventList Click open marker information
 	self.eventListClick = function(currentEvent) {
 		google.maps.event.trigger(currentEvent.mapMarker, 'click');
+	};
+
+	// Add link for Bus and Train planning
+	self.apiATPlanButtonClick = function() {
+		window.open('https://at.govt.nz/bus-train-ferry/journey-planner/');
 	};
 };
 
