@@ -212,7 +212,6 @@ var viewModel = function() {
 
 
 	self.eventNotSelected = ko.pureComputed(function() {
-		console.log(self.selectedEvent());
 		return (typeof self.selectedEvent() === undefined || self.selectedEvent() === null);
 	});
 
