@@ -36,6 +36,8 @@
 	getTime24String,
 	resizeMap : false
 */
+
+
 /* ======================================================= */
 /* Globals */
 /* ======================================================= */
@@ -45,6 +47,8 @@ var map;
 var infoWindow;
 // Google Calendar Event
 var gCalendarEvent;
+
+
 /* ======================================================= */
 /* List */
 /* ======================================================= */
@@ -98,7 +102,7 @@ var oEvent = function(data) {
 			}
 		});
 
-
+		//Generates the Google Calendar Event object to be used for adding the event
 		self.gCalendarEvent = ko.computed(function() {
 			var description = "";
 			var startFirstString = getTimeString(self.startFirstUTC());

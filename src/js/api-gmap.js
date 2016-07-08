@@ -1,6 +1,6 @@
 /*
  * =======================================================
- * app-map.js
+ * api-gmap.js
  *  - contains core map functions for
  *  https://github.com/rogyw/ufend-p8-neighbourhood-map
  *

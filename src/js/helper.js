@@ -25,8 +25,9 @@ var dateFormat = new DateFormatter();
 
 
 /* ======================================================= */
-/* Date/Time Functions*/
+/* Date/Time Helper Functions*/
 /* ======================================================= */
+
 /**
  * Converts a date in YY-MM-DD HH:MM to a date object
  * Reference: Based on http://stackoverflow.com/a/22835394
@@ -93,7 +94,15 @@ function getDateString(value) {
 	return result;
 }
 
+/* ======================================================= */
+/* String Helper Functions*/
+/* ======================================================= */
 
+/**
+ * returns the url string without the http:// or https:// prefix
+ * @param  {string}  url to have prefix removed
+ * @return {string}  url with the http(s):// prefix removed
+ */
 function stripUrlHttp(url) {
 	if (typeof(url) !== 'string') {
 		//return url untouched if not given a string

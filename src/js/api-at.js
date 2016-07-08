@@ -1,6 +1,6 @@
 /*
  * =======================================================
- * at.js
+ * api-at.js
  *  - contains functions to interact with Auckland Transport API
  *  https://github.com/rogyw/ufend-p8-neighbourhood-map
  *
