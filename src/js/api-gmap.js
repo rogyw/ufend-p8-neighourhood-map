@@ -73,6 +73,9 @@ function createEventMarker(oEvent) {
 		infoWindow.open(map, newMarker);
 		// Save gCalendar event for event to global value
 		gCalendarEvent = oEvent.gCalendarEvent();
+		// reset gCalendarButtonHidden to display button
+		window.vm.gCalendarButtonReset();
+
 		// Get API AT bus stop values
 		requestRoutes(coordinates);
 	});

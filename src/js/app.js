@@ -191,8 +191,14 @@ var viewModel = function() {
 		return self.loadingStatus() === true ? "loadingWaitDisplayed" : "loadingWaitHidden";
 	}, self);
 
+	// Google Calendar related observables
 	self.gCalendarButtonHidden = ko.observable(false);
 	self.displayGCalendarResult = ko.observable("");
+	// Google Calendar reset between events
+	self.gCalendarButtonReset = function() {
+		self.gCalendarButtonHidden(false);
+		self.displayGCalendarResult("");
+	};
 
 	//Sort the JSON events data to place markers on map in reverse chronological order.
 	//Reference: Based on http://stackoverflow.com/a/8900824
@@ -206,6 +212,7 @@ var viewModel = function() {
 		self.eventsList.push(new oEvent(eventItem));
 	});
 
+	// Selected Current Event observables and functions
 	self.selectedEvent = ko.observable();
 	self.selectedEventClose = function() {
 		// Clear the selected event
@@ -214,8 +221,6 @@ var viewModel = function() {
 		self.apiATStations([]);
 		infoWindow.close();
 	};
-
-
 	self.eventNotSelected = ko.pureComputed(function() {
 		return (typeof self.selectedEvent() === 'undefined' || self.selectedEvent() === null);
 	});
@@ -223,7 +228,6 @@ var viewModel = function() {
 	//filter the items using the filter text
 	// Reference http://www.knockmeout.net/2011/04/utility-functions-in-knockoutjs.html
 	self.filteredEvents = ko.computed(function() {
-
 		// get the filter search text and ignore case
 		var filter = this.filter().toLowerCase();
 		var filteredList;
@@ -244,7 +248,6 @@ var viewModel = function() {
 				}
 			});
 		}
-
 		return filteredList.sort(function(a, b) {
 			return ((a.dateUTC() < b.dateUTC()) ? -1 : (a.dateUTC() > b.dateUTC()) ? 1 : 0);
 		});
@@ -262,7 +265,7 @@ var viewModel = function() {
 	};
 	window.addEventListener('resize', self.redrawMap);
 
-	// Add eventList Click open marker information
+	// Add eventList click to open marker and information
 	self.eventListClick = function(currentEvent) {
 		google.maps.event.trigger(currentEvent.mapMarker, 'click');
 	};
