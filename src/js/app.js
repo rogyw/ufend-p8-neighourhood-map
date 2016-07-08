@@ -191,6 +191,11 @@ var viewModel = function() {
 	self.apiATWebsiteString = ko.observable(stripUrlHttp(API_ATAPI_WEBSITE));
 	self.apiATStations = ko.observableArray([]);
 
+	// TODO: public transport tab is only to be shown in regions where api services available
+	self.publicTransportTabDisabled = ko.computed(function() {
+		return ((self.apiATMessage() === '') && (self.apiATStations().length === 0));
+	});
+
 	self.displayLoadingWait = ko.pureComputed(function() {
 		return self.loadingStatus() === true ? 'loadingWaitDisplayed' : 'loadingWaitHidden';
 	}, self);
