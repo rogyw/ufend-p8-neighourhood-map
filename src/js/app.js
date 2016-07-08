@@ -157,9 +157,9 @@ var oEvent = function(data) {
 		});
 
 		// Add link for Bus and Train planning
-		self.aucklandTransportLinkOpen = ko.pureComputed(function() {
+		self.aucklandTransportLinkOpen = function() {
 			window.open(self.aucklandTransportLink());
-		});
+		};
 
 		self.data = data; //store imported raw data in oEvent for reference
 		self.mapMarker = createEventMarker(self);
