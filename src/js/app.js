@@ -9,7 +9,7 @@
  * =======================================================
  */
 
-"use strict";
+'use strict';
 
 // set jshint to ignore console, alert, etc
 /* jshint devel: true */
@@ -71,7 +71,7 @@ var oEvent = function(data) {
 		self.url = ko.observable(data.url);
 
 		self.title = ko.pureComputed(function() {
-			return self.series() + " - " + self.name();
+			return self.series() + ' - ' + self.name();
 		});
 
 		self.dateShort = ko.pureComputed(function() {
@@ -79,7 +79,7 @@ var oEvent = function(data) {
 		});
 
 		self.dateString = ko.pureComputed(function() {
-			return $.datepicker.formatDate("DD d MM yy", self.dateUTC());
+			return $.datepicker.formatDate('DD d MM yy', self.dateUTC());
 		});
 
 		self.courseCloseString = ko.pureComputed(function() {
@@ -87,7 +87,7 @@ var oEvent = function(data) {
 		});
 
 		self.startWindowString = ko.pureComputed(function() {
-			return getTimeString(self.startFirstUTC()) + " - " + getTimeString(self.startLastUTC());
+			return getTimeString(self.startFirstUTC()) + ' - ' + getTimeString(self.startLastUTC());
 		});
 
 		self.websiteString = ko.pureComputed(function() {
@@ -95,7 +95,7 @@ var oEvent = function(data) {
 		});
 
 		self.imageEventSeries = ko.pureComputed(function() {
-			if (self.series() == "Auckland SummerNav") {
+			if (self.series() == 'Auckland SummerNav') {
 				return IMAGE_LOGO_AK_SUMMERNAV;
 			} else {
 				return IMAGE_LOGO_AK_CLUB;
@@ -104,39 +104,39 @@ var oEvent = function(data) {
 
 		//Generates the Google Calendar Event object to be used for adding the event
 		self.gCalendarEvent = ko.computed(function() {
-			var description = "";
+			var description = '';
 			var startFirstString = getTimeString(self.startFirstUTC());
 			var startLastString = getTimeString(self.startLastUTC());
 			var courseCloseText = getTimeString(self.courseCloseUTC());
 
-			description += "Start any time between " + startFirstString + " and " + startLastString + ". ";
-			description += "Course Closure is usually " + courseCloseText + ". ";
-			if (self.notes() !== "") {
-				description += "Notes: " + self.notes() + ". ";
+			description += 'Start any time between ' + startFirstString + ' and ' + startLastString + '. ';
+			description += 'Course Closure is usually ' + courseCloseText + '. ';
+			if (self.notes() !== '') {
+				description += 'Notes: ' + self.notes() + '. ';
 			}
-			description += "Please always check onsite noticeboard for updates and notices.";
-			description += "Further information available at: http://auckoc.org.nz/";
+			description += 'Please always check onsite noticeboard for updates and notices.';
+			description += 'Further information available at: http://auckoc.org.nz/';
 
 			var myEvent = {
-				'summary': self.title() + "- Orienteering " + self.series(),
-				'location': self.registrationCoord().lat + ", " + self.registrationCoord().lng,
-				'description': description,
-				'start': {
-					'dateTime': self.startFirstUTC(),
-					'timeZone': 'Pacific/Auckland'
+				"summary": self.title() + "- Orienteering " + self.series(),
+				"location": self.registrationCoord().lat + ", " + self.registrationCoord().lng,
+				"description": description,
+				"start": {
+					"dateTime": self.startFirstUTC(),
+					"timeZone": "Pacific/Auckland"
 				},
-				'end': {
-					'dateTime': self.courseCloseUTC(),
-					'timeZone': 'Pacific/Auckland'
+				"end": {
+					"dateTime": self.courseCloseUTC(),
+					"timeZone": "Pacific/Auckland"
 				},
-				'reminders': {
-					'useDefault': false,
-					'overrides': [{
-						'method': 'email',
-						'minutes': 24 * 60
+				"reminders": {
+					"useDefault": false,
+					"overrides": [{
+						"method": "email",
+						"minutes": 24 * 60
 					}, {
-						'method': 'popup',
-						'minutes': 10
+						"method": "popup",
+						"minutes": 10
 					}]
 				}
 			};
@@ -146,8 +146,8 @@ var oEvent = function(data) {
 		// Link to AT website with destination pre-entered
 		// Note: Auckland Transport link does not use or appear to accept URL encoding
 		self.aucklandTransportLink = ko.pureComputed(function() {
-			var urlLink = "https://at.govt.nz/bus-train-ferry/journey-planner/#";
-			var coordinates = self.registrationCoord().lat + "," + self.registrationCoord().lng;
+			var urlLink = 'https://at.govt.nz/bus-train-ferry/journey-planner/#';
+			var coordinates = self.registrationCoord().lat + ',' + self.registrationCoord().lng;
 			var searchValues = {
 				"from": "",
 				"fromLoc": "",
@@ -182,26 +182,26 @@ var viewModel = function() {
 	var self = this;
 
 	self.eventsList = ko.observableArray();
-	self.filter = ko.observable("");
+	self.filter = ko.observable('');
 	self.loadingStatus = ko.observable(true);
 
-	self.apiATMessage = ko.observable("");
+	self.apiATMessage = ko.observable('');
 	self.apiATLogo = ko.observable(API_ATAPI_LOGO);
 	self.apiATWebsite = ko.observable(API_ATAPI_WEBSITE);
 	self.apiATWebsiteString = ko.observable(stripUrlHttp(API_ATAPI_WEBSITE));
 	self.apiATStations = ko.observableArray([]);
 
 	self.displayLoadingWait = ko.pureComputed(function() {
-		return self.loadingStatus() === true ? "loadingWaitDisplayed" : "loadingWaitHidden";
+		return self.loadingStatus() === true ? 'loadingWaitDisplayed' : 'loadingWaitHidden';
 	}, self);
 
 	// Google Calendar related observables
 	self.gCalendarButtonHidden = ko.observable(false);
-	self.displayGCalendarResult = ko.observable("");
+	self.displayGCalendarResult = ko.observable('');
 	// Google Calendar reset between events
 	self.gCalendarButtonReset = function() {
 		self.gCalendarButtonHidden(false);
-		self.displayGCalendarResult("");
+		self.displayGCalendarResult('');
 	};
 
 	//Sort the JSON events data to place markers on map in reverse chronological order.
@@ -281,17 +281,17 @@ var viewModel = function() {
 /* ======================================================= */
 
 function onAPIMapLoadError(event) {
-	var statusText = "Sorry, an error occurred while trying to load a required resource.\nPlease check internet connection and try again.";
+	var statusText = 'Sorry, an error occurred while trying to load a required resource.\nPlease check internet connection and try again.';
 	if (typeof(event) !== 'undefined') {
-		statusText += "\nSource:\n" + event.target.src;
+		statusText += '\nSource:\n' + event.target.src;
 	}
 	console.log(statusText);
 	alert(statusText);
 
 	// Map and call back to Knockout are not available
 	// let user know not to keep waiting - Turn off wait display
-	var loadingDiv = document.getElementById("neighbourhood-map-spinner");
-	loadingDiv.innerHTML = "<h2>Unavailable.</h2><p>Failed to load required resources. Please check internet connection and try again.</p>";
+	var loadingDiv = document.getElementById('neighbourhood-map-spinner');
+	loadingDiv.innerHTML = '<h2>Unavailable.</h2><p>Failed to load required resources. Please check internet connection and try again.</p>';
 }
 
 /**
@@ -306,9 +306,9 @@ function initMap() {
 		maxZoom: DEFAULT_ZOOM_MAX
 	};
 
-	var myMapElement = document.getElementById("map-main");
-	if (typeof myMapElement === "undefined") {
-		var errorText = "Application Error: the <div id='map-main' class='map-main'> element to hold map was not found in html.";
+	var myMapElement = document.getElementById('map-main');
+	if (typeof myMapElement === 'undefined') {
+		var errorText = 'Application Error: the <div id="map-main" class="map-main"> element to hold map was not found in html.';
 		console.log(errorText);
 		alert(errorText);
 		return;

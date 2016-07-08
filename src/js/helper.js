@@ -11,7 +11,7 @@
  * =======================================================
  */
 
-"use strict";
+'use strict';
 
 // set jshint to ignore console, alert, etc
 /* jshint devel: true */
@@ -36,7 +36,7 @@ var dateFormat = new DateFormatter();
  */
 function getUTCDate(ymdString) {
 
-	//Split "YYYY-MM-DD" UTC string
+	//Split 'YYYY-MM-DD' UTC string
 	var dateTime = ymdString.split(' ');
 	var dateParts = dateTime[0].split('-');
 	var timeParts = dateTime[1].split(':');
@@ -109,6 +109,6 @@ function stripUrlHttp(url) {
 		return url;
 	}
 	var result = url.trim();
-	result = result.replace(/^http[s]?\:\/\//i, "");
+	result = result.replace(/^http[s]?\:\/\//i, '');
 	return result;
 }

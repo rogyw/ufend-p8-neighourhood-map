@@ -12,7 +12,7 @@
  * =======================================================
  */
 
-"use strict";
+'use strict';
 
 // set jshint to ignore console, alert, etc
 /* jshint devel : true */
@@ -26,7 +26,7 @@
 // Developer Console, https://console.developers.google.com
 var GCALENDAR_CLIENT_ID = '1035036075694-1eocpmula50dhlu5t8cmealdhhj70t6b.apps.googleusercontent.com';
 //Read/Write Google Calendar Scope required to insert events
-var GCALENDAR_SCOPES = ["https://www.googleapis.com/auth/calendar"];
+var GCALENDAR_SCOPES = ['https://www.googleapis.com/auth/calendar'];
 
 
 /**
@@ -34,9 +34,9 @@ var GCALENDAR_SCOPES = ["https://www.googleapis.com/auth/calendar"];
  */
 function gCalendarCheckAuth() {
 	gapi.auth.authorize({
-		'client_id': GCALENDAR_CLIENT_ID,
-		'scope': GCALENDAR_SCOPES.join(' '),
-		'immediate': true
+		client_id: GCALENDAR_CLIENT_ID,
+		scope: GCALENDAR_SCOPES.join(' '),
+		immediate: true
 	}, gCalendarHandleAuthResult);
 }
 
@@ -66,7 +66,7 @@ function gCalendarHandleAuthResult(authResult) {
  */
 function gCalendarHandleAuthClick(event) {
 	if (typeof gapi === 'undefined') {
-		alert("Sorry, Google Calendar has failed to load and can't be accessed. Try reloading this page.");
+		alert('Sorry, Google Calendar has failed to load and can\'t be accessed. Try reloading this page.');
 	} else {
 		gapi.auth.authorize({
 				client_id: GCALENDAR_CLIENT_ID,
@@ -98,14 +98,14 @@ function gCalendarInsertEvent() {
 	// stored credentials.
 
 	var request = gapi.client.calendar.events.insert({
-		'calendarId': 'primary',
-		'resource': gCalendarEvent
+		"calendarId": "primary",
+		"resource": gCalendarEvent
 	});
 
 	request.execute(function(value) {
 		var resultText;
 		if (value.error !== undefined) {
-			resultText = "Sorry, there was an error trying to add the event into Google Calendar. Google Calendar API Error: " + value.error.code + " - " + value.error.message;
+			resultText = 'Sorry, there was an error trying to add the event into Google Calendar. Google Calendar API Error: ' + value.error.code + ' - ' + value.error.message;
 			alert(resultText);
 			console.log(resultText);
 		} else {

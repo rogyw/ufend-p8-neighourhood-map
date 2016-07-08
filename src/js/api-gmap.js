@@ -8,7 +8,7 @@
  * https://github.com/rogyw
  * =======================================================
  */
-"use strict";
+'use strict';
 
 /* ======================================================= */
 /* jsHint configuration */
@@ -68,7 +68,7 @@ function createEventMarker(oEvent) {
 			infoWindow.close();
 		}
 
-		var content = "<div class=\"event-info-window\"><p class=\"date\"> " + oEvent.dateShort() + " </p><p class=\"name\">" + oEvent.name() + "</p></div>";
+		var content = '<div class="event-info-window"><p class="date"> ' + oEvent.dateShort() + ' </p><p class="name">' + oEvent.name() + '</p></div>';
 		infoWindow.setContent(content);
 		infoWindow.open(map, newMarker);
 		// Save gCalendar event for event to global value
