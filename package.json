@@ -1,6 +1,6 @@
 {
   "name": "ufend-p8-neighbourhood-map",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Orienteering\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5DRogyw's Udacity Neighbourhood Map Project - Orienteering Events Map",
   "main": "gulpfile.js",
   "directories": {
