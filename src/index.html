@@ -102,8 +102,9 @@
 				<div class="page-content" data-bind="if: selectedEvent">
 					<div class="map-info">
 						<h3>
-							Add to Calendar: <button name="button-g-calendar-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="gCalendarHandleAuthClick()">Add to Google Calendar</button>
+							Add to Calendar: <button data-bind="css: {'button-hidden' : gCalendarButtonHidden }, click: gCalendarHandleAuthClick" name="button-g-calendar-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Add to Google Calendar</button>
 						</h3>
+						<p data-bind="text: displayGCalendarResult"></p>
 					</div>
 				</div>
 			</section>

@@ -43,7 +43,8 @@
 var map;
 // infoWindow for Map pop up information
 var infoWindow;
-
+// Google Calendar Event
+var gCalendarEvent;
 /* ======================================================= */
 /* List */
 /* ======================================================= */
@@ -96,6 +97,7 @@ var oEvent = function(data) {
 				return IMAGE_LOGO_AK_CLUB;
 			}
 		});
+
 
 		self.gCalendarEvent = ko.computed(function() {
 			var description = "";
@@ -188,6 +190,9 @@ var viewModel = function() {
 	self.displayLoadingWait = ko.pureComputed(function() {
 		return self.loadingStatus() === true ? "loadingWaitDisplayed" : "loadingWaitHidden";
 	}, self);
+
+	self.gCalendarButtonHidden = ko.observable(false);
+	self.displayGCalendarResult = ko.observable("");
 
 	//Sort the JSON events data to place markers on map in reverse chronological order.
 	//Reference: Based on http://stackoverflow.com/a/8900824

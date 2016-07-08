@@ -25,17 +25,10 @@
 	DEFAULT_MAP_ZOOM,
 	MAP_MARKER_ICON,
 	MAP_MARKER_HIDE_ONLY,
-	infoWindow,
-	DEBUG :false
+	infoWindow :false
 */
+/* global gCalendarEvent :true */
 
-
-/* ======================================================= */
-/* Globals */
-/* ======================================================= */
-
-// Google Calendar Event
-var gCalendarEvent;
 
 /* ======================================================= */
 /* Google Map */
@@ -50,7 +43,6 @@ function createEventMarker(oEvent) {
 
 	var coordinates = oEvent.registrationCoord();
 	var title = oEvent.title();
-	var gCalEvent = oEvent.gCalendarEvent();
 
 	var newMarker = new google.maps.Marker({
 		position: coordinates,
@@ -79,17 +71,11 @@ function createEventMarker(oEvent) {
 		var content = "<div class=\"event-info-window\"><p class=\"date\"> " + oEvent.dateShort() + " </p><p class=\"name\">" + oEvent.name() + "</p></div>";
 		infoWindow.setContent(content);
 		infoWindow.open(map, newMarker);
-
+		// Save gCalendar event for event to global value
+		gCalendarEvent = oEvent.gCalendarEvent();
+		// Get API AT bus stop values
 		requestRoutes(coordinates);
-
-		//TODO sort out calendar
-		gCalendarEvent = gCalEvent;
-		if (DEBUG) {
-			console.log("gCalendar Event =");
-			console.log(gCalendarEvent);
-		}
 	});
-
 	return newMarker;
 }
 

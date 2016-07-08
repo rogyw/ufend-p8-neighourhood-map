@@ -27,8 +27,6 @@
 var GCALENDAR_CLIENT_ID = '1035036075694-1eocpmula50dhlu5t8cmealdhhj70t6b.apps.googleusercontent.com';
 //Read/Write Google Calendar Scope required to insert events
 var GCALENDAR_SCOPES = ["https://www.googleapis.com/auth/calendar"];
-// Debugging of output to console.log
-var DEBUG_GCALENDAR = false;
 
 
 /**
@@ -49,15 +47,14 @@ function gCalendarCheckAuth() {
  * @param {Object} authResult Authorization result.
  */
 function gCalendarHandleAuthResult(authResult) {
-	var authorizeElement = document.getElementsByClassName('g-calendar-button');
 	if (authResult && !authResult.error) {
 		// Hide auth UI, then load client library.
-		authorizeElement[0].style.display = 'none';
+		window.vm.gCalendarButtonHidden(true);
 		gCalendarLoadCalendarApi();
 	} else {
 		// Show auth UI, allowing the user to initiate authorization by
 		// clicking authorize button.
-		authorizeElement[0].style.display = 'inline';
+		window.vm.gCalendarButtonHidden(false);
 	}
 }
 
@@ -113,23 +110,10 @@ function gCalendarInsertEvent() {
 			console.log(resultText);
 		} else {
 			resultText = 'Success! Event has been added to your calendar: <a href="' + value.htmlLink + '" target="_blank">View</a>';
-			replaceAuthorizeElement(resultText);
+			window.vm.displayGCalendarResult(resultText);
 			if (DEBUG) {
 				console.log(resultText);
 			}
 		}
 	});
-
-}
-
-
-/**
- * Replaces the authorise element contents to the given message.
- *
- * @param {string} message Text to be placed in pre element.
- */
-function replaceAuthorizeElement(message) {
-	var authorizeElement = document.getElementsByClassName('g-calendar-button');
-	authorizeElement[0].innerHTML = '<p>' + message + '</p>';
-	authorizeElement[0].style.display = 'inline';
 }
