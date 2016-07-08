@@ -254,6 +254,8 @@ nav {
 	color: white;
 	display: block;
 	line-height: 48px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .button-hidden {
