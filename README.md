@@ -50,6 +50,7 @@ Note: Copyright and license text of third party modules are included in their so
 
 Root folder `/` contains build configuration files and this `README.md`
 The subfolder `/src/` contains source files and `/dist/` contains the gulp generated optimised files ready for use.
+The subfolder `/docs` contains function documentation generated from the source code.
 
 ##### A. Initial Development Structure Setup
 
@@ -117,6 +118,12 @@ Note: You can use either `/dist/` or `/src/` from the repository.
   This will start the service serving the current directories files as `http://localhost:8080/`
 4. Open a web browser and view `http://localhost:8080/`
 
+##### Updating the docs folder
+
+JSDocs is used to create the `docs` folder documentation from the source jsdoc code comments. Further information is available at [http://usejsdoc.org/](http://usejsdoc.org/). To create the docs, use the following commandline in the repository root folder:
+```
+jsdoc ./src/js -R ./README.md -P ./package.json -d ./docs
+```
 
 ##### Optimisations to files in dist completed by Gulp
 * gulp-cssnano - minify CSS files
