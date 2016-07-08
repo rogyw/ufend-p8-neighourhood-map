@@ -1,6 +1,6 @@
 ## ufend-p8-neighbourhood-map
 
-The original live copy of this project is available at:
+This repository contains the source code maintained for used on the site currently at:
 [http://roger.navevent.co.nz/orienteering-events-map/](http://roger.navevent.co.nz/orienteering-events-map/)
 
 
