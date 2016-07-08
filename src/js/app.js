@@ -212,7 +212,7 @@ var viewModel = function() {
 
 
 	self.eventNotSelected = ko.pureComputed(function() {
-		return (typeof self.selectedEvent() === undefined || self.selectedEvent() === null);
+		return (typeof self.selectedEvent() === 'undefined' || self.selectedEvent() === null);
 	});
 
 	//filter the items using the filter text
