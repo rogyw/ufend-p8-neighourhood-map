@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: helper.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: helper.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
+ * =======================================================
+ * helpers.js
+ *  - contains helper functions for
+ *  https://github.com/rogyw/ufend-p8-neighbourhood-map
+ *
+ * Including Date manipulation and String helpers
+ *
+ * Created by Roger Woodroofe rogyw@yahoo.co.nz
+ * https://github.com/rogyw
+ * =======================================================
+ */
+
+"use strict";
+
+// set jshint to ignore console, alert, etc
+/* jshint devel: true */
+/* global DateFormatter :false */
+
+
+/* ======================================================= */
+/* Date Format Library Global */
+/* ======================================================= */
+var dateFormat = new DateFormatter();
+
+
+/* ======================================================= */
+/* Date/Time Helper Functions*/
+/* ======================================================= */
+
+/**
+ * Converts a date in YY-MM-DD HH:MM to a date object
+ * Reference: Based on http://stackoverflow.com/a/22835394
+ * @param  {string} ymdString string in YY-MM-DD HH:MM UTC format
+ * @return {date}   The javascript date representing the UTC time string
+ */
+function getUTCDate(ymdString) {
+
+	//Split "YYYY-MM-DD" UTC string
+	var dateTime = ymdString.split(' ');
+	var dateParts = dateTime[0].split('-');
+	var timeParts = dateTime[1].split(':');
+
+	//adjust month representation for javascript (0=Jan - 11=Dec)
+	dateParts[1] = dateParts[1] - 1;
+
+	//Apply Fix to set time to UTC reference: http://stackoverflow.com/a/439871
+	var dateValue = new Date(Date.UTC(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1]));
+
+	return dateValue;
+}
+
+
+/**
+ * returns time string in 12 hour time H:mm am/pm format
+ * (requires third party javascript library php-date-formatter)
+ * @param  {date} value a javascript date object
+ * @return {string}       the time string
+ */
+function getTimeString(value) {
+
+	//Requires: https://github.com/kartik-v/php-date-formatter
+	var result = dateFormat.formatDate(value, 'g:ia');
+
+	return result;
+}
+
+/**
+ * returns time string in 24 hour time HM:mm format
+ * (requires third party javascript library php-date-formatter)
+ * @param  {date} value a javascript date object
+ * @return {string}       the time string
+ */
+function getTime24String(value) {
+
+	//Requires: https://github.com/kartik-v/php-date-formatter
+	var result = dateFormat.formatDate(value, 'H:i');
+
+	return result;
+}
+
+
+/**
+ * returns date string in YYYY-MM-DD format
+ * (requires third party javascript library php-date-formatter)
+ * @param  {date} value a javascript date object
+ * @return {string}       the date string in YYYY-MM-DD
+ */
+function getDateString(value) {
+
+	//Requires: https://github.com/kartik-v/php-date-formatter
+	var result = dateFormat.formatDate(value, 'Y-m-d');
+
+	return result;
+}
+
+/* ======================================================= */
+/* String Helper Functions*/
+/* ======================================================= */
+
+/**
+ * returns the url string without the http:// or https:// prefix
+ * @param  {string}  url to have prefix removed
+ * @return {string}  url with the http(s):// prefix removed
+ */
+function stripUrlHttp(url) {
+	if (typeof(url) !== 'string') {
+		//return url untouched if not given a string
+		return url;
+	}
+	var result = url.trim();
+	result = result.replace(/^http[s]?\:\/\//i, "");
+	return result;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createEventMarker">createEventMarker</a></li><li><a href="global.html#disableMapMarker">disableMapMarker</a></li><li><a href="global.html#enableMapMarker">enableMapMarker</a></li><li><a href="global.html#gCalendarCheckAuth">gCalendarCheckAuth</a></li><li><a href="global.html#gCalendarHandleAuthClick">gCalendarHandleAuthClick</a></li><li><a href="global.html#gCalendarHandleAuthResult">gCalendarHandleAuthResult</a></li><li><a href="global.html#gCalendarInsertEvent">gCalendarInsertEvent</a></li><li><a href="global.html#gCalendarLoadCalendarApi">gCalendarLoadCalendarApi</a></li><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getTime24String">getTime24String</a></li><li><a href="global.html#getTimeString">getTimeString</a></li><li><a href="global.html#getUTCDate">getUTCDate</a></li><li><a href="global.html#initMap">initMap</a></li><li><a href="global.html#oEvent">oEvent</a></li><li><a href="global.html#requestRoutes">requestRoutes</a></li><li><a href="global.html#resizeMap">resizeMap</a></li><li><a href="global.html#stripUrlHttp">stripUrlHttp</a></li><li><a href="global.html#viewModel">viewModel</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Jul 08 2016 20:17:46 GMT+1200 (New Zealand Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
