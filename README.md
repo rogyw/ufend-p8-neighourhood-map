@@ -35,8 +35,7 @@ For more information on Orienteering in New Zealand, visit [Orienteering NZ](htt
 * KnockoutJS - for event list management
 * Google Maps Javascript API - Map Services
 * Material Design Lite - Page and component styles
-* JQuery UI - AJAX services and date conversion functionality (Date picker alternative until MDL implementation available).
-* InfoBubble Google Maps extension - for tabbed infoWindow support
+* JQuery UI - AJAX services and date conversion functionality
 * php-date-formatter.js script - provides date string formatting
 
 *Additional functionality requires:*
@@ -61,7 +60,7 @@ The subfolder `/src/` contains source files and `/dist/` contains the gulp gener
 1. Run the command `npm install` to install required gulp modules and jsDoc as defined in included `package.json` file.
 1. Run the command `bower install` to install required bower dependancies.
 1. Obtain API Keys and update configuration settings in source as outlined in section below.
-1. To refresh the contents of `dist` folder use the command `gulp rebuild`.  The rebuild will delete the old dist folder and rebuild based on current source files.
+1. To refresh the contents of `dist` folder use the command `gulp rebuild`.  The rebuild will delete the old dist folder and rebuild based on current source files. Note: Using the command `gulp` will initiate the default gulp watch on selected source folders.
 1. Copy files from `dist` to your web hosting account or alternatively to deploy the contents of `dist` folder to your live `gh-pages` for the repostitory on Github use `gulp deploy`.
 1. Visit your site to test it works!
 
@@ -131,12 +130,22 @@ Note: You can use either `/dist/` or `/src/` from the repository.
 
 ## Changelog
 
-0.2 Project Submission 2
-* Updated Documentation
-* Adds HTTPS / HTTP/2 Support
+### version 2.0 Project Submission 2 - 8 July 2016
 * fixes and code improvements
+* increased use of Knockout.js
+* removed infoBubble displayed on map and external dependancy
+* add Material Design layout with scrollable tabs for event details
+* add Material Design Icons for event tabs menu
+* add customised link for event to Auckland Transport to assist with trip planning
+* adds HTTPS / HTTP/2 support
+* documentation updated
 
-0.1 initial project submission
+### version 1.0 initial project submission
+* initial submission
+* Search and display of events in map
+* Display selected event details in infoBubble on map
+* Button to add event to Google Calendar
+* API information from Auckland Transport
 
 ## Contacts
 
