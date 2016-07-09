@@ -43,8 +43,9 @@
 
 
     <section>
-        <article><h2>ufend-p8-neighbourhood-map</h2><p>The original live copy of this project is available at:
+        <article><h2>ufend-p8-neighbourhood-map</h2><p>This repository contains the source code maintained for used on the site currently at:
 <a href="http://roger.navevent.co.nz/orienteering-events-map/">http://roger.navevent.co.nz/orienteering-events-map/</a></p>
+<p>This open source project welcomes contributions and suggestions. Please refer to the Roadmap and Contributions section below.</p>
 <h3>Introduction</h3><p>The &quot;Auckland Orienteering Events&quot; site provides an <strong>interactive display of upcoming orienteering events in the Auckland region</strong> and brief details about the events.</p>
 <p><strong>Interactive text search functionality</strong> is provided within the list of events to assist in finding events on a certain day of the week, upcoming month of the year, or within the region of interest.</p>
 <p>For each event, details on the date, registration location, start times and times are provided along with additional <strong>assistance identifying the closest train/bus stations</strong>.</p>
@@ -69,7 +70,8 @@ More information on the project requirements are available at: <a href="https://
 </ul>
 <p>Note: Copyright and license text of third party modules are included in their source code.</p>
 <h4>How to Use This Project</h4><h5>Repository Structure</h5><p>Root folder <code>/</code> contains build configuration files and this <code>README.md</code>
-The subfolder <code>/src/</code> contains source files and <code>/dist/</code> contains the gulp generated optimised files ready for use.</p>
+The subfolder <code>/src/</code> contains source files and <code>/dist/</code> contains the gulp generated optimised files ready for use.
+The subfolder <code>/docs</code> contains function documentation generated from the source code.</p>
 <h5>A. Initial Development Structure Setup</h5><ol>
 <li>(optional) Fork or clone the <a href="https://github.com/rogyw/ufend-P8-neighbourhood-map.git">repository</a> on GitHub.</li>
 <li>Use git to clone the repository to your local system. <code>git clone https://github.com/rogyw/ufend-P8-neighbourhood-map.git</code></li>
@@ -136,7 +138,8 @@ This will start the service serving the current directories files as <code>http:
 </li>
 <li>Open a web browser and view <code>http://localhost:8080/</code></li>
 </ol>
-<h5>Optimisations to files in dist completed by Gulp</h5><ul>
+<h5>Updating the docs folder</h5><p>JSDocs is used to create the <code>docs</code> folder documentation from the source jsdoc code comments. Further information is available at <a href="http://usejsdoc.org/">http://usejsdoc.org/</a>. To create the docs, use the following commandline in the repository root folder:</p>
+<pre class="prettyprint source"><code>jsdoc ./src/js -R ./README.md -P ./package.json -d ./docs</code></pre><h5>Optimisations to files in dist completed by Gulp</h5><ul>
 <li>gulp-cssnano - minify CSS files</li>
 <li>gulp-autoprefixer - auto-prefix CSS</li>
 <li>gulp-gh-pages - upload to gh-pages</li>
@@ -162,10 +165,35 @@ This will start the service serving the current directories files as <code>http:
 <li>Button to add event to Google Calendar</li>
 <li>API information from Auckland Transport</li>
 </ul>
-<h2>Contacts</h2><p>###Udacity
-<a href="https://www.udacity.com/">Udacity website</a></p>
-<p>###Roger Woodroofe
-Contact Roger Woodroofe through <a href="https://github.com/rogyw">Rogyw on GitHub</a> or email <a href="mailto:rogyw@yahoo.co.nz">rogyw@yahoo.co.nz</a></p></article>
+<h2>Roadmap and Contribution Requests</h2><p>Features to be added in future releases:</p>
+<ul>
+<li>Add New Zealand wide orienteering events listings<ul>
+<li>use OrienteeringNZ events listings RSS feed as information provider (use rsstojson)</li>
+<li>update OrienteeringNZ events RSS feed to include location information and other details</li>
+<li>add regional public transport support</li>
+</ul>
+</li>
+<li>add additional filtering fields or options<ul>
+<li>Only show upcoming events</li>
+<li>Provide date range filtering</li>
+</ul>
+</li>
+<li>Add location based map centering to show events near user</li>
+<li>Add NZ permanent courses information</li>
+<li>add progressive web application support<ul>
+<li>save event information for offline use</li>
+<li>add icon to homepage</li>
+<li>add splash page for homepage icon users</li>
+</ul>
+</li>
+<li>Link to results after event</li>
+<li>Add locations of nearby Toilets/Public conveniences.</li>
+<li>Add local after-hours accident-and-medical-centres link</li>
+<li>Add international events information</li>
+</ul>
+<p>Please <a href="https://github.com/rogyw/ufend-p8-neighourhood-map/issues">add an issue on Github</a> to suggest additional features or a pull request to contribute features.</p>
+<h2>Contacts</h2><h3>Udacity</h3><p><a href="https://www.udacity.com/">Udacity website</a></p>
+<h3>Roger Woodroofe</h3><p>Contact Roger Woodroofe through <a href="https://github.com/rogyw">Rogyw on GitHub</a> or email <a href="mailto:rogyw@yahoo.co.nz">rogyw@yahoo.co.nz</a></p></article>
     </section>
 
 
@@ -182,7 +210,7 @@ Contact Roger Woodroofe through <a href="https://github.com/rogyw">Rogyw on GitH
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Jul 08 2016 20:17:46 GMT+1200 (New Zealand Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Jul 09 2016 12:41:09 GMT+1200 (New Zealand Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
