@@ -182,8 +182,8 @@ Please [add an issue on Github](https://github.com/rogyw/ufend-p8-neighourhood-m
 
 ## Contacts
 
-###Udacity
+### Udacity
 [Udacity website](https://www.udacity.com/)
 
-###Roger Woodroofe
+### Roger Woodroofe
 Contact Roger Woodroofe through [Rogyw on GitHub](https://github.com/rogyw) or email [rogyw@yahoo.co.nz](mailto:rogyw@yahoo.co.nz)
