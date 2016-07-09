@@ -3,6 +3,8 @@
 This repository contains the source code maintained for used on the site currently at:
 [http://roger.navevent.co.nz/orienteering-events-map/](http://roger.navevent.co.nz/orienteering-events-map/)
 
+This open source project welcomes contributions and suggestions. Please refer to the Roadmap and Contributions section below.
+
 
 ### Introduction
 
@@ -153,6 +155,30 @@ jsdoc ./src/js -R ./README.md -P ./package.json -d ./docs
 * Display selected event details in infoBubble on map
 * Button to add event to Google Calendar
 * API information from Auckland Transport
+
+## Roadmap and Contribution Requests
+
+Features to be added in future releases:
+
+* Add New Zealand wide orienteering events listings
+  * use OrienteeringNZ events listings RSS feed as information provider (use rsstojson)
+  * update OrienteeringNZ events RSS feed to include location information and other details
+  * add regional public transport support
+* add additional filtering fields or options
+  * Only show upcoming events
+  * Provide date range filtering
+* Add location based map centering to show events near user
+* Add NZ permanent courses information
+* add progressive web application support
+  * save event information for offline use
+  * add icon to homepage
+  * add splash page for homepage icon users
+* Link to results after event
+* Add locations of nearby Toilets/Public conveniences.
+* Add local after-hours accident-and-medical-centres link
+* Add international events information
+
+Please [add an issue on Github](https://github.com/rogyw/ufend-p8-neighourhood-map/issues) to suggest additional features or a pull request to contribute features.
 
 ## Contacts
 
